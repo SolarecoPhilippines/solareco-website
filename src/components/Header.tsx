@@ -43,8 +43,11 @@ export function Header() {
             );
           })}
         </nav>
-        <div className="hidden lg:block">
-          <Button href={FACEBOOK_PAGE_URL}>Request a Quote</Button>
+        <div className="hidden items-center gap-3 lg:flex">
+          <Button href={FACEBOOK_PAGE_URL} variant="secondary">
+            Facebook
+          </Button>
+          <Button href="/contact">Request a Quote</Button>
         </div>
         <button
           type="button"
@@ -74,7 +77,10 @@ export function Header() {
                 {link.label}
               </Link>
             ))}
-            <Button href={FACEBOOK_PAGE_URL} className="mt-2 w-full">
+            <Button href={FACEBOOK_PAGE_URL} variant="secondary" className="mt-2 w-full">
+              Facebook
+            </Button>
+            <Button href="/contact" className="w-full">
               Request a Quote
             </Button>
           </nav>
@@ -83,4 +89,3 @@ export function Header() {
     </header>
   );
 }
-

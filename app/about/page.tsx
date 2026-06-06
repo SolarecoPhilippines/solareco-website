@@ -8,7 +8,13 @@ export const metadata: Metadata = {
   description: "Learn about Solareco Group and its nationwide solar business capabilities.",
 };
 
-const businessUnits = ["Distribution", "Installation", "E-commerce", "Importation", "Corporate support"];
+const businessUnits = [
+  "Renewable energy",
+  "Electrical products",
+  "Industrial solutions",
+  "FDAS",
+  "Technology-related products and services",
+];
 
 export default function AboutPage() {
   return (
@@ -18,11 +24,12 @@ export default function AboutPage() {
           <div>
             <p className="text-sm font-semibold uppercase tracking-[0.2em] text-blue-100">About Solareco</p>
             <h1 className="mt-4 font-heading text-4xl font-black sm:text-5xl">
-              A growing solar group serving customers across the Philippines.
+              A diversified solutions group serving customers across the Philippines.
             </h1>
             <p className="mt-6 text-lg leading-8 text-blue-50">
               Solareco Group was founded in 2018 and grew from a solar supplies trading business into a diversified
-              group serving customers across the Philippines.
+              group serving renewable energy, electrical, industrial, FDAS, and technology-related needs across the
+              Philippines.
             </p>
           </div>
           <PlaceholderImage label="Solareco company" className="border-white/20 bg-white/10" />
@@ -34,19 +41,24 @@ export default function AboutPage() {
           <SectionTitle
             eyebrow="Company overview"
             title="Built around supply, support, and project execution"
-            description="The company capabilities include distribution, installation, e-commerce, importation, and corporate support."
+            description="The company capabilities include distribution, installation, e-commerce, importation, corporate support, and professional services for emerging technology adoption."
           />
           <div className="mt-10 grid gap-6 md:grid-cols-2">
             <div className="rounded-lg border border-slate-200 bg-white p-6 shadow-sm">
-              <h2 className="font-heading text-2xl font-bold text-slate-950">Mission placeholder</h2>
+              <h2 className="font-heading text-2xl font-bold text-slate-950">Mission</h2>
               <p className="mt-4 text-slate-600">
-                To provide dependable solar products and practical support that help customers adopt cleaner energy with confidence.
+                To drive technological advancement by delivering innovative products, engineering solutions, and
+                professional services that empower our customers to adopt emerging technologies with confidence. We
+                strive to ensure quality, safety, and continuous learning while creating lasting value through
+                innovation and excellence.
               </p>
             </div>
             <div className="rounded-lg border border-slate-200 bg-white p-6 shadow-sm">
-              <h2 className="font-heading text-2xl font-bold text-slate-950">Vision placeholder</h2>
+              <h2 className="font-heading text-2xl font-bold text-slate-950">Vision</h2>
               <p className="mt-4 text-slate-600">
-                To be a trusted solar partner with strong product access and responsive service across the Philippines.
+                To become the Philippines&apos; most trusted and innovative technology, renewable energy, and industrial
+                solutions group, powered by a nationwide distribution network and a culture of excellence that enables
+                our people, partners, and customers to grow and succeed.
               </p>
             </div>
           </div>
@@ -88,4 +100,3 @@ export default function AboutPage() {
     </>
   );
 }
-

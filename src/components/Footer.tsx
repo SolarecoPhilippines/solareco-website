@@ -14,22 +14,38 @@ export function Footer() {
         <div>
           <h2 className="text-sm font-semibold uppercase tracking-[0.16em] text-slate-300">Navigation</h2>
           <div className="mt-4 grid gap-3 text-sm">
-            <Link href="/products" className="hover:text-white/80">Products</Link>
-            <Link href="/downloads" className="hover:text-white/80">Downloads</Link>
-            <Link href="/about" className="hover:text-white/80">About Us</Link>
-            <Link href="/contact" className="hover:text-white/80">Contact</Link>
+            <Link href="/products" className="hover:text-white/80">
+              Products
+            </Link>
+            <Link href="/downloads" className="hover:text-white/80">
+              Downloads
+            </Link>
+            <Link href="/about" className="hover:text-white/80">
+              About Us
+            </Link>
+            <Link href="/contact" className="hover:text-white/80">
+              Contact
+            </Link>
           </div>
         </div>
         <div>
           <h2 className="text-sm font-semibold uppercase tracking-[0.16em] text-slate-300">Contact</h2>
-          <p className="mt-4 text-sm leading-6 text-slate-300">Company contact details will be added after final approval.</p>
-          <a href={FACEBOOK_PAGE_URL} target="_blank" rel="noopener noreferrer" className="mt-4 inline-flex text-sm font-semibold hover:text-white/80">
+          <p className="mt-4 text-sm leading-6 text-slate-300">
+            Company contact details will be added after final approval.
+          </p>
+          <a
+            href={FACEBOOK_PAGE_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mt-4 inline-flex text-sm font-semibold hover:text-white/80"
+          >
             Message on Facebook
           </a>
         </div>
       </div>
       <div className="border-t border-white/10 px-4 py-5 text-center text-xs text-slate-400">
-        © 2026 {SITE_NAME}. Placeholder website foundation.
+        Copyright 2026 {SITE_NAME}. Solar products, technical assistance, and sustainable energy solutions across the
+        Philippines.
       </div>
     </footer>
   );
