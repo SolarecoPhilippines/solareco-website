@@ -8,19 +8,38 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --font-sans: Poppins, Arial, Helvetica, sans-serif;
+  --font-heading: Montserrat, Poppins, Arial, Helvetica, sans-serif;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: Poppins, Arial, Helvetica, sans-serif;
 }
+
+::selection {
+  background: #0d3567;
+  color: white;
+}
+
+.section-fade {
+  animation: section-fade 0.65s ease both;
+}
+
+.angled-top {
+  clip-path: polygon(0 5vw, 100% 0, 100% 100%, 0 100%);
+}
+
+@keyframes section-fade {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
