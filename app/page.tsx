@@ -6,21 +6,40 @@ import { SectionTitle } from "@/src/components/SectionTitle";
 import { branches } from "@/src/data/branches";
 import { downloadGroups } from "@/src/data/downloads";
 import { products } from "@/src/data/products";
-import { FACEBOOK_PAGE_URL } from "@/src/lib/constants";
 
 const benefits = [
-  "Reliable solar products",
-  "Technical assistance",
-  "Nationwide presence",
-  "Installation support",
+  {
+    title: "Nationwide Distribution",
+    description: "Branches and warehouses support product availability for installers, dealers, and project sites.",
+  },
+  {
+    title: "Technical Support",
+    description: "Product guidance helps teams compare batteries, panels, breakers, wiring, and system requirements.",
+  },
+  {
+    title: "Genuine Products",
+    description: "Priority product lines are organized with source records, datasheet placeholders, and certificate tracking.",
+  },
+  {
+    title: "Installation Support",
+    description: "Solareco helps customers move from inquiry to practical product selection for real project conditions.",
+  },
+  {
+    title: "Multiple Branches Nationwide",
+    description: "Iloilo, Bacolod, Manila, Cebu, Davao, and Palawan locations make coordination easier across regions.",
+  },
+  {
+    title: "Fast Product Availability",
+    description: "A focused catalog helps customers quickly identify available solar and electrical product options.",
+  },
 ];
 
 export default function Home() {
   return (
     <>
-      <section className="section-fade relative overflow-hidden bg-[#0D3567] text-white">
+      <section className="home-hero section-fade relative overflow-hidden bg-[#0D3567] text-white">
         <video
-          className="pointer-events-none absolute inset-0 h-full w-full object-cover opacity-20"
+          className="pointer-events-none absolute inset-0 h-full w-full object-cover"
           autoPlay
           muted
           loop
@@ -30,25 +49,25 @@ export default function Home() {
         >
           <source src="/videos/hero/solareco-home-hero.mp4" type="video/mp4" />
         </video>
-        <div className="absolute inset-0 bg-[#0D3567]/75" aria-hidden="true" />
-        <div className="relative mx-auto grid min-h-[calc(100svh-78px)] max-w-7xl items-center gap-10 px-4 py-20 sm:px-6 lg:grid-cols-[1.05fr_0.95fr] lg:px-8">
+        <div className="absolute inset-0 bg-slate-950/40" aria-hidden="true" />
+        <div className="relative mx-auto grid min-h-svh max-w-7xl items-center gap-10 px-4 pb-16 pt-32 sm:px-6 lg:grid-cols-[1.05fr_0.95fr] lg:px-8">
           <div className="relative z-10">
             <p className="text-sm font-semibold uppercase tracking-[0.2em] text-blue-100">
               Solar products for Philippine projects
             </p>
             <h1 className="mt-5 font-heading text-4xl font-black leading-tight sm:text-5xl lg:text-6xl">
-              Practical solar solutions backed by nationwide support.
+              Reliable Solar Products and Energy Solutions Across the Philippines
             </h1>
             <p className="mt-6 max-w-2xl text-lg leading-8 text-blue-50">
-              Solareco supplies priority solar products, electrical components, and support services for homes,
-              businesses, installers, and project partners across the Philippines.
+              Providing solar panels, batteries, breakers, electrical products, and technical support for homes,
+              businesses, and industries.
             </p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+              <Button href="/contact" variant="light">
+                Request a Quotation
+              </Button>
               <Button href="/products" variant="light">
                 Browse Products
-              </Button>
-              <Button href={FACEBOOK_PAGE_URL} variant="secondary">
-                Message Us on Facebook
               </Button>
             </div>
           </div>
@@ -69,8 +88,8 @@ export default function Home() {
         <div className="mx-auto max-w-7xl">
           <SectionTitle
             eyebrow="Priority catalog"
-            title="Featured solar products"
-            description="Initial placeholders are ready for official photos, datasheets, certificates, and final product copy."
+            title="Featured Products"
+            description="Explore Solareco's priority solar and electrical products for residential, commercial, and industrial requirements."
           />
           <div className="mt-10 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
             {products.map((product) => (
@@ -84,16 +103,18 @@ export default function Home() {
         <div className="mx-auto max-w-7xl">
           <SectionTitle
             eyebrow="Why Solareco"
-            title="Support for better solar project execution"
-            description="The foundation reflects the business scope today while leaving room for verified assets and approved documentation later."
+            title="Why Choose Solareco Philippines"
+            description="A practical product partner for solar installers, project owners, dealers, and businesses that need dependable supply and support."
           />
-          <div className="mt-10 grid gap-5 md:grid-cols-2 lg:grid-cols-4">
+          <div className="mt-10 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
             {benefits.map((benefit) => (
-              <div key={benefit} className="rounded-lg border border-slate-200 bg-white p-6 shadow-sm">
-                <div className="mb-5 h-10 w-10 rounded-md bg-[#0D3567]" />
-                <h3 className="font-heading text-lg font-bold text-slate-950">{benefit}</h3>
+              <div key={benefit.title} className="hover-lift rounded-lg border border-slate-200 bg-white p-6 shadow-sm">
+                <div className="mb-5 flex h-11 w-11 items-center justify-center rounded-md bg-[#0D3567] text-lg font-black text-white">
+                  {benefit.title.charAt(0)}
+                </div>
+                <h3 className="font-heading text-lg font-bold text-slate-950">{benefit.title}</h3>
                 <p className="mt-3 text-sm leading-6 text-slate-600">
-                  Placeholder details will be refined with the final service description and proof points.
+                  {benefit.description}
                 </p>
               </div>
             ))}

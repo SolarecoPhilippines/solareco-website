@@ -3,9 +3,12 @@ type SectionTitleProps = {
   title: string;
   description?: string;
   align?: "left" | "center";
+  headingLevel?: "h1" | "h2";
 };
 
-export function SectionTitle({ eyebrow, title, description, align = "left" }: SectionTitleProps) {
+export function SectionTitle({ eyebrow, title, description, align = "left", headingLevel = "h2" }: SectionTitleProps) {
+  const Heading = headingLevel;
+
   return (
     <div className={align === "center" ? "mx-auto max-w-3xl text-center" : "max-w-3xl"}>
       {eyebrow ? (
@@ -13,9 +16,8 @@ export function SectionTitle({ eyebrow, title, description, align = "left" }: Se
           {eyebrow}
         </p>
       ) : null}
-      <h2 className="font-heading text-3xl font-bold text-slate-950 sm:text-4xl">{title}</h2>
+      <Heading className="font-heading text-3xl font-bold text-slate-950 sm:text-4xl">{title}</Heading>
       {description ? <p className="mt-4 text-base leading-7 text-slate-600">{description}</p> : null}
     </div>
   );
 }
-

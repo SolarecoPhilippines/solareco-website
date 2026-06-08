@@ -18,13 +18,33 @@ body {
   font-family: Poppins, Arial, Helvetica, sans-serif;
 }
 
+main {
+  padding-top: 76px;
+}
+
 ::selection {
   background: #0d3567;
   color: white;
 }
 
+.home-hero {
+  margin-top: -76px;
+}
+
 .section-fade {
   animation: section-fade 0.65s ease both;
+}
+
+.hover-lift {
+  transition:
+    transform 180ms ease,
+    box-shadow 180ms ease,
+    border-color 180ms ease;
+}
+
+.hover-lift:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 18px 45px rgb(15 23 42 / 0.12);
 }
 
 .angled-top {
@@ -42,4 +62,3 @@ body {
     transform: translateY(0);
   }
 }
-

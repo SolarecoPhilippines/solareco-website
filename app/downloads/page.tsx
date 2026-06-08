@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { DownloadCard } from "@/src/components/DownloadCard";
+import { DownloadHub } from "@/src/components/DownloadHub";
 import { SectionTitle } from "@/src/components/SectionTitle";
 import { downloadGroups } from "@/src/data/downloads";
 
@@ -14,16 +14,12 @@ export default function DownloadsPage() {
       <div className="mx-auto max-w-7xl">
         <SectionTitle
           eyebrow="Download center"
-          title="Organized document placeholders"
-          description="Files are grouped for future upload after all datasheets, certificates, and marketing materials are reviewed and approved."
+          title="Technical Downloads and Certificates"
+          description="Search datasheets, certificates, and marketing materials for Solareco's solar and industrial product lines."
+          headingLevel="h1"
         />
-        <div className="mt-10 grid gap-6 lg:grid-cols-2">
-          {downloadGroups.map((group) => (
-            <DownloadCard key={group.title} group={group} />
-          ))}
-        </div>
+        <DownloadHub groups={downloadGroups} />
       </div>
     </section>
   );
 }
-

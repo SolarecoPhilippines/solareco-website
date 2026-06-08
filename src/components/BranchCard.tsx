@@ -47,6 +47,18 @@ export function BranchCard({ branch, compact = false, showFacebook = false, show
         ) : null}
       </div>
 
+      {branch.mapQuery && !compact ? (
+        <div className="mt-5 overflow-hidden rounded-md border border-slate-200 bg-slate-100">
+          <iframe
+            title={`${branch.name} map`}
+            src={`https://www.google.com/maps?q=${encodeURIComponent(branch.mapQuery)}&output=embed`}
+            className="h-48 w-full"
+            loading="lazy"
+            referrerPolicy="no-referrer-when-downgrade"
+          />
+        </div>
+      ) : null}
+
       {showFacebook || showContactLink ? (
         <div className="mt-5 flex flex-col gap-3 sm:flex-row">
           {showContactLink ? (
