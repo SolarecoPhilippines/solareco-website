@@ -20,7 +20,18 @@ export function ProductImageGallery({ model, images }: ProductImageGalleryProps)
   const [failedImages, setFailedImages] = useState<Set<string>>(new Set());
   const titleId = useId();
   const visibleImages = useMemo(
-    () => images.filter((image) => !failedImages.has(image.src)),
+    () => {
+      const seen = new Set<string>();
+
+      return images.filter((image) => {
+        if (failedImages.has(image.src) || seen.has(image.src)) {
+          return false;
+        }
+
+        seen.add(image.src);
+        return true;
+      });
+    },
     [failedImages, images],
   );
   const clampedSelectedIndex = Math.min(selectedIndex, Math.max(visibleImages.length - 1, 0));
@@ -55,7 +66,7 @@ export function ProductImageGallery({ model, images }: ProductImageGalleryProps)
       <button
         type="button"
         onClick={() => setOpen(true)}
-        className="relative block aspect-[4/3] w-full overflow-hidden rounded-md bg-slate-50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0D3567]"
+        className="relative block aspect-[4/3] w-full overflow-hidden rounded-md bg-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0D3567]"
         aria-label={`Open enlarged preview for ${model} ${selectedImage.label}`}
       >
         <Image
@@ -63,11 +74,12 @@ export function ProductImageGallery({ model, images }: ProductImageGalleryProps)
           alt={selectedImage.alt}
           fill
           sizes="(min-width: 1024px) 45vw, 100vw"
-          className="object-contain p-6"
+          className="object-contain p-4 drop-shadow-[0_18px_24px_rgba(15,23,42,0.12)] md:p-6"
           onError={() => hideImage(selectedImage.src)}
         />
       </button>
 
+      {visibleImages.length > 1 ? (
       <div className="mt-4 flex gap-3 overflow-x-auto pb-2" aria-label={`${model} image thumbnails`}>
         {visibleImages.map((image, index) => {
           const selected = image.src === selectedImage.src;
@@ -83,7 +95,7 @@ export function ProductImageGallery({ model, images }: ProductImageGalleryProps)
               aria-pressed={selected}
               aria-label={`Select ${image.label} for ${model}`}
             >
-              <span className="relative block aspect-[4/3] overflow-hidden rounded-sm bg-slate-50">
+              <span className="relative block aspect-[4/3] overflow-hidden rounded-sm bg-white">
                 <Image src={image.src} alt={image.alt} fill sizes="132px" className="object-contain p-2" onError={() => hideImage(image.src)} />
               </span>
               <span className="mt-2 block text-xs font-semibold text-slate-700">{image.label}</span>
@@ -91,6 +103,7 @@ export function ProductImageGallery({ model, images }: ProductImageGalleryProps)
           );
         })}
       </div>
+      ) : null}
 
       {open ? (
         <div
@@ -113,13 +126,13 @@ export function ProductImageGallery({ model, images }: ProductImageGalleryProps)
                 Close
               </button>
             </div>
-            <div className="relative mt-4 aspect-[16/10] overflow-hidden rounded-md bg-slate-50">
+            <div className="relative mt-4 aspect-[16/10] overflow-hidden rounded-md bg-white">
               <Image
                 src={selectedImage.src}
                 alt={selectedImage.alt}
                 fill
                 sizes="90vw"
-                className="object-contain p-6"
+                className="object-contain p-4 md:p-6"
                 onError={() => hideImage(selectedImage.src)}
               />
             </div>

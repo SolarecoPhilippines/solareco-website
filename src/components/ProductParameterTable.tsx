@@ -87,7 +87,7 @@ export function ProductParameterTable(props: ProductParameterTableProps) {
               <tr>
                 <th
                   scope="col"
-                  className="sticky left-0 z-20 min-w-[230px] border-r border-white/20 bg-[#0D3567] px-4 py-3 text-xs font-bold uppercase tracking-[0.08em]"
+                  className="sticky left-0 z-20 min-w-[250px] border-r border-white/20 bg-[#0D3567] px-5 py-4 text-xs font-bold uppercase tracking-[0.08em]"
                 >
                   MODEL SPECIFICATION
                 </th>
@@ -95,7 +95,7 @@ export function ProductParameterTable(props: ProductParameterTableProps) {
                   <th
                     key={column}
                     scope="col"
-                    className="min-w-[155px] border-r border-white/20 px-4 py-3 text-xs font-bold uppercase tracking-[0.06em] last:border-r-0"
+                    className="min-w-[170px] border-r border-white/20 px-5 py-4 text-xs font-bold uppercase tracking-[0.06em] last:border-r-0"
                   >
                     {column}
                   </th>
@@ -103,11 +103,13 @@ export function ProductParameterTable(props: ProductParameterTableProps) {
               </tr>
             </thead>
             <tbody>
-              {table.rows.map((row) => (
-                <tr key={row.label} className="align-top">
+              {table.rows.map((row, rowIndex) => (
+                <tr key={row.label} className={rowIndex % 2 === 0 ? "align-top" : "bg-slate-50/80 align-top"}>
                   <th
                     scope="row"
-                    className="sticky left-0 z-10 border-b border-r border-slate-200 bg-white px-4 py-3 text-xs font-bold uppercase tracking-[0.04em] text-slate-950"
+                    className={`sticky left-0 z-10 border-b border-r border-slate-200 px-5 py-4 text-xs font-bold uppercase tracking-[0.04em] text-slate-950 ${
+                      rowIndex % 2 === 0 ? "bg-white" : "bg-slate-50"
+                    }`}
                   >
                     {row.label}
                   </th>
@@ -115,7 +117,7 @@ export function ProductParameterTable(props: ProductParameterTableProps) {
                     <td
                       key={`${row.label}-${index}`}
                       colSpan={getCellColSpan(cell)}
-                      className="border-b border-r border-slate-200 px-4 py-3 text-xs leading-5 text-slate-700 last:border-r-0"
+                      className="border-b border-r border-slate-200 px-5 py-4 text-sm leading-6 text-slate-700 last:border-r-0"
                     >
                       {renderValue(getCellValue(cell))}
                     </td>

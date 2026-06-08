@@ -52,15 +52,16 @@ export function SakoBatterySelector({ models, imagesByModel }: SakoBatterySelect
 
   return (
     <div className="mt-8 space-y-8">
-      <div className="grid gap-6 lg:grid-cols-[1.05fr_0.95fr] lg:items-start">
+      <div className="grid gap-8 lg:grid-cols-[1.02fr_0.98fr] lg:items-center">
         <ProductImageGallery key={selectedModel.model} model={selectedModel.model} images={galleryImages} />
 
         <div className="space-y-5">
-          <section className="rounded-lg border border-slate-200 bg-white p-5 shadow-sm">
-            <h3 className="font-heading text-xl font-bold text-slate-950">Select Battery Model</h3>
+          <section className="rounded-lg border border-slate-200 bg-white p-6 shadow-sm">
+            <p className="text-sm font-semibold uppercase tracking-[0.14em] text-[#0D3567]">Model selector</p>
+            <h3 className="mt-2 font-heading text-2xl font-bold text-slate-950">Choose a SAKO Li-Sun Battery</h3>
 
             <div className="mt-5">
-              <p className="text-sm font-semibold uppercase tracking-[0.14em] text-slate-500">Voltage</p>
+              <p className="text-sm font-semibold uppercase tracking-[0.14em] text-slate-500">Nominal voltage</p>
               <div className="mt-3 flex flex-wrap gap-2" role="group" aria-label="Select battery voltage">
                 {voltageOptions.map((voltage) => {
                   const selected = voltage === selectedVoltage;
@@ -114,7 +115,7 @@ export function SakoBatterySelector({ models, imagesByModel }: SakoBatterySelect
             </div>
           </section>
 
-          <section className="rounded-lg border border-slate-200 bg-slate-50 p-5">
+          <section className="rounded-lg border border-slate-200 bg-slate-50 p-6">
             <p className="text-sm font-semibold uppercase tracking-[0.14em] text-[#0D3567]">Selected model</p>
             <h3 className="mt-2 font-heading text-2xl font-bold text-slate-950">{selectedModel.model}</h3>
             <dl className="mt-5 grid gap-3 text-sm sm:grid-cols-2">
@@ -158,8 +159,8 @@ export function SakoBatterySelector({ models, imagesByModel }: SakoBatterySelect
       </div>
 
       <section>
-        <h3 className="font-heading text-xl font-bold text-slate-950">Quick Model Selection</h3>
-        <div className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+        <h3 className="font-heading text-xl font-bold text-slate-950">Available Models</h3>
+        <div className="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {visibleModels.map((model) => {
             const selected = model.model === selectedModel.model;
 
