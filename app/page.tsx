@@ -1,8 +1,9 @@
+import Image from "next/image";
 import { Button } from "@/src/components/Button";
 import { DownloadCard } from "@/src/components/DownloadCard";
-import { PlaceholderImage } from "@/src/components/PlaceholderImage";
 import { ProductCard } from "@/src/components/ProductCard";
 import { SectionTitle } from "@/src/components/SectionTitle";
+import { branches } from "@/src/data/branches";
 import { downloadGroups } from "@/src/data/downloads";
 import { products } from "@/src/data/products";
 import { FACEBOOK_PAGE_URL } from "@/src/lib/constants";
@@ -17,9 +18,21 @@ const benefits = [
 export default function Home() {
   return (
     <>
-      <section className="section-fade overflow-hidden bg-[#0D3567] text-white">
-        <div className="mx-auto grid min-h-[calc(100svh-78px)] max-w-7xl items-center gap-10 px-4 py-20 sm:px-6 lg:grid-cols-[1.05fr_0.95fr] lg:px-8">
-          <div>
+      <section className="section-fade relative overflow-hidden bg-[#0D3567] text-white">
+        <video
+          className="pointer-events-none absolute inset-0 h-full w-full object-cover opacity-20"
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="metadata"
+          aria-hidden="true"
+        >
+          <source src="/videos/hero/solareco-home-hero.mp4" type="video/mp4" />
+        </video>
+        <div className="absolute inset-0 bg-[#0D3567]/75" aria-hidden="true" />
+        <div className="relative mx-auto grid min-h-[calc(100svh-78px)] max-w-7xl items-center gap-10 px-4 py-20 sm:px-6 lg:grid-cols-[1.05fr_0.95fr] lg:px-8">
+          <div className="relative z-10">
             <p className="text-sm font-semibold uppercase tracking-[0.2em] text-blue-100">
               Solar products for Philippine projects
             </p>
@@ -39,7 +52,16 @@ export default function Home() {
               </Button>
             </div>
           </div>
-          <PlaceholderImage label="Solareco solar solutions" className="border-white/20 bg-white/10" />
+          <div className="relative z-10 min-h-[340px] lg:min-h-[520px]">
+            <Image
+              src="/images/hero/solareco-product-lineup.png"
+              alt="Solareco solar, electrical, battery, and industrial product lineup"
+              fill
+              priority
+              sizes="(min-width: 1024px) 48vw, 100vw"
+              className="object-contain object-bottom drop-shadow-2xl"
+            />
+          </div>
         </div>
       </section>
 
@@ -99,6 +121,36 @@ export default function Home() {
         </div>
       </section>
 
+      <section className="bg-slate-50 px-4 py-20 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-7xl">
+          <SectionTitle
+            eyebrow="Locations"
+            title="Nationwide Presence"
+            description="Connect with Solareco Philippines through our branches and warehouses in Iloilo, Bacolod, Manila, Palawan, Cebu, and Davao."
+          />
+          <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {branches.map((branch) => (
+              <article key={branch.name} className="rounded-lg border border-slate-200 bg-white p-5 shadow-sm">
+                <h3 className="font-heading text-xl font-bold text-slate-950">{branch.shortName}</h3>
+                <p className="mt-1 text-sm font-semibold uppercase tracking-[0.14em] text-[#0D3567]">{branch.type}</p>
+                <a
+                  href={branch.phoneHref}
+                  aria-label={`Call ${branch.name} at ${branch.phone}`}
+                  className="mt-4 inline-flex text-sm font-semibold text-slate-700 underline-offset-4 hover:text-[#0D3567] hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0D3567]"
+                >
+                  {branch.phone}
+                </a>
+                <div className="mt-4">
+                  <Button href="/contact" variant="secondary">
+                    View Contact Details
+                  </Button>
+                </div>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
       <section className="bg-[#0D3567] px-4 py-16 text-white sm:px-6 lg:px-8">
         <div className="mx-auto flex max-w-7xl flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
           <div>
@@ -115,4 +167,3 @@ export default function Home() {
     </>
   );
 }
-

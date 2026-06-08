@@ -16,6 +16,8 @@ export const downloadGroups: DownloadGroup[] = [
     items: [
       { name: "SAKO datasheet placeholder", status: "Coming Soon" },
       { name: "SAKO All-in-One datasheet placeholder", status: "Coming Soon" },
+      { name: "SAKO Li-Sun Battery Datasheet", status: "Coming Soon" },
+      { name: "SAKO Alpha W ESS 1000W All-in-One Datasheet", status: "Coming Soon" },
       { name: "SOLAHESTIA panel datasheet placeholder", status: "Coming Soon" },
     ],
   },
@@ -30,17 +32,25 @@ export const downloadGroups: DownloadGroup[] = [
   {
     title: "ROHS Certificates",
     description: "Compliance files to be reviewed before public release.",
-    items: [{ name: "ROHS certificate placeholder", status: "Coming Soon" }],
+    items: [
+      { name: "ROHS certificate placeholder", status: "Coming Soon" },
+      { name: "SAKO ROHS Certificate", status: "Coming Soon" },
+    ],
   },
   {
     title: "IEC Certificates",
     description: "International electrical certification placeholders.",
-    items: [{ name: "IEC certificate placeholder", status: "Coming Soon" }],
+    items: [
+      { name: "IEC certificate placeholder", status: "Coming Soon" },
+      { name: "SAKO IEC Certificate", status: "Coming Soon" },
+    ],
   },
   {
     title: "ISO Certificates",
     description: "Quality management and supplier documentation placeholders.",
-    items: [{ name: "ISO certificate placeholder", status: "Coming Soon" }],
+    items: [
+      { name: "ISO certificate placeholder", status: "Coming Soon" },
+      { name: "SAKO ISO Certificate", status: "Coming Soon" },
+    ],
   },
 ];
-

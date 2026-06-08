@@ -1,44 +1,86 @@
 export type ProductCategory =
-  | "Solar Inverters"
-  | "All-in-One Systems"
+  | "Lithium Batteries"
+  | "All-in-One Energy Storage System"
   | "Solar Panels"
   | "Electrical Protection"
   | "Solar Wiring";
+
+export type ParameterStatus = "Verified" | "Estimated" | "To verify" | "Coming soon";
+
+export type ProductReference = {
+  label: string;
+  url: string;
+};
+
+export type ProductParameter = {
+  parameter: string;
+  value: string;
+  unit?: string;
+  notes?: string;
+  status: ParameterStatus;
+};
 
 export type Product = {
   slug: string;
   name: string;
   category: ProductCategory;
+  secondaryLabel?: string;
   summary: string;
   description: string;
   keyDetails: string[];
+  parameterTableAvailable?: boolean;
+  productType?: string;
+  productLine?: string;
+  sourceReferences?: ProductReference[];
 };
+
+export const SAKO_ALL_IN_ONE_SOURCE_URL =
+  "https://sakopower.com/sako-alpha-w-ess-1000w-all-in-one";
 
 export const products: Product[] = [
   {
     slug: "sako",
-    name: "SAKO",
-    category: "Solar Inverters",
-    summary: "Reliable inverter solutions for residential and commercial solar projects.",
+    name: "SAKO Li-Sun Lithium Batteries",
+    category: "Lithium Batteries",
+    secondaryLabel: "Energy Storage Batteries",
+    summary: "Official SAKO Li-Sun lithium battery comparison for energy-storage project selection.",
     description:
-      "SAKO products support practical solar power applications with dependable conversion, monitoring-ready operation, and installer-friendly configuration.",
+      "Compare available SAKO Li-Sun lithium battery models and technical parameters for residential, commercial, and project energy-storage applications.",
     keyDetails: [
-      "Placeholder specifications pending final datasheet",
-      "Suitable for common residential and business installations",
-      "Technical assistance available through Solareco",
+      "Product type: Lithium battery",
+      "Secondary label: Energy Storage Batteries",
+      "Seven priority SK battery models included",
+    ],
+    parameterTableAvailable: true,
+    productType: "Lithium Battery",
+    productLine: "Li-Sun Lithium Battery Pack",
+    sourceReferences: [
+      {
+        label: "2026-03 SAKO Solar Catalogue 220V",
+        url: "https://sakopower.com/wp-content/uploads/2026/05/2026-03-SAKO-Solar-Catalogue-220V%EF%BC%89.pdf",
+      },
     ],
   },
   {
     slug: "sako-all-in-one",
-    name: "SAKO All-in-One",
-    category: "All-in-One Systems",
-    summary: "Integrated solar power system designed for clean setup and efficient deployment.",
+    name: "SAKO Alpha-W-ESS 1000W / 2kWh",
+    category: "All-in-One Energy Storage System",
+    summary: "Compact plug-and-play energy storage with built-in lithium battery, AC charging, and solar charging support.",
     description:
-      "SAKO All-in-One systems combine core solar power components into a compact package for easier planning, installation, and support.",
+      "A compact plug-and-play energy-storage solution with a built-in inverter, lithium battery, AC charging, and solar charging support.",
     keyDetails: [
-      "Integrated system placeholder details",
-      "Designed for simplified project deployment",
-      "Final battery and inverter specifications to be added",
+      "Product type: Energy Storage System",
+      "Product family: Alpha-W-ESS",
+      "Variant: 1000W / 2kWh All-in-One",
+    ],
+    parameterTableAvailable: true,
+    productType: "Energy Storage System",
+    productLine: "Alpha W ESS 1000W All-in-One",
+    sourceReferences: [
+      {
+        label: "SAKO Alpha-W-ESS 1000W / 2kWh All-in-One",
+        url: SAKO_ALL_IN_ONE_SOURCE_URL,
+      },
     ],
   },
   {
@@ -96,8 +138,8 @@ export const products: Product[] = [
 ];
 
 export const productCategories: ProductCategory[] = [
-  "Solar Inverters",
-  "All-in-One Systems",
+  "Lithium Batteries",
+  "All-in-One Energy Storage System",
   "Solar Panels",
   "Electrical Protection",
   "Solar Wiring",
@@ -106,4 +148,3 @@ export const productCategories: ProductCategory[] = [
 export function getProductBySlug(slug: string) {
   return products.find((product) => product.slug === slug);
 }
-

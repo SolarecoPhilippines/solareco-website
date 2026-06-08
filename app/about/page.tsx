@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+import Link from "next/link";
+import { BranchCard } from "@/src/components/BranchCard";
 import { PlaceholderImage } from "@/src/components/PlaceholderImage";
 import { SectionTitle } from "@/src/components/SectionTitle";
 import { branches } from "@/src/data/branches";
@@ -74,15 +76,22 @@ export default function AboutPage() {
 
       <section className="bg-slate-50 px-4 py-20 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-7xl">
-          <SectionTitle title="Branch locations" description="Nationwide presence includes Iloilo, Bacolod, Manila, Palawan, Cebu, and Davao." />
+          <SectionTitle
+            title="Our Branches and Warehouses"
+            description="Nationwide presence includes Iloilo, Bacolod, Manila, Palawan, Cebu, and Davao."
+          />
           <div className="mt-10 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
             {branches.map((branch) => (
-              <article key={branch.city} className="rounded-lg border border-slate-200 bg-white p-6 shadow-sm">
-                <h3 className="font-heading text-xl font-bold text-slate-950">{branch.city}</h3>
-                <p className="mt-2 text-sm font-semibold text-[#0D3567]">{branch.label}</p>
-                <p className="mt-4 text-sm text-slate-600">{branch.details}</p>
-              </article>
+              <BranchCard key={branch.name} branch={branch} />
             ))}
+          </div>
+          <div className="mt-8">
+            <Link
+              href="/contact"
+              className="inline-flex min-h-11 items-center justify-center rounded-md bg-[#0D3567] px-5 py-3 text-sm font-semibold text-white transition hover:bg-[#15477f] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0D3567]"
+            >
+              Contact Solareco
+            </Link>
           </div>
         </div>
       </section>

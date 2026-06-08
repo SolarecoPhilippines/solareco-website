@@ -15,7 +15,8 @@ export function ProductCatalog() {
         !query ||
         product.name.toLowerCase().includes(query) ||
         product.summary.toLowerCase().includes(query) ||
-        product.category.toLowerCase().includes(query);
+        product.category.toLowerCase().includes(query) ||
+        (product.secondaryLabel?.toLowerCase().includes(query) ?? false);
       const matchesCategory = category === "All" || product.category === category;
       return matchesSearch && matchesCategory;
     });
@@ -61,4 +62,3 @@ export function ProductCatalog() {
     </div>
   );
 }
-

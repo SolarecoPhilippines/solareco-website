@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
@@ -23,9 +24,17 @@ export function Header() {
       <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8">
         <Link
           href="/"
-          className="font-heading text-xl font-black tracking-wide text-[#0D3567] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#0D3567]"
+          className="inline-flex shrink-0 items-center focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#0D3567]"
+          aria-label="Solareco Philippines home"
         >
-          Solareco
+          <Image
+            src="/images/logo/solareco-logo-blue.png"
+            alt="Solareco Philippines"
+            width={190}
+            height={42}
+            priority
+            className="h-9 w-auto sm:h-10"
+          />
         </Link>
         <nav className="hidden items-center gap-7 lg:flex" aria-label="Main navigation">
           {navLinks.map((link) => {

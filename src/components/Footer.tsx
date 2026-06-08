@@ -1,15 +1,23 @@
+import Image from "next/image";
 import Link from "next/link";
-import { FACEBOOK_PAGE_URL, SITE_NAME } from "@/src/lib/constants";
+import { FACEBOOK_PAGE_URL, PUBLIC_EMAIL, SITE_NAME } from "@/src/lib/constants";
 
 export function Footer() {
   return (
     <footer className="bg-[#071f3d] text-white">
       <div className="mx-auto grid max-w-7xl gap-10 px-4 py-12 sm:px-6 lg:grid-cols-[1.4fr_1fr_1fr] lg:px-8">
         <div>
-          <p className="font-heading text-2xl font-black">Solareco</p>
+          <Image
+            src="/images/logo/solareco-logo-white.png"
+            alt="Solareco Philippines"
+            width={220}
+            height={48}
+            className="h-11 w-auto"
+          />
           <p className="mt-4 max-w-md text-sm leading-6 text-slate-300">
             Solar products, technical assistance, and installation support for customers across the Philippines.
           </p>
+          <p className="mt-4 text-sm font-semibold text-white">Solareco Philippines</p>
         </div>
         <div>
           <h2 className="text-sm font-semibold uppercase tracking-[0.16em] text-slate-300">Navigation</h2>
@@ -30,14 +38,26 @@ export function Footer() {
         </div>
         <div>
           <h2 className="text-sm font-semibold uppercase tracking-[0.16em] text-slate-300">Contact</h2>
-          <p className="mt-4 text-sm leading-6 text-slate-300">
-            Company contact details will be added after final approval.
-          </p>
+          <p className="mt-4 text-sm leading-6 text-slate-300">Email: </p>
+          <a
+            href={`mailto:${PUBLIC_EMAIL}`}
+            aria-label={`Email Solareco Philippines at ${PUBLIC_EMAIL}`}
+            className="inline-flex text-sm font-semibold hover:text-white/80 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+          >
+            {PUBLIC_EMAIL}
+          </a>
+          <Link
+            href="/contact"
+            className="mt-4 block text-sm font-semibold hover:text-white/80 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+          >
+            Contact page
+          </Link>
           <a
             href={FACEBOOK_PAGE_URL}
             target="_blank"
             rel="noopener noreferrer"
-            className="mt-4 inline-flex text-sm font-semibold hover:text-white/80"
+            aria-label="Message Solareco Philippines on Facebook"
+            className="mt-3 inline-flex text-sm font-semibold hover:text-white/80 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
           >
             Message on Facebook
           </a>
@@ -50,4 +70,3 @@ export function Footer() {
     </footer>
   );
 }
-
