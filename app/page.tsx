@@ -84,14 +84,14 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="section-fade px-4 py-20 sm:px-6 lg:px-8">
-        <div className="mx-auto max-w-7xl">
+      <section className="section-fade px-4 py-24 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-[1500px]">
           <SectionTitle
             eyebrow="Priority catalog"
-            title="Featured Products"
-            description="Explore Solareco's priority solar and electrical products for residential, commercial, and industrial requirements."
+            title="Featured Solar Products"
+            description="Explore Solareco's priority solar, battery, electrical protection, and wiring products for residential, commercial, and industrial requirements."
           />
-          <div className="mt-10 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+          <div className="mt-12 grid gap-8 md:grid-cols-2 lg:grid-cols-3 2xl:gap-9">
             {products.map((product) => (
               <ProductCard key={product.slug} product={product} />
             ))}
