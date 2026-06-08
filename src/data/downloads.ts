@@ -1,4 +1,4 @@
-export type DownloadStatus = "Available" | "Coming Soon";
+export type DownloadStatus = "Available";
 
 export type DownloadGroup = {
   title: string;
@@ -12,45 +12,36 @@ export type DownloadGroup = {
 export const downloadGroups: DownloadGroup[] = [
   {
     title: "Datasheets",
-    description: "Product specifications and technical data for priority product lines.",
-    items: [
-      { name: "SAKO datasheet placeholder", status: "Coming Soon" },
-      { name: "SAKO All-in-One datasheet placeholder", status: "Coming Soon" },
-      { name: "SAKO Li-Sun Battery Datasheet", status: "Coming Soon" },
-      { name: "SAKO Alpha W ESS 1000W All-in-One Datasheet", status: "Coming Soon" },
-      { name: "SOLAHESTIA panel datasheet placeholder", status: "Coming Soon" },
-    ],
+    description: "Product specifications and technical data for public product review.",
+    items: [],
   },
   {
-    title: "Edited Marketing Materials",
+    title: "Marketing Materials",
     description: "Brand-ready brochures, sales sheets, and product explainers.",
-    items: [
-      { name: "Solareco product overview", status: "Coming Soon" },
-      { name: "Solar solutions flyer", status: "Coming Soon" },
-    ],
+    items: [],
   },
   {
     title: "ROHS Certificates",
-    description: "Compliance files to be reviewed before public release.",
-    items: [
-      { name: "ROHS certificate placeholder", status: "Coming Soon" },
-      { name: "SAKO ROHS Certificate", status: "Coming Soon" },
-    ],
+    description: "Reviewed compliance files for public release.",
+    items: [],
   },
   {
     title: "IEC Certificates",
-    description: "International electrical certification placeholders.",
-    items: [
-      { name: "IEC certificate placeholder", status: "Coming Soon" },
-      { name: "SAKO IEC Certificate", status: "Coming Soon" },
-    ],
+    description: "Reviewed international electrical certification files.",
+    items: [],
   },
   {
     title: "ISO Certificates",
-    description: "Quality management and supplier documentation placeholders.",
-    items: [
-      { name: "ISO certificate placeholder", status: "Coming Soon" },
-      { name: "SAKO ISO Certificate", status: "Coming Soon" },
-    ],
+    description: "Reviewed quality management and supplier documentation.",
+    items: [],
   },
 ];
+
+export function getAvailableDownloadGroups() {
+  return downloadGroups
+    .map((group) => ({
+      ...group,
+      items: group.items.filter((item) => item.status === "Available"),
+    }))
+    .filter((group) => group.items.length > 0);
+}

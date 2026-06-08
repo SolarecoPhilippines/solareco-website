@@ -2,7 +2,6 @@ import type { DownloadGroup, DownloadStatus } from "@/src/data/downloads";
 
 const statusStyles: Record<DownloadStatus, string> = {
   Available: "bg-emerald-50 text-emerald-700 ring-emerald-600/15",
-  "Coming Soon": "bg-amber-50 text-amber-700 ring-amber-600/15",
 };
 
 export function DownloadCard({ group }: { group: DownloadGroup }) {
@@ -28,4 +27,3 @@ export function DownloadCard({ group }: { group: DownloadGroup }) {
     </article>
   );
 }
-

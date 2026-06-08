@@ -4,8 +4,8 @@ import { DownloadCard } from "@/src/components/DownloadCard";
 import { ProductCard } from "@/src/components/ProductCard";
 import { SectionTitle } from "@/src/components/SectionTitle";
 import { branches } from "@/src/data/branches";
-import { downloadGroups } from "@/src/data/downloads";
-import { products } from "@/src/data/products";
+import { getAvailableDownloadGroups } from "@/src/data/downloads";
+import { getVisibleProducts } from "@/src/lib/productAssets";
 
 const benefits = [
   {
@@ -18,7 +18,7 @@ const benefits = [
   },
   {
     title: "Genuine Products",
-    description: "Priority product lines are organized with source records, datasheet placeholders, and certificate tracking.",
+    description: "Priority product lines are organized with source records, datasheet tracking, and certificate tracking.",
   },
   {
     title: "Installation Support",
@@ -35,6 +35,9 @@ const benefits = [
 ];
 
 export default function Home() {
+  const visibleProducts = getVisibleProducts();
+  const availableDownloadGroups = getAvailableDownloadGroups();
+
   return (
     <>
       <section className="home-hero section-fade relative overflow-hidden bg-[#0D3567] text-white">
@@ -93,7 +96,7 @@ export default function Home() {
             description="Explore Solareco's priority solar, battery, electrical protection, and wiring products for residential, commercial, and industrial requirements."
           />
           <div className="mt-12 grid gap-8 md:grid-cols-2 lg:grid-cols-3 2xl:gap-9">
-            {products.map((product) => (
+            {visibleProducts.map((product) => (
               <ProductCard key={product.slug} product={product} />
             ))}
           </div>
@@ -123,25 +126,27 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="px-4 py-20 sm:px-6 lg:px-8">
-        <div className="mx-auto max-w-7xl">
-          <SectionTitle
-            eyebrow="Download center"
-            title="Documents prepared for controlled publishing"
-            description="Datasheets, marketing materials, and certificates are grouped so approved files can be added without changing the site structure."
-          />
-          <div className="mt-10 grid gap-6 lg:grid-cols-2">
-            {downloadGroups.slice(0, 4).map((group) => (
-              <DownloadCard key={group.title} group={group} />
-            ))}
+      {availableDownloadGroups.length > 0 ? (
+        <section className="px-4 py-20 sm:px-6 lg:px-8">
+          <div className="mx-auto max-w-7xl">
+            <SectionTitle
+              eyebrow="Download center"
+              title="Technical downloads"
+              description="Approved datasheets, marketing materials, and certificates for public product review."
+            />
+            <div className="mt-10 grid gap-6 lg:grid-cols-2">
+              {availableDownloadGroups.slice(0, 4).map((group) => (
+                <DownloadCard key={group.title} group={group} />
+              ))}
+            </div>
+            <div className="mt-8">
+              <Button href="/downloads" variant="secondary">
+                View Download Center
+              </Button>
+            </div>
           </div>
-          <div className="mt-8">
-            <Button href="/downloads" variant="secondary">
-              View Download Center
-            </Button>
-          </div>
-        </div>
-      </section>
+        </section>
+      ) : null}
 
       <section className="bg-slate-50 px-4 py-20 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-7xl">

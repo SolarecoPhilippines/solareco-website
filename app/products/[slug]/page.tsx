@@ -2,8 +2,6 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Button } from "@/src/components/Button";
-import { DownloadCard } from "@/src/components/DownloadCard";
-import { PlaceholderImage } from "@/src/components/PlaceholderImage";
 import { ProductImageGallery } from "@/src/components/ProductImageGallery";
 import { ProductParameterTable } from "@/src/components/ProductParameterTable";
 import { SakoBatterySelector } from "@/src/components/SakoBatterySelector";
@@ -12,11 +10,10 @@ import {
   SAKO_ALL_IN_ONE_PRINTED_PAGES,
   SAKO_ALL_IN_ONE_PRODUCT_URL,
   SAKO_ALL_IN_ONE_SOURCE_LABEL,
-  sakoAllInOneGalleryImages,
   sakoAllInOneTechnicalTable,
 } from "@/src/data/sakoAllInOneTechnicalParameters";
 import { getProductSources } from "@/src/data/productSources";
-import { SAKO_ALL_IN_ONE_SOURCE_URL, getProductBySlug, products } from "@/src/data/products";
+import { SAKO_ALL_IN_ONE_SOURCE_URL } from "@/src/data/products";
 import {
   SAKO_CATALOGUE_PRINTED_PAGES,
   SAKO_CATALOGUE_SOURCE_LABEL,
@@ -25,18 +22,19 @@ import {
   sakoLiSunTechnicalTable,
 } from "@/src/data/sakoTechnicalParameters";
 import { FACEBOOK_PAGE_URL } from "@/src/lib/constants";
+import { getVisibleProductBySlug, getVisibleProducts } from "@/src/lib/productAssets";
 
 type ProductDetailPageProps = {
   params: Promise<{ slug: string }>;
 };
 
 export function generateStaticParams() {
-  return products.map((product) => ({ slug: product.slug }));
+  return getVisibleProducts().map((product) => ({ slug: product.slug }));
 }
 
 export async function generateMetadata({ params }: ProductDetailPageProps): Promise<Metadata> {
   const { slug } = await params;
-  const product = getProductBySlug(slug);
+  const product = getVisibleProductBySlug(slug);
 
   if (!product) {
     return { title: "Product Not Found" };
@@ -50,21 +48,11 @@ export async function generateMetadata({ params }: ProductDetailPageProps): Prom
 
 export default async function ProductDetailPage({ params }: ProductDetailPageProps) {
   const { slug } = await params;
-  const product = getProductBySlug(slug);
+  const product = getVisibleProductBySlug(slug);
 
   if (!product) {
     notFound();
   }
-
-  const downloadGroup = {
-    title: "Available Downloads",
-    description: "Placeholder files are listed for document planning and approval.",
-    items: [
-      { name: `${product.name} datasheet placeholder`, status: "Coming Soon" as const },
-      { name: `${product.name} marketing material placeholder`, status: "Coming Soon" as const },
-      { name: `${product.name} certificates placeholder`, status: "Coming Soon" as const },
-    ],
-  };
 
   const isSakoBattery = product.slug === "sako";
   const isSakoAllInOne = product.slug === "sako-all-in-one";
@@ -72,16 +60,24 @@ export default async function ProductDetailPage({ params }: ProductDetailPagePro
     ? SAKO_ALL_IN_ONE_SOURCE_URL
     : product.sourceReferences?.[0]?.url;
   const sourceRecords = getProductSources(product.slug);
+  const productGalleryImages = product.images.map((image, index) => ({
+    ...image,
+    label: `Product Image ${index + 1}`,
+  }));
+  const sakoImagesByModel = Object.fromEntries(
+    sakoBatteryModels.map((model) => [
+      model.slug,
+      product.images
+        .filter((image) => image.src.includes(`/sako-batteries/${model.slug}/`))
+        .map((image, index) => ({ ...image, label: `${model.model} Image ${index + 1}` })),
+    ]),
+  );
 
   return (
     <section className="px-4 py-16 sm:px-6 lg:px-8">
       <div className="mx-auto max-w-7xl">
         <div className="grid gap-10 lg:grid-cols-[0.95fr_1.05fr] lg:items-start">
-          {isSakoAllInOne ? (
-            <ProductImageGallery model="SAKO Alpha-W-ESS 1000W / 2kWh" images={sakoAllInOneGalleryImages} />
-          ) : (
-            <PlaceholderImage label={product.name} />
-          )}
+          <ProductImageGallery model={product.name} images={productGalleryImages} />
           <div>
             {isSakoAllInOne ? (
               <nav className="mb-5 text-sm font-semibold text-slate-500" aria-label="Breadcrumb">
@@ -128,7 +124,7 @@ export default async function ProductDetailPage({ params }: ProductDetailPagePro
               title="TECHNICAL PARAMETER"
               description="Compare available SAKO Li-Sun lithium battery models and technical parameters. Use this table as a reference when selecting a suitable energy-storage option for your project."
             />
-            <SakoBatterySelector models={sakoBatteryModels} />
+            <SakoBatterySelector models={sakoBatteryModels} imagesByModel={sakoImagesByModel} />
             <div className="mt-10">
               <ProductParameterTable technicalTable={sakoLiSunTechnicalTable} />
             </div>
@@ -253,9 +249,9 @@ export default async function ProductDetailPage({ params }: ProductDetailPagePro
           </section>
         ) : null}
 
-        <div className="mt-16 grid gap-8 lg:grid-cols-[1fr_1fr]">
+        <div className="mt-16">
           <section className="rounded-lg border border-slate-200 bg-slate-50 p-6">
-            <SectionTitle title="Key details" description="Final product details will be added after datasheet approval." />
+            <SectionTitle title="Key details" description="Product details and available technical references." />
             <ul className="mt-6 grid gap-3">
               {product.keyDetails.map((detail) => (
                 <li key={detail} className="rounded-md bg-white p-4 text-sm text-slate-700 shadow-sm">
@@ -264,7 +260,6 @@ export default async function ProductDetailPage({ params }: ProductDetailPagePro
               ))}
             </ul>
           </section>
-          <DownloadCard group={downloadGroup} />
         </div>
       </div>
     </section>

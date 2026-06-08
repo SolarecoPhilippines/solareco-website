@@ -8,39 +8,34 @@ import { ProductImageGallery, type ProductGalleryImage } from "./ProductImageGal
 
 type SakoBatterySelectorProps = {
   models: SakoBatteryModel[];
+  imagesByModel: Record<string, ProductGalleryImage[]>;
 };
 
-const imageTypes = ["Front View", "Side View", "Back View", "Ports and Connections", "Display Panel", "Product Dimensions"];
-
-function buildGalleryImages(model: SakoBatteryModel): ProductGalleryImage[] {
-  return imageTypes.map((label) => {
-    const fileName = label.toLowerCase().replace(/\s+and\s+/g, "-and-").replace(/\s+/g, "-");
-
-    return {
-      label,
-      src: `/images/products/sako-batteries/${model.slug}/${fileName}.webp`,
-      alt: `${model.model} ${label}`,
-    };
-  });
-}
-
-export function SakoBatterySelector({ models }: SakoBatterySelectorProps) {
-  const [selectedModelName, setSelectedModelName] = useState("SK-25.6V 100Ah");
-  const selectedModel = models.find((model) => model.model === selectedModelName) ?? models[0];
-  const selectedVoltage = selectedModel.voltage;
-  const selectedCapacity = selectedModel.capacity;
-
-  const voltageOptions = useMemo(() => Array.from(new Set(models.map((model) => model.voltage))), [models]);
-  const capacityOptions = useMemo(
-    () => models.filter((model) => model.voltage === selectedVoltage).map((model) => model.capacity),
-    [models, selectedVoltage],
+export function SakoBatterySelector({ models, imagesByModel }: SakoBatterySelectorProps) {
+  const visibleModels = useMemo(
+    () => models.filter((model) => (imagesByModel[model.slug]?.length ?? 0) > 0),
+    [imagesByModel, models],
   );
-  const galleryImages = useMemo(() => buildGalleryImages(selectedModel), [selectedModel]);
+  const [selectedModelName, setSelectedModelName] = useState(visibleModels[0]?.model ?? "");
+  const selectedModel = visibleModels.find((model) => model.model === selectedModelName) ?? visibleModels[0];
+  const selectedVoltage = selectedModel?.voltage;
+  const selectedCapacity = selectedModel?.capacity;
+
+  const voltageOptions = useMemo(() => Array.from(new Set(visibleModels.map((model) => model.voltage))), [visibleModels]);
+  const capacityOptions = useMemo(
+    () => (selectedVoltage ? visibleModels.filter((model) => model.voltage === selectedVoltage).map((model) => model.capacity) : []),
+    [visibleModels, selectedVoltage],
+  );
+  const galleryImages = selectedModel ? (imagesByModel[selectedModel.slug] ?? []) : [];
+
+  if (!selectedModel || !selectedVoltage || !selectedCapacity) {
+    return null;
+  }
 
   function selectVoltage(voltage: SakoBatteryModel["voltage"]) {
     const nextModel =
-      models.find((model) => model.voltage === voltage && model.capacity === selectedCapacity) ??
-      models.find((model) => model.voltage === voltage);
+      visibleModels.find((model) => model.voltage === voltage && model.capacity === selectedCapacity) ??
+      visibleModels.find((model) => model.voltage === voltage);
 
     if (nextModel) {
       setSelectedModelName(nextModel.model);
@@ -48,7 +43,7 @@ export function SakoBatterySelector({ models }: SakoBatterySelectorProps) {
   }
 
   function selectCapacity(capacity: SakoBatteryModel["capacity"]) {
-    const nextModel = models.find((model) => model.voltage === selectedVoltage && model.capacity === capacity);
+    const nextModel = visibleModels.find((model) => model.voltage === selectedVoltage && model.capacity === capacity);
 
     if (nextModel) {
       setSelectedModelName(nextModel.model);
@@ -165,7 +160,7 @@ export function SakoBatterySelector({ models }: SakoBatterySelectorProps) {
       <section>
         <h3 className="font-heading text-xl font-bold text-slate-950">Quick Model Selection</h3>
         <div className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
-          {models.map((model) => {
+          {visibleModels.map((model) => {
             const selected = model.model === selectedModel.model;
 
             return (

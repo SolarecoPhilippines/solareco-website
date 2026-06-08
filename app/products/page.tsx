@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { ProductCatalog } from "@/src/components/ProductCatalog";
 import { SectionTitle } from "@/src/components/SectionTitle";
+import { getVisibleProducts } from "@/src/lib/productAssets";
 
 export const metadata: Metadata = {
   title: "Products",
@@ -8,19 +9,20 @@ export const metadata: Metadata = {
 };
 
 export default function ProductsPage() {
+  const visibleProducts = getVisibleProducts();
+
   return (
     <section className="bg-slate-50 px-4 py-16 sm:px-6 lg:px-8">
       <div className="mx-auto max-w-7xl">
         <SectionTitle
           eyebrow="Product catalog"
           title="Priority solar products"
-          description="Search and filter the initial catalog. Official product photos, final specifications, and approved documents will be added later."
+          description="Search and filter public-ready products with uploaded product images."
         />
         <div className="mt-10">
-          <ProductCatalog />
+          <ProductCatalog products={visibleProducts} />
         </div>
       </div>
     </section>
   );
 }
-

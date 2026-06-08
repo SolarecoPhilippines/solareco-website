@@ -1,15 +1,36 @@
-import type { Product } from "@/src/data/products";
+"use client";
+
+import Image from "next/image";
+import { useState } from "react";
+import type { VisibleProduct } from "@/src/lib/productAssets";
 import { Button } from "./Button";
-import { PlaceholderImage } from "./PlaceholderImage";
 
 type ProductCardProps = {
-  product: Product;
+  product: VisibleProduct;
 };
 
 export function ProductCard({ product }: ProductCardProps) {
+  const [imageFailed, setImageFailed] = useState(false);
+
+  if (imageFailed) {
+    return null;
+  }
+
   return (
     <article className="flex h-full min-h-[620px] flex-col rounded-xl border border-slate-200 bg-white p-6 shadow-sm transition duration-200 hover:-translate-y-1.5 hover:border-[#0D3567]/25 hover:shadow-xl hover:shadow-slate-950/10 lg:p-7">
-      <PlaceholderImage label={product.name} />
+      <div className="relative flex min-h-[260px] items-center justify-center overflow-hidden rounded-lg border border-slate-200 bg-[linear-gradient(135deg,#ffffff_0%,#eef5fb_52%,#dbeafe_100%)] p-8 lg:min-h-[320px]">
+        <Image
+          src={product.primaryImage.src}
+          alt={product.primaryImage.alt}
+          fill
+          sizes="(min-width: 1024px) 30vw, (min-width: 768px) 45vw, 100vw"
+          className="object-contain p-6 drop-shadow-[0_18px_24px_rgba(15,23,42,0.16)]"
+          onError={() => {
+            console.warn(`Hiding product card because image failed to load: ${product.slug}`);
+            setImageFailed(true);
+          }}
+        />
+      </div>
       <div className="mt-7 flex flex-1 flex-col">
         <p className="w-fit rounded-full bg-[#0D3567]/10 px-3 py-1 text-xs font-bold uppercase tracking-[0.14em] text-[#0D3567]">
           {product.category}

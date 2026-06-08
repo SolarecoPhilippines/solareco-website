@@ -1,10 +1,11 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { productCategories, products } from "@/src/data/products";
+import { productCategories } from "@/src/data/products";
+import type { VisibleProduct } from "@/src/lib/productAssets";
 import { ProductCard } from "./ProductCard";
 
-export function ProductCatalog() {
+export function ProductCatalog({ products }: { products: VisibleProduct[] }) {
   const [search, setSearch] = useState("");
   const [category, setCategory] = useState("All");
 
@@ -20,7 +21,7 @@ export function ProductCatalog() {
       const matchesCategory = category === "All" || product.category === category;
       return matchesSearch && matchesCategory;
     });
-  }, [category, search]);
+  }, [category, products, search]);
 
   return (
     <div>

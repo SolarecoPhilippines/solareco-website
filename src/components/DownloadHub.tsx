@@ -3,10 +3,9 @@
 import { useMemo, useState } from "react";
 import type { DownloadGroup, DownloadStatus } from "@/src/data/downloads";
 
-const statuses: Array<DownloadStatus | "All"> = ["All", "Available", "Coming Soon"];
+const statuses: Array<DownloadStatus | "All"> = ["All", "Available"];
 const statusClasses: Record<DownloadStatus, string> = {
   Available: "bg-emerald-50 text-emerald-700 ring-emerald-600/15",
-  "Coming Soon": "bg-amber-50 text-amber-700 ring-amber-600/15",
 };
 
 export function DownloadHub({ groups }: { groups: DownloadGroup[] }) {
