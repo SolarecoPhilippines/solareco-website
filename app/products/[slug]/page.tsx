@@ -74,7 +74,7 @@ export default async function ProductDetailPage({ params }: ProductDetailPagePro
   return (
     <section className="px-4 py-16 sm:px-6 lg:px-8">
       <div className="mx-auto max-w-7xl">
-        <div className="grid gap-10 lg:grid-cols-[0.98fr_1.02fr] lg:items-center">
+        <div className="grid gap-10 lg:grid-cols-[1.08fr_0.92fr] lg:items-center">
           <ProductImageGallery model={product.name} images={productGalleryImages} />
           <div className="lg:pl-4">
             {isSakoAllInOne ? (

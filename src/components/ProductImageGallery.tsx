@@ -62,11 +62,11 @@ export function ProductImageGallery({ model, images }: ProductImageGalleryProps)
   }
 
   return (
-    <div className="rounded-lg border border-slate-200 bg-white p-4 shadow-sm">
+    <div className="mx-auto w-full max-w-[780px] rounded-lg border border-slate-200 bg-white p-4 shadow-sm">
       <button
         type="button"
         onClick={() => setOpen(true)}
-        className="relative block aspect-[4/3] w-full overflow-hidden rounded-md bg-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0D3567]"
+        className="relative flex h-[320px] w-full items-center justify-center overflow-hidden rounded-md bg-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0D3567] sm:h-[380px] lg:h-[460px]"
         aria-label={`Open enlarged preview for ${model} ${selectedImage.label}`}
       >
         <Image
@@ -89,14 +89,14 @@ export function ProductImageGallery({ model, images }: ProductImageGalleryProps)
               key={image.src}
               type="button"
               onClick={() => setSelectedIndex(index)}
-              className={`min-w-[132px] rounded-md border p-2 text-left transition focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0D3567] ${
+              className={`w-24 shrink-0 rounded-md border p-2 text-left transition focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0D3567] ${
                 selected ? "border-[#0D3567] bg-[#0D3567]/10" : "border-slate-200 bg-white hover:border-[#0D3567]/40"
               }`}
               aria-pressed={selected}
               aria-label={`Select ${image.label} for ${model}`}
             >
-              <span className="relative block aspect-[4/3] overflow-hidden rounded-sm bg-white">
-                <Image src={image.src} alt={image.alt} fill sizes="132px" className="object-contain p-2" onError={() => hideImage(image.src)} />
+              <span className="relative block h-20 overflow-hidden rounded-sm bg-white">
+                <Image src={image.src} alt={image.alt} fill sizes="90px" className="object-contain p-1" onError={() => hideImage(image.src)} />
               </span>
               <span className="mt-2 block text-xs font-semibold text-slate-700">{image.label}</span>
             </button>
