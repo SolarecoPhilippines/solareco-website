@@ -71,7 +71,7 @@ export default function Home() {
               </Button>
             </div>
           </div>
-          <div className="relative z-10 min-h-[410px] translate-y-6 sm:min-h-[500px] md:min-h-[560px] lg:min-h-[680px] lg:translate-x-8 lg:translate-y-8 xl:min-h-[740px] xl:translate-x-12">
+          <div className="relative z-10 min-h-[410px] translate-y-2 sm:min-h-[500px] sm:-translate-y-8 md:min-h-[560px] md:-translate-y-14 lg:min-h-[680px] lg:translate-x-8 lg:-translate-y-24 xl:min-h-[740px] xl:translate-x-12 xl:-translate-y-28">
             <div className="absolute inset-x-[8%] bottom-8 h-16 rounded-full bg-slate-950/25 blur-2xl" aria-hidden="true" />
             <Image
               src="/images/hero/solareco-product-lineup.png"
