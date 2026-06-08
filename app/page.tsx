@@ -50,7 +50,7 @@ export default function Home() {
           <source src="/videos/hero/solareco-home-hero.mp4" type="video/mp4" />
         </video>
         <div className="absolute inset-0 bg-slate-950/40" aria-hidden="true" />
-        <div className="relative mx-auto grid min-h-svh max-w-7xl items-center gap-10 px-4 pb-16 pt-32 sm:px-6 lg:grid-cols-[1.05fr_0.95fr] lg:px-8">
+        <div className="relative mx-auto grid min-h-svh max-w-[1500px] items-center gap-8 px-4 pb-10 pt-32 sm:px-6 md:gap-6 lg:grid-cols-[0.82fr_1fr] lg:px-8 xl:gap-4">
           <div className="relative z-10">
             <p className="text-sm font-semibold uppercase tracking-[0.2em] text-blue-100">
               Solar products for Philippine projects
@@ -71,14 +71,15 @@ export default function Home() {
               </Button>
             </div>
           </div>
-          <div className="relative z-10 min-h-[340px] lg:min-h-[520px]">
+          <div className="relative z-10 min-h-[410px] translate-y-6 sm:min-h-[500px] md:min-h-[560px] lg:min-h-[680px] lg:translate-x-8 lg:translate-y-8 xl:min-h-[740px] xl:translate-x-12">
+            <div className="absolute inset-x-[8%] bottom-8 h-16 rounded-full bg-slate-950/25 blur-2xl" aria-hidden="true" />
             <Image
               src="/images/hero/solareco-product-lineup.png"
               alt="Solareco solar, electrical, battery, and industrial product lineup"
               fill
               priority
-              sizes="(min-width: 1024px) 48vw, 100vw"
-              className="object-contain object-bottom drop-shadow-2xl"
+              sizes="(min-width: 1280px) 56vw, (min-width: 1024px) 55vw, 100vw"
+              className="object-contain object-bottom drop-shadow-[0_28px_35px_rgba(15,23,42,0.22)]"
             />
           </div>
         </div>
