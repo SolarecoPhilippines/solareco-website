@@ -54,7 +54,7 @@ export default function Home() {
           <source src="/videos/hero/solareco-home-hero.mp4" type="video/mp4" />
         </video>
         <div className="absolute inset-0 bg-slate-950/40" aria-hidden="true" />
-        <div className="relative mx-auto grid min-h-svh max-w-[1500px] items-center gap-8 px-4 pb-10 pt-32 sm:px-6 md:gap-6 lg:grid-cols-[0.82fr_1fr] lg:px-8 xl:gap-4">
+        <div className="relative mx-auto grid min-h-svh max-w-[1500px] -translate-y-10 items-center gap-8 px-4 pb-10 pt-32 sm:-translate-y-14 sm:px-6 md:-translate-y-16 md:gap-6 lg:-translate-y-20 lg:grid-cols-[0.82fr_1fr] lg:px-8 xl:gap-4">
           <div className="relative z-10">
             <p className="text-sm font-semibold uppercase tracking-[0.2em] text-blue-100">
               Solar products for Philippine projects
