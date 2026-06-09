@@ -4,6 +4,7 @@ import { DownloadCard } from "@/src/components/DownloadCard";
 import { MarketplaceLinks } from "@/src/components/MarketplaceLinks";
 import { ProductCard } from "@/src/components/ProductCard";
 import { SectionTitle } from "@/src/components/SectionTitle";
+import { TrustedBrandsMarquee } from "@/src/components/TrustedBrandsMarquee";
 import { branches } from "@/src/data/branches";
 import { getAvailableDownloadGroups } from "@/src/data/downloads";
 import { FACEBOOK_PAGE_URL } from "@/src/lib/constants";
@@ -92,6 +93,8 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      <TrustedBrandsMarquee />
 
       <section className="section-fade px-4 py-24 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-[1500px]">
