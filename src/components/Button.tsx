@@ -11,7 +11,7 @@ const variants = {
   primary:
     "bg-[#0D3567] text-white shadow-sm hover:bg-[#15477f] focus-visible:outline-[#0D3567]",
   secondary:
-    "border border-[#0D3567]/20 bg-white text-[#0D3567] hover:border-[#0D3567]/45 hover:bg-[#f4f7fb] focus-visible:outline-[#0D3567]",
+    "border border-[#0D3567] bg-white text-[#0D3567] shadow-sm duration-[250ms] hover:-translate-y-0.5 hover:bg-[#0D3567] hover:text-white hover:shadow-[0_12px_28px_rgba(13,53,103,0.18)] focus-visible:outline-[#0D3567]",
   light:
     "border border-white/30 bg-white text-[#0D3567] hover:bg-slate-100 focus-visible:outline-white",
 };
@@ -33,4 +33,3 @@ export function Button({ href, children, variant = "primary", className = "", ..
     </Link>
   );
 }
-

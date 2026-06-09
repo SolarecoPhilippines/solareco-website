@@ -117,9 +117,9 @@ export function getVisibleProducts() {
             name,
             category: "Solar Products",
             imageFolders: [folder],
-            summary: `${name} product images are available for public product discovery.`,
-            description: `${name} is available for product inquiries through Solareco Philippines.`,
-            keyDetails: ["Product images uploaded", "Contact Solareco for quotation and technical details"],
+            summary: `${name} is available for product inquiries through Solareco Philippines.`,
+            description: `Explore ${name} for solar, electrical, and energy project requirements through Solareco Philippines.`,
+            keyDetails: ["Available for product inquiry", "Contact Solareco for quotation and technical details"],
           };
         })
         .map(withProductImages)

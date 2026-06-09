@@ -67,26 +67,22 @@ export default function Home() {
               homes, businesses, and industries across the Philippines.
             </p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-              <Button href="/products" variant="light">
-                Browse Products
+              <Button href="/contact" variant="light">
+                Request a Quote
               </Button>
-              <Button
-                href={FACEBOOK_PAGE_URL}
-                variant="light"
-                className="border-white/55 bg-transparent text-white hover:border-white hover:bg-white/10"
-              >
+              <Button href={FACEBOOK_PAGE_URL} variant="secondary">
                 Message Us
               </Button>
             </div>
           </div>
-          <div className="relative z-10 min-h-[410px] translate-y-2 sm:min-h-[500px] sm:-translate-y-8 md:min-h-[560px] md:-translate-y-14 lg:min-h-[680px] lg:translate-x-8 lg:-translate-y-24 xl:min-h-[740px] xl:translate-x-12 xl:-translate-y-28">
+          <div className="relative z-10 min-h-[450px] translate-y-2 sm:min-h-[550px] sm:-translate-y-8 md:min-h-[620px] md:-translate-y-14 lg:min-h-[760px] lg:translate-x-8 lg:-translate-y-24 xl:min-h-[820px] xl:translate-x-12 xl:-translate-y-28">
             <div className="absolute inset-x-[8%] bottom-8 h-16 rounded-full bg-slate-950/25 blur-2xl" aria-hidden="true" />
             <Image
               src="/images/hero/solareco-product-lineup.png"
               alt="Solareco solar, electrical, battery, and industrial product lineup"
               fill
               priority
-              sizes="(min-width: 1280px) 56vw, (min-width: 1024px) 55vw, 100vw"
+              sizes="(min-width: 1280px) 62vw, (min-width: 1024px) 60vw, 100vw"
               className="object-contain object-bottom drop-shadow-[0_28px_35px_rgba(15,23,42,0.22)]"
             />
           </div>
@@ -102,7 +98,7 @@ export default function Home() {
           />
           <div className="mt-12 grid gap-8 md:grid-cols-2 lg:grid-cols-3 2xl:gap-9">
             {visibleProducts.map((product) => (
-              <ProductCard key={product.slug} product={product} />
+              <ProductCard key={product.slug} product={product} showQuoteButton={false} />
             ))}
           </div>
         </div>
@@ -180,20 +176,6 @@ export default function Home() {
               </article>
             ))}
           </div>
-        </div>
-      </section>
-
-      <section className="bg-[#0D3567] px-4 py-16 text-white sm:px-6 lg:px-8">
-        <div className="mx-auto flex max-w-7xl flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
-          <div>
-            <h2 className="font-heading text-3xl font-bold">Request a product quote</h2>
-            <p className="mt-3 max-w-2xl text-blue-50">
-              Share your project requirement and the Solareco team can help identify the right product path.
-            </p>
-          </div>
-          <Button href="/contact" variant="light">
-            Request a Quote
-          </Button>
         </div>
       </section>
     </>

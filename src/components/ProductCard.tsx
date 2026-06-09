@@ -7,9 +7,10 @@ import { Button } from "./Button";
 
 type ProductCardProps = {
   product: VisibleProduct;
+  showQuoteButton?: boolean;
 };
 
-export function ProductCard({ product }: ProductCardProps) {
+export function ProductCard({ product, showQuoteButton = true }: ProductCardProps) {
   const [imageFailed, setImageFailed] = useState(false);
 
   if (imageFailed) {
@@ -51,9 +52,11 @@ export function ProductCard({ product }: ProductCardProps) {
           <Button href={`/products/${product.slug}`} variant="secondary" className="w-full">
             View Details
           </Button>
-          <Button href="/contact" className="w-full">
-            Request Quote
-          </Button>
+          {showQuoteButton ? (
+            <Button href="/contact" className="w-full">
+              Request Quote
+            </Button>
+          ) : null}
         </div>
       </div>
     </article>
