@@ -89,23 +89,22 @@ export function ProductImageGallery({ model, images }: ProductImageGalleryProps)
               key={image.src}
               type="button"
               onClick={() => setSelectedIndex(index)}
-              className={`w-24 shrink-0 rounded-md border p-2 text-left transition focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0D3567] ${
-                selected ? "border-[#0D3567] bg-[#0D3567]/10" : "border-slate-200 bg-white hover:border-[#0D3567]/40"
+              className={`group relative h-[60px] w-[60px] shrink-0 cursor-pointer overflow-hidden rounded-md border bg-[radial-gradient(circle_at_center,#ffffff_0%,#F6F8FB_58%,#EAF0F6_100%)] transition duration-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0D3567] sm:h-20 sm:w-20 ${
+                selected
+                  ? "border-[#0D3567] shadow-[0_10px_24px_rgba(13,53,103,0.16)]"
+                  : "border-[#DCE6F0] hover:scale-[1.03] hover:border-[#0D3567]/50"
               }`}
               aria-pressed={selected}
               aria-label={`Select ${image.label} for ${model}`}
             >
-              <span className="relative block h-20 overflow-hidden rounded-sm border border-[#DCE6F0] bg-[radial-gradient(circle_at_center,#ffffff_0%,#F6F8FB_58%,#EAF0F6_100%)]">
-                <Image
-                  src={image.src}
-                  alt={image.alt}
-                  fill
-                  sizes="90px"
-                  className="object-contain p-1 drop-shadow-[0_10px_14px_rgba(13,53,103,0.14)]"
-                  onError={() => hideImage(image.src)}
-                />
-              </span>
-              <span className="mt-2 block text-xs font-semibold text-slate-700">{image.label}</span>
+              <Image
+                src={image.src}
+                alt={image.alt}
+                fill
+                sizes="(min-width: 640px) 80px, 60px"
+                className="object-contain p-1.5 drop-shadow-[0_10px_14px_rgba(13,53,103,0.14)] transition duration-200 group-hover:scale-[1.03]"
+                onError={() => hideImage(image.src)}
+              />
             </button>
           );
         })}
