@@ -18,13 +18,13 @@ export function ProductCard({ product }: ProductCardProps) {
 
   return (
     <article className="flex h-full min-h-[620px] flex-col rounded-xl border border-slate-200 bg-white p-6 shadow-sm transition duration-200 hover:-translate-y-1.5 hover:border-[#0D3567]/25 hover:shadow-xl hover:shadow-slate-950/10 lg:p-7">
-      <div className="relative flex min-h-[260px] items-center justify-center overflow-hidden rounded-lg border border-slate-200 bg-[linear-gradient(135deg,#ffffff_0%,#eef5fb_52%,#dbeafe_100%)] p-8 lg:min-h-[320px]">
+      <div className="relative flex min-h-[260px] items-center justify-center overflow-hidden rounded-[18px] border border-[#DCE6F0] bg-[radial-gradient(circle_at_center,#ffffff_0%,#F4F7FA_55%,#E8EEF5_100%)] p-8 shadow-[0_18px_45px_rgba(13,53,103,0.10)] lg:min-h-[320px]">
         <Image
           src={product.primaryImage.src}
           alt={product.primaryImage.alt}
           fill
           sizes="(min-width: 1024px) 30vw, (min-width: 768px) 45vw, 100vw"
-          className="object-contain p-6 drop-shadow-[0_18px_24px_rgba(15,23,42,0.16)]"
+          className="object-contain p-6 drop-shadow-[0_18px_26px_rgba(13,53,103,0.18)]"
           onError={() => {
             console.warn(`Hiding product card because image failed to load: ${product.slug}`);
             setImageFailed(true);

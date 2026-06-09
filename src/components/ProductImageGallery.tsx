@@ -66,7 +66,7 @@ export function ProductImageGallery({ model, images }: ProductImageGalleryProps)
       <button
         type="button"
         onClick={() => setOpen(true)}
-        className="relative flex h-[320px] w-full items-center justify-center overflow-hidden rounded-md bg-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0D3567] sm:h-[380px] lg:h-[460px]"
+        className="relative flex h-[320px] w-full items-center justify-center overflow-hidden rounded-[18px] border border-[#DCE6F0] bg-[radial-gradient(circle_at_center,#ffffff_0%,#F4F7FA_55%,#E8EEF5_100%)] shadow-[0_18px_45px_rgba(13,53,103,0.10)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0D3567] sm:h-[380px] lg:h-[460px]"
         aria-label={`Open enlarged preview for ${model} ${selectedImage.label}`}
       >
         <Image
@@ -74,7 +74,7 @@ export function ProductImageGallery({ model, images }: ProductImageGalleryProps)
           alt={selectedImage.alt}
           fill
           sizes="(min-width: 1024px) 45vw, 100vw"
-          className="object-contain p-4 drop-shadow-[0_18px_24px_rgba(15,23,42,0.12)] md:p-6"
+          className="object-contain p-4 drop-shadow-[0_18px_26px_rgba(13,53,103,0.18)] md:p-6"
           onError={() => hideImage(selectedImage.src)}
         />
       </button>
@@ -95,8 +95,15 @@ export function ProductImageGallery({ model, images }: ProductImageGalleryProps)
               aria-pressed={selected}
               aria-label={`Select ${image.label} for ${model}`}
             >
-              <span className="relative block h-20 overflow-hidden rounded-sm bg-white">
-                <Image src={image.src} alt={image.alt} fill sizes="90px" className="object-contain p-1" onError={() => hideImage(image.src)} />
+              <span className="relative block h-20 overflow-hidden rounded-sm border border-[#DCE6F0] bg-[radial-gradient(circle_at_center,#ffffff_0%,#F6F8FB_58%,#EAF0F6_100%)]">
+                <Image
+                  src={image.src}
+                  alt={image.alt}
+                  fill
+                  sizes="90px"
+                  className="object-contain p-1 drop-shadow-[0_10px_14px_rgba(13,53,103,0.14)]"
+                  onError={() => hideImage(image.src)}
+                />
               </span>
               <span className="mt-2 block text-xs font-semibold text-slate-700">{image.label}</span>
             </button>
@@ -126,13 +133,13 @@ export function ProductImageGallery({ model, images }: ProductImageGalleryProps)
                 Close
               </button>
             </div>
-            <div className="relative mt-4 aspect-[16/10] overflow-hidden rounded-md bg-white">
+            <div className="relative mt-4 aspect-[16/10] overflow-hidden rounded-[18px] border border-[#DCE6F0] bg-[radial-gradient(circle_at_center,#ffffff_0%,#F4F7FA_55%,#E8EEF5_100%)] shadow-[0_18px_45px_rgba(13,53,103,0.10)]">
               <Image
                 src={selectedImage.src}
                 alt={selectedImage.alt}
                 fill
                 sizes="90vw"
-                className="object-contain p-4 md:p-6"
+                className="object-contain p-4 drop-shadow-[0_18px_26px_rgba(13,53,103,0.18)] md:p-6"
                 onError={() => hideImage(selectedImage.src)}
               />
             </div>
