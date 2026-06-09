@@ -57,7 +57,7 @@ export default function Home() {
         </video>
         <div className="absolute inset-0 bg-slate-950/40" aria-hidden="true" />
         <div className="relative mx-auto grid min-h-svh w-full max-w-[1650px] -translate-y-8 items-center gap-8 px-4 py-24 sm:-translate-y-10 sm:px-6 md:-translate-y-12 md:gap-6 lg:grid-cols-[42%_58%] lg:px-8 xl:-translate-y-14 xl:gap-4">
-          <div className="relative z-10 translate-y-6 lg:translate-y-8">
+          <div className="relative z-10 translate-y-10 lg:translate-y-16">
             <p className="text-sm font-semibold uppercase tracking-[0.2em] text-blue-100">
               Solar products for Philippine projects
             </p>
