@@ -5,6 +5,7 @@ import { ProductCard } from "@/src/components/ProductCard";
 import { SectionTitle } from "@/src/components/SectionTitle";
 import { branches } from "@/src/data/branches";
 import { getAvailableDownloadGroups } from "@/src/data/downloads";
+import { FACEBOOK_PAGE_URL } from "@/src/lib/constants";
 import { getVisibleProducts } from "@/src/lib/productAssets";
 
 const benefits = [
@@ -62,15 +63,19 @@ export default function Home() {
               Reliable Solar Products and Energy Solutions Across the Philippines
             </h1>
             <p className="mt-6 max-w-2xl text-lg leading-8 text-blue-50">
-              Providing solar panels, batteries, breakers, electrical products, and technical support for homes,
-              businesses, and industries.
+              Providing reliable solar products, professional installation services, and sustainable energy solutions for
+              homes, businesses, and industries across the Philippines.
             </p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-              <Button href="/contact" variant="light">
-                Request a Quotation
-              </Button>
               <Button href="/products" variant="light">
                 Browse Products
+              </Button>
+              <Button
+                href={FACEBOOK_PAGE_URL}
+                variant="light"
+                className="border-white/55 bg-transparent text-white hover:border-white hover:bg-white/10"
+              >
+                Message Us
               </Button>
             </div>
           </div>
