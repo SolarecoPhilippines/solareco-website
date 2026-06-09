@@ -20,20 +20,19 @@ const brandLogos = [
   "JD Logo.png",
   "HYBSUN Logo.png",
   "ASENWARE Logo.png",
-  "Solareco Logo.png",
 ];
 
 function BrandLogo({ fileName }: { fileName: string }) {
   const brandName = fileName.replace(" Logo.png", "");
 
   return (
-    <div className="trusted-brand-logo flex h-24 min-w-44 shrink-0 items-center justify-center rounded-xl border border-[#E2E8F0] bg-[#F8FAFC] p-5 shadow-[0_4px_12px_rgba(0,0,0,0.05)] transition duration-300 hover:-translate-y-[3px] hover:scale-[1.05] hover:border-[#0D3567] hover:shadow-[0_16px_36px_rgba(13,53,103,0.16)]">
+    <div className="trusted-brand-logo flex min-h-[110px] min-w-52 shrink-0 items-center justify-center rounded-[14px] border border-white/10 bg-[#0D3567] p-[22px] shadow-[0_10px_24px_rgba(13,53,103,0.18)] transition duration-300 ease-out hover:-translate-y-1 hover:scale-[1.04] hover:border-white/35 hover:shadow-[0_14px_32px_rgba(13,53,103,0.25)]">
       <Image
         src={`/images/brands/${fileName}`}
         alt={`${brandName} logo`}
         width={220}
         height={80}
-        className="h-10 w-auto object-contain sm:h-12 md:h-14 lg:h-[60px]"
+        className="max-h-[52px] w-auto max-w-[150px] object-contain sm:max-h-[56px] sm:max-w-[160px] lg:max-h-[60px] lg:max-w-[170px]"
       />
     </div>
   );
