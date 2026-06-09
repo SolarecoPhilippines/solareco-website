@@ -100,7 +100,26 @@ export default async function ProductDetailPage({ params }: ProductDetailPagePro
             <h1 className="mt-3 font-heading text-4xl font-black text-slate-950 sm:text-5xl">
               {isSakoAllInOne ? "SAKO Alpha-W-ESS 1000W / 2kWh All-in-One" : product.name}
             </h1>
-            <p className="mt-5 text-lg leading-8 text-slate-600">{product.description}</p>
+            {product.features?.length ? (
+              <div className="mt-5">
+                <p className="text-sm font-bold uppercase tracking-[0.16em] text-[#0D3567]">Features</p>
+                <ul className="mt-4 grid gap-3">
+                  {product.features.map((feature) => (
+                    <li key={feature} className="flex gap-3 text-base leading-7 text-slate-700">
+                      <span
+                        aria-hidden="true"
+                        className="mt-1 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-[#0D3567] text-xs font-black text-white"
+                      >
+                        ✓
+                      </span>
+                      <span>{feature}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ) : product.description ? (
+              <p className="mt-5 text-lg leading-8 text-slate-600">{product.description}</p>
+            ) : null}
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
               <Button href="/contact">Request Quote</Button>
               <Button href={FACEBOOK_PAGE_URL} variant="secondary">

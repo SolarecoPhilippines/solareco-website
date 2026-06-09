@@ -30,6 +30,7 @@ export type Product = {
   secondaryLabel?: string;
   summary: string;
   description: string;
+  features?: string[];
   keyDetails: string[];
   parameterTableAvailable?: boolean;
   productType?: string;
@@ -48,8 +49,15 @@ export const products: Product[] = [
     imageFolders: ["sako-batteries", "sako-battery"],
     secondaryLabel: "Energy Storage Batteries",
     summary: "Official SAKO Li-Sun lithium battery comparison for energy-storage project selection.",
-    description:
-      "Compare available SAKO Li-Sun lithium battery models and technical parameters for residential, commercial, and project energy-storage applications.",
+    description: "",
+    features: [
+      "Top brand new LiFePO4 cells for superior safety and reliability.",
+      "Supports wall-mounted or floor-stand installation.",
+      "Comprehensive protection system for safe unattended operation.",
+      "5-Year Warranty, 6000-8000+ cycles, 10+ years design life.",
+      "Smart BMS (100A / 150A / 200A) optimized for solar applications.",
+      "Compatible with 10+ inverter brands through multiple communication protocols.",
+    ],
     keyDetails: [
       "Product type: Lithium battery",
       "Secondary label: Energy Storage Batteries",
