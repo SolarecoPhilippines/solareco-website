@@ -120,17 +120,27 @@ export default async function ProductDetailPage({ params }: ProductDetailPagePro
             ) : product.description ? (
               <p className="mt-5 text-lg leading-8 text-slate-600">{product.description}</p>
             ) : null}
-            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-              <Button href="/contact">Request Quote</Button>
-              <Button href={FACEBOOK_PAGE_URL} variant="secondary">
-                Message on Facebook
+            <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
+              <Button href="/contact" className="min-h-12 px-7 text-base">
+                Request a Quote
               </Button>
-              {sourceUrl ? (
-                <Button href={sourceUrl} variant="secondary">
-                  View Official SAKO Source
-                </Button>
-              ) : null}
+              <Button href={FACEBOOK_PAGE_URL} variant="secondary">
+                Message Us
+              </Button>
             </div>
+            {sourceUrl ? (
+              <p className="mt-5 text-sm leading-6 text-slate-600">
+                <span className="font-semibold text-slate-800">Official Product Reference</span>{" "}
+                <a
+                  href={sourceUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="font-semibold text-[#0D3567] underline-offset-4 transition hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0D3567]"
+                >
+                  Visit SAKO Website →
+                </a>
+              </p>
+            ) : null}
           </div>
         </div>
 
@@ -206,7 +216,7 @@ export default async function ProductDetailPage({ params }: ProductDetailPagePro
                 rel="noopener noreferrer"
                 className="mt-5 inline-flex text-sm font-semibold text-[#0D3567] underline-offset-4 hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0D3567]"
               >
-                View Official SAKO Source
+                Visit SAKO Website →
               </a>
             </section>
           </section>

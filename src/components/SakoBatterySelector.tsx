@@ -1,9 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { FACEBOOK_PAGE_URL } from "@/src/lib/constants";
 import type { SakoBatteryModel } from "@/src/data/sakoTechnicalParameters";
-import { Button } from "./Button";
 import { ProductImageGallery, type ProductGalleryImage } from "./ProductImageGallery";
 
 type SakoBatterySelectorProps = {
@@ -148,12 +146,6 @@ export function SakoBatterySelector({ models, imagesByModel }: SakoBatterySelect
                 <dd className="mt-1 text-slate-900">{selectedModel.mountingType}</dd>
               </div>
             </dl>
-            <div className="mt-6 flex flex-col gap-3 sm:flex-row">
-              <Button href="/contact">Request a Quote</Button>
-              <Button href={FACEBOOK_PAGE_URL} variant="secondary">
-                Message on Facebook
-              </Button>
-            </div>
           </section>
         </div>
       </div>

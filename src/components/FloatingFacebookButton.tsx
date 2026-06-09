@@ -6,7 +6,6 @@ const primaryPhone = branches[0]?.phoneHref ?? "tel:+639178705424";
 const actions = [
   { href: FACEBOOK_PAGE_URL, label: "Messenger", short: "Msg", external: true },
   { href: primaryPhone, label: "Call Now", short: "Call", external: false },
-  { href: "/contact", label: "Request Quotation", short: "Quote", external: false },
 ];
 
 export function FloatingFacebookButton() {
