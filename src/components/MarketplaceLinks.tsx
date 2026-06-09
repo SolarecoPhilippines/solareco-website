@@ -36,7 +36,7 @@ export function MarketplaceLinks({ title = "Available On", theme = "light" }: Ma
             target="_blank"
             rel="noopener noreferrer"
             aria-label={`Visit Solareco on ${marketplace.name}`}
-            className={`inline-flex h-11 items-center justify-center rounded-md border px-3 transition duration-200 hover:-translate-y-0.5 hover:scale-[1.03] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0D3567] ${cardClass}`}
+            className={`inline-flex h-11 items-center justify-center rounded-md border px-3 transition duration-[280ms] hover:-translate-y-0.5 hover:scale-[1.05] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0D3567] ${cardClass}`}
           >
             <Image
               src={marketplace.src}

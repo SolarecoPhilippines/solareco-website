@@ -41,7 +41,7 @@ export function Header() {
           : "border-[#0D3567]/20 bg-[#0D3567]/95 shadow-lg shadow-slate-950/15 backdrop-blur-md"
       }`}
     >
-      <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8">
+      <div className="mx-auto flex max-w-[1650px] items-center justify-between px-4 py-4 sm:px-6 lg:px-8">
         <Link
           href="/"
           className="inline-flex shrink-0 items-center focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white"
@@ -102,7 +102,7 @@ export function Header() {
 
       {open ? (
         <div className="border-t border-white/10 bg-[#0D3567] px-4 py-4 lg:hidden">
-          <nav className="mx-auto flex max-w-7xl flex-col gap-2" aria-label="Mobile navigation">
+          <nav className="mx-auto flex max-w-[1650px] flex-col gap-2" aria-label="Mobile navigation">
             {navLinks.map((link) => (
               <Link
                 key={link.href}
