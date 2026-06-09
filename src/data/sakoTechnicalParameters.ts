@@ -181,8 +181,8 @@ const modelMetadata = [
   {
     voltage: "25.6V",
     capacity: "300Ah",
-    productFamily: "Li-Sun Wall/Stand-Mounted Lithium Battery Pack",
-    mountingType: "Wall / Stand-Mounted",
+    productFamily: "Li-Sun Wheel/Stand-Mounted Lithium Battery Pack",
+    mountingType: "Wheel / Stand-Mounted",
   },
   {
     voltage: "51.2V",
@@ -193,14 +193,14 @@ const modelMetadata = [
   {
     voltage: "51.2V",
     capacity: "200Ah",
-    productFamily: "Li-Sun Wall/Stand-Mounted Lithium Battery Pack",
-    mountingType: "Wall / Stand-Mounted",
+    productFamily: "Li-Sun Wheel/Stand-Mounted Lithium Battery Pack",
+    mountingType: "Wheel / Stand-Mounted",
   },
   {
     voltage: "51.2V",
     capacity: "300Ah",
-    productFamily: "Li-Sun Wall/Stand-Mounted Lithium Battery Pack",
-    mountingType: "Wall / Stand-Mounted",
+    productFamily: "Li-Sun Wheel/Stand-Mounted Lithium Battery Pack",
+    mountingType: "Wheel / Stand-Mounted",
   },
   {
     voltage: "51.2V",

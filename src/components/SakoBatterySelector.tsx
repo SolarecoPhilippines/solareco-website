@@ -9,6 +9,8 @@ type SakoBatterySelectorProps = {
   imagesByModel: Record<string, ProductGalleryImage[]>;
 };
 
+const wheeledModels = ["51.2V 200Ah", "51.2V 300Ah", "51.2V 600Ah", "25.6V 300Ah"];
+
 export function SakoBatterySelector({ models, imagesByModel }: SakoBatterySelectorProps) {
   const visibleModels = useMemo(
     () => models.filter((model) => (imagesByModel[model.slug]?.length ?? 0) > 0),
@@ -111,6 +113,22 @@ export function SakoBatterySelector({ models, imagesByModel }: SakoBatterySelect
                 })}
               </div>
             </div>
+          </section>
+
+          <section className="rounded-lg border border-[#DCE6F0] bg-[#F4F7FA] p-6 shadow-sm">
+            <p className="text-sm font-bold uppercase tracking-[0.14em] text-[#0D3567]">Mounting note</p>
+            <h3 className="mt-2 font-heading text-xl font-bold text-slate-950">Models with integrated wheels</h3>
+            <div className="mt-4 flex flex-wrap gap-2">
+              {wheeledModels.map((model) => (
+                <span
+                  key={model}
+                  className="rounded-full border border-[#0D3567]/15 bg-white px-3 py-1.5 text-sm font-semibold text-[#0D3567] shadow-sm"
+                >
+                  {model}
+                </span>
+              ))}
+            </div>
+            <p className="mt-4 text-sm leading-6 text-slate-700">All other models are mounted.</p>
           </section>
 
           <section className="rounded-lg border border-slate-200 bg-slate-50 p-6">
