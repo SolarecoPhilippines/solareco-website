@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect, useId, useMemo, useState } from "react";
+import { useEffect, useId, useMemo, useRef, useState } from "react";
 
 export type ProductGalleryImage = {
   label: string;
@@ -18,6 +18,7 @@ export function ProductImageGallery({ model, images }: ProductImageGalleryProps)
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [open, setOpen] = useState(false);
   const [failedImages, setFailedImages] = useState<Set<string>>(new Set());
+  const thumbnailsRef = useRef<HTMLDivElement>(null);
   const titleId = useId();
   const visibleImages = useMemo(
     () => {
@@ -57,6 +58,13 @@ export function ProductImageGallery({ model, images }: ProductImageGalleryProps)
     setFailedImages((current) => new Set(current).add(src));
   }
 
+  function scrollThumbnails(direction: "left" | "right") {
+    thumbnailsRef.current?.scrollBy({
+      left: direction === "left" ? -220 : 220,
+      behavior: "smooth",
+    });
+  }
+
   if (!selectedImage) {
     return null;
   }
@@ -80,35 +88,56 @@ export function ProductImageGallery({ model, images }: ProductImageGalleryProps)
       </button>
 
       {visibleImages.length > 1 ? (
-      <div className="mt-4 flex gap-3 overflow-x-auto pb-2" aria-label={`${model} image thumbnails`}>
-        {visibleImages.map((image, index) => {
-          const selected = image.src === selectedImage.src;
+        <div className="mt-4 flex items-center gap-3" aria-label={`${model} image thumbnails`}>
+          <button
+            type="button"
+            onClick={() => scrollThumbnails("left")}
+            className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-[#DCE6F0] bg-white text-sm font-bold text-[#0D3567] shadow-sm transition hover:-translate-y-0.5 hover:border-[#0D3567] hover:bg-[#0D3567] hover:text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0D3567]"
+            aria-label="Scroll thumbnails left"
+          >
+            &lt;
+          </button>
+          <div
+            ref={thumbnailsRef}
+            className="flex gap-3 overflow-x-auto py-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+          >
+            {visibleImages.map((image, index) => {
+              const selected = image.src === selectedImage.src;
 
-          return (
-            <button
-              key={image.src}
-              type="button"
-              onClick={() => setSelectedIndex(index)}
-              className={`group relative h-[60px] w-[60px] shrink-0 cursor-pointer overflow-hidden rounded-md border bg-[radial-gradient(circle_at_center,#ffffff_0%,#F6F8FB_58%,#EAF0F6_100%)] transition duration-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0D3567] sm:h-20 sm:w-20 ${
-                selected
-                  ? "border-[#0D3567] shadow-[0_10px_24px_rgba(13,53,103,0.16)]"
-                  : "border-[#DCE6F0] hover:scale-[1.03] hover:border-[#0D3567]/50"
-              }`}
-              aria-pressed={selected}
-              aria-label={`Select ${image.label} for ${model}`}
-            >
-              <Image
-                src={image.src}
-                alt={image.alt}
-                fill
-                sizes="(min-width: 640px) 80px, 60px"
-                className="object-contain p-1.5 drop-shadow-[0_10px_14px_rgba(13,53,103,0.14)] transition duration-200 group-hover:scale-[1.03]"
-                onError={() => hideImage(image.src)}
-              />
-            </button>
-          );
-        })}
-      </div>
+              return (
+                <button
+                  key={image.src}
+                  type="button"
+                  onClick={() => setSelectedIndex(index)}
+                  className={`group relative h-[60px] w-[60px] shrink-0 cursor-pointer overflow-hidden rounded-md border bg-[radial-gradient(circle_at_center,#ffffff_0%,#F6F8FB_58%,#EAF0F6_100%)] transition duration-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0D3567] sm:h-20 sm:w-20 ${
+                    selected
+                      ? "border-[#0D3567] shadow-[0_10px_24px_rgba(13,53,103,0.16)]"
+                      : "border-[#DCE6F0] hover:scale-[1.03] hover:border-[#0D3567]/50"
+                  }`}
+                  aria-pressed={selected}
+                  aria-label={`Select ${image.label} for ${model}`}
+                >
+                  <Image
+                    src={image.src}
+                    alt={image.alt}
+                    fill
+                    sizes="(min-width: 640px) 80px, 60px"
+                    className="object-contain p-1.5 drop-shadow-[0_10px_14px_rgba(13,53,103,0.14)] transition duration-200 group-hover:scale-[1.03]"
+                    onError={() => hideImage(image.src)}
+                  />
+                </button>
+              );
+            })}
+          </div>
+          <button
+            type="button"
+            onClick={() => scrollThumbnails("right")}
+            className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-[#DCE6F0] bg-white text-sm font-bold text-[#0D3567] shadow-sm transition hover:-translate-y-0.5 hover:border-[#0D3567] hover:bg-[#0D3567] hover:text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0D3567]"
+            aria-label="Scroll thumbnails right"
+          >
+            &gt;
+          </button>
+        </div>
       ) : null}
 
       {open ? (

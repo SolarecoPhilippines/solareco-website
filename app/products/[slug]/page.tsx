@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Button } from "@/src/components/Button";
+import { getProductCategoryLabel, ProductCategoryNavigation } from "@/src/components/ProductCategoryNavigation";
 import { ProductImageGallery } from "@/src/components/ProductImageGallery";
 import { ProductParameterTable } from "@/src/components/ProductParameterTable";
 import { SakoBatterySelector } from "@/src/components/SakoBatterySelector";
@@ -47,7 +48,8 @@ export async function generateMetadata({ params }: ProductDetailPageProps): Prom
 
 export default async function ProductDetailPage({ params }: ProductDetailPageProps) {
   const { slug } = await params;
-  const product = getVisibleProductBySlug(slug);
+  const visibleProducts = getVisibleProducts();
+  const product = visibleProducts.find((item) => item.slug === slug) ?? null;
 
   if (!product) {
     notFound();
@@ -55,6 +57,8 @@ export default async function ProductDetailPage({ params }: ProductDetailPagePro
 
   const isSakoBattery = product.slug === "sako";
   const isSakoAllInOne = product.slug === "sako-all-in-one";
+  const categoryLabel = getProductCategoryLabel(product.category);
+  const categoryHref = `/products/${visibleProducts.find((item) => item.category === product.category)?.slug ?? product.slug}`;
   const sourceUrl = isSakoAllInOne
     ? SAKO_ALL_IN_ONE_SOURCE_URL
     : product.sourceReferences?.[0]?.url;
@@ -73,30 +77,38 @@ export default async function ProductDetailPage({ params }: ProductDetailPagePro
 
   return (
     <section className="px-4 py-16 sm:px-6 lg:px-8">
-      <div className="mx-auto max-w-7xl">
-        <div className="grid gap-10 lg:grid-cols-[1.08fr_0.92fr] lg:items-center">
-          <ProductImageGallery model={product.name} images={productGalleryImages} />
-          <div className="lg:pl-4">
-            {isSakoAllInOne ? (
-              <nav className="mb-5 text-sm font-semibold text-slate-500" aria-label="Breadcrumb">
-                <ol className="flex flex-wrap gap-2">
-                  <li>
-                    <Link href="/" className="hover:text-[#0D3567]">
-                      Home
-                    </Link>
-                  </li>
-                  <li aria-hidden="true">→</li>
-                  <li>
-                    <Link href="/products" className="hover:text-[#0D3567]">
-                      Products
-                    </Link>
-                  </li>
-                  <li aria-hidden="true">→</li>
-                  <li className="text-slate-900">SAKO Alpha-W-ESS 1000W / 2kWh</li>
-                </ol>
-              </nav>
-            ) : null}
-            <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[#0D3567]">{product.category}</p>
+      <div className="mx-auto grid max-w-[1500px] gap-8 lg:grid-cols-[280px_minmax(0,1fr)]">
+        <ProductCategoryNavigation activeProduct={product} products={visibleProducts} />
+
+        <main>
+          <nav className="mb-6 text-sm font-semibold text-slate-500" aria-label="Breadcrumb">
+            <ol className="flex flex-wrap items-center gap-2">
+              <li>
+                <Link href="/" className="hover:text-[#0D3567]">
+                  Home
+                </Link>
+              </li>
+              <li aria-hidden="true">&gt;</li>
+              <li>
+                <Link href="/products" className="hover:text-[#0D3567]">
+                  Products
+                </Link>
+              </li>
+              <li aria-hidden="true">&gt;</li>
+              <li>
+                <Link href={categoryHref} className="hover:text-[#0D3567]">
+                  {categoryLabel}
+                </Link>
+              </li>
+              <li aria-hidden="true">&gt;</li>
+              <li className="text-slate-900">{product.name}</li>
+            </ol>
+          </nav>
+
+          <div className="grid gap-10 lg:grid-cols-[1.08fr_0.92fr] lg:items-center">
+            <ProductImageGallery model={product.name} images={productGalleryImages} />
+            <div className="lg:pl-4">
+            <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[#0D3567]">{categoryLabel}</p>
             <h1 className="mt-3 font-heading text-4xl font-black text-slate-950 sm:text-5xl">
               {isSakoAllInOne ? "SAKO Alpha-W-ESS 1000W / 2kWh All-in-One" : product.name}
             </h1>
@@ -141,8 +153,8 @@ export default async function ProductDetailPage({ params }: ProductDetailPagePro
                 </a>
               </p>
             ) : null}
+            </div>
           </div>
-        </div>
 
         {isSakoBattery ? (
           <section className="mt-16">
@@ -234,6 +246,7 @@ export default async function ProductDetailPage({ params }: ProductDetailPagePro
             </ul>
           </section>
         </div>
+        </main>
       </div>
     </section>
   );
