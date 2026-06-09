@@ -22,6 +22,7 @@
 
 # misc
 .DS_Store
+*.lnk
 *.pem
 reference-docs/
 public/images/products-processed/
