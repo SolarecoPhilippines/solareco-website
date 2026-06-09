@@ -3,6 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Button } from "@/src/components/Button";
 import { getProductCategoryLabel, ProductCategoryNavigation } from "@/src/components/ProductCategoryNavigation";
+import { MarketplaceLinks } from "@/src/components/MarketplaceLinks";
 import { ProductImageGallery } from "@/src/components/ProductImageGallery";
 import { ProductParameterTable } from "@/src/components/ProductParameterTable";
 import { SakoBatterySelector } from "@/src/components/SakoBatterySelector";
@@ -139,6 +140,9 @@ export default async function ProductDetailPage({ params }: ProductDetailPagePro
               <Button href={FACEBOOK_PAGE_URL} variant="secondary">
                 Message Us
               </Button>
+            </div>
+            <div className="mt-6">
+              <MarketplaceLinks />
             </div>
             {sourceUrl ? (
               <p className="mt-5 text-sm leading-6 text-slate-600">

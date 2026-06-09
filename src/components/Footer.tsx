@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { MarketplaceLinks } from "@/src/components/MarketplaceLinks";
 import { FACEBOOK_PAGE_URL, PUBLIC_EMAIL, SITE_NAME } from "@/src/lib/constants";
 
 export function Footer() {
@@ -18,6 +19,9 @@ export function Footer() {
             Solar products, technical assistance, and installation support for customers across the Philippines.
           </p>
           <p className="mt-4 text-sm font-semibold text-white">Solareco Philippines</p>
+          <div className="mt-6">
+            <MarketplaceLinks title="Official Marketplace Stores" theme="dark" />
+          </div>
         </div>
         <div>
           <h2 className="text-sm font-semibold uppercase tracking-[0.16em] text-slate-300">Navigation</h2>

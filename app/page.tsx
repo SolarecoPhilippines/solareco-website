@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { Button } from "@/src/components/Button";
 import { DownloadCard } from "@/src/components/DownloadCard";
+import { MarketplaceLinks } from "@/src/components/MarketplaceLinks";
 import { ProductCard } from "@/src/components/ProductCard";
 import { SectionTitle } from "@/src/components/SectionTitle";
 import { branches } from "@/src/data/branches";
@@ -73,6 +74,9 @@ export default function Home() {
               <Button href={FACEBOOK_PAGE_URL} variant="secondary">
                 Message Us
               </Button>
+            </div>
+            <div className="mt-7">
+              <MarketplaceLinks theme="dark" />
             </div>
           </div>
           <div className="relative z-10 min-h-[450px] translate-y-2 sm:min-h-[550px] sm:-translate-y-8 md:min-h-[620px] md:-translate-y-14 lg:min-h-[760px] lg:translate-x-8 lg:-translate-y-24 xl:min-h-[820px] xl:translate-x-12 xl:-translate-y-28">
