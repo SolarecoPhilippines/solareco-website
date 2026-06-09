@@ -5,12 +5,14 @@ import { Header } from "@/src/components/Header";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: {
-    default: "Solareco Philippines | Solar Products and Support",
-    template: "%s | Solareco Philippines",
-  },
+  title: "Solareco Philippines",
   description:
-    "Solareco Philippines supplies solar products, technical assistance, and installation support nationwide.",
+    "Providing reliable solar products, professional installation services, and sustainable energy solutions across the Philippines.",
+  icons: {
+    icon: "/favicon.ico",
+    shortcut: "/favicon.ico",
+    apple: "/apple-touch-icon.png",
+  },
 };
 
 export default function RootLayout({
@@ -29,4 +31,3 @@ export default function RootLayout({
     </html>
   );
 }
-

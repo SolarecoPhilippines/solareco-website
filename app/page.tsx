@@ -55,7 +55,7 @@ export default function Home() {
           <source src="/videos/hero/solareco-home-hero.mp4" type="video/mp4" />
         </video>
         <div className="absolute inset-0 bg-slate-950/40" aria-hidden="true" />
-        <div className="relative mx-auto grid min-h-svh w-full max-w-[1650px] -translate-y-10 items-center gap-8 px-4 pb-10 pt-32 sm:-translate-y-14 sm:px-6 md:-translate-y-16 md:gap-6 lg:-translate-y-16 lg:grid-cols-[0.72fr_1fr] lg:px-8 xl:-translate-y-20 xl:gap-4">
+        <div className="relative mx-auto grid min-h-svh w-full max-w-[1650px] -translate-y-8 items-center gap-8 px-4 py-24 sm:-translate-y-10 sm:px-6 md:-translate-y-12 md:gap-6 lg:grid-cols-[42%_58%] lg:px-8 xl:-translate-y-14 xl:gap-4">
           <div className="relative z-10">
             <p className="text-sm font-semibold uppercase tracking-[0.2em] text-blue-100">
               Solar products for Philippine projects
@@ -79,15 +79,15 @@ export default function Home() {
               <MarketplaceLinks theme="dark" />
             </div>
           </div>
-          <div className="relative z-10 min-h-[500px] translate-y-2 sm:min-h-[610px] sm:-translate-y-10 md:min-h-[700px] md:-translate-y-16 lg:min-h-[850px] lg:translate-x-14 lg:-translate-y-32 xl:min-h-[920px] xl:translate-x-20 xl:-translate-y-36">
-            <div className="absolute inset-x-[8%] bottom-8 h-16 rounded-full bg-slate-950/25 blur-2xl" aria-hidden="true" />
+          <div className="relative z-10 flex items-center justify-center p-0 sm:justify-end lg:translate-x-8 xl:translate-x-14">
             <Image
               src="/images/hero/solareco-product-lineup.png"
               alt="Solareco solar, electrical, battery, and industrial product lineup"
-              fill
+              width={980}
+              height={820}
               priority
-              sizes="(min-width: 1280px) 64vw, (min-width: 1024px) 62vw, 100vw"
-              className="object-contain object-bottom drop-shadow-[0_28px_35px_rgba(15,23,42,0.22)]"
+              sizes="(min-width: 1280px) 58vw, (min-width: 1024px) 56vw, 100vw"
+              className="h-auto w-full max-w-[760px] object-contain drop-shadow-[0_28px_35px_rgba(15,23,42,0.22)] sm:max-w-[820px] lg:max-w-[900px] lg:-translate-y-5 xl:max-w-[980px]"
             />
           </div>
         </div>
