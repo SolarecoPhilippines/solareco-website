@@ -65,17 +65,11 @@ main {
 }
 
 .trusted-brand-logo img {
-  filter: grayscale(1);
-  opacity: 0.85;
-  transition:
-    filter 280ms ease,
-    opacity 280ms ease,
-    transform 280ms ease;
+  transition: transform 300ms ease;
 }
 
 .trusted-brand-logo:hover img {
-  filter: grayscale(0);
-  opacity: 1;
+  transform: scale(1.02);
 }
 
 @keyframes section-fade {

@@ -27,13 +27,13 @@ function BrandLogo({ fileName }: { fileName: string }) {
   const brandName = fileName.replace(" Logo.png", "");
 
   return (
-    <div className="trusted-brand-logo flex h-24 min-w-40 shrink-0 items-center justify-center rounded-lg border border-[#DCE6F0] bg-white px-8 shadow-sm transition duration-[280ms] hover:-translate-y-1 hover:scale-[1.04] hover:shadow-[0_16px_36px_rgba(13,53,103,0.14)]">
+    <div className="trusted-brand-logo flex h-24 min-w-44 shrink-0 items-center justify-center rounded-xl border border-[#E2E8F0] bg-[#F8FAFC] p-5 shadow-[0_4px_12px_rgba(0,0,0,0.05)] transition duration-300 hover:-translate-y-[3px] hover:scale-[1.05] hover:border-[#0D3567] hover:shadow-[0_16px_36px_rgba(13,53,103,0.16)]">
       <Image
         src={`/images/brands/${fileName}`}
         alt={`${brandName} logo`}
         width={220}
         height={80}
-        className="h-10 w-auto object-contain sm:h-12 lg:h-[60px]"
+        className="h-10 w-auto object-contain sm:h-12 md:h-14 lg:h-[60px]"
       />
     </div>
   );

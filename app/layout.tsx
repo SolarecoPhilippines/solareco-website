@@ -9,9 +9,9 @@ export const metadata: Metadata = {
   description:
     "Providing reliable solar products, professional installation services, and sustainable energy solutions across the Philippines.",
   icons: {
-    icon: "/favicon.ico",
-    shortcut: "/favicon.ico",
-    apple: "/apple-touch-icon.png",
+    icon: "/images/logo/icon.png",
+    shortcut: "/images/logo/icon.png",
+    apple: "/images/logo/icon.png",
   },
 };
 
