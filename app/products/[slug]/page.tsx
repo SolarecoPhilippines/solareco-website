@@ -77,8 +77,8 @@ export default async function ProductDetailPage({ params }: ProductDetailPagePro
   );
 
   return (
-    <section className="px-4 py-10 sm:px-6 sm:py-16 lg:px-8">
-      <div className="mx-auto grid max-w-[1500px] gap-6 lg:grid-cols-[280px_minmax(0,1fr)] lg:gap-8">
+    <section className="px-4 py-8 sm:px-6 sm:py-16 lg:px-8">
+      <div className="mx-auto grid max-w-[1500px] gap-3 sm:gap-6 lg:grid-cols-[280px_minmax(0,1fr)] lg:gap-8">
         <ProductCategoryNavigation activeProduct={product} products={visibleProducts} />
 
         <main className="min-w-0">

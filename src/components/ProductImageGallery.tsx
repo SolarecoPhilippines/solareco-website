@@ -82,7 +82,7 @@ export function ProductImageGallery({ model, images }: ProductImageGalleryProps)
           alt={selectedImage.alt}
           fill
           sizes="(min-width: 1024px) 45vw, 100vw"
-          className="object-contain p-3 drop-shadow-[0_18px_26px_rgba(13,53,103,0.18)] sm:p-4 md:p-6"
+          className="scale-[1.18] object-contain p-1 drop-shadow-[0_18px_26px_rgba(13,53,103,0.18)] sm:scale-100 sm:p-4 md:p-6"
           onError={() => hideImage(selectedImage.src)}
         />
       </button>
