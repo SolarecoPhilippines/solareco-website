@@ -52,13 +52,13 @@ export function SakoBatterySelector({ models, imagesByModel }: SakoBatterySelect
 
   return (
     <div className="mt-8 space-y-8">
-      <div className="grid gap-8 lg:grid-cols-[1.02fr_0.98fr] lg:items-center">
+      <div className="grid gap-6 lg:grid-cols-[1.02fr_0.98fr] lg:items-center lg:gap-8">
         <ProductImageGallery key={selectedModel.model} model={selectedModel.model} images={galleryImages} />
 
         <div className="space-y-5">
-          <section className="rounded-lg border border-slate-200 bg-white p-6 shadow-sm">
+          <section className="rounded-lg border border-slate-200 bg-white p-4 shadow-sm sm:p-6">
             <p className="text-sm font-semibold uppercase tracking-[0.14em] text-[#0D3567]">Model selector</p>
-            <h3 className="mt-2 font-heading text-2xl font-bold text-slate-950">Choose a SAKO Li-Sun Battery</h3>
+            <h3 className="mt-2 font-heading text-xl font-bold text-slate-950 sm:text-2xl">Choose a SAKO Li-Sun Battery</h3>
 
             <div className="mt-5">
               <p className="text-sm font-semibold uppercase tracking-[0.14em] text-slate-500">Nominal voltage</p>
@@ -115,7 +115,7 @@ export function SakoBatterySelector({ models, imagesByModel }: SakoBatterySelect
             </div>
           </section>
 
-          <section className="rounded-lg border border-[#DCE6F0] bg-[#F4F7FA] p-6 shadow-sm">
+          <section className="rounded-lg border border-[#DCE6F0] bg-[#F4F7FA] p-4 shadow-sm sm:p-6">
             <p className="text-sm font-bold uppercase tracking-[0.14em] text-[#0D3567]">Mounting note</p>
             <h3 className="mt-2 font-heading text-xl font-bold text-slate-950">Models with integrated wheels</h3>
             <div className="mt-4 flex flex-wrap gap-2">
@@ -131,9 +131,9 @@ export function SakoBatterySelector({ models, imagesByModel }: SakoBatterySelect
             <p className="mt-4 text-sm leading-6 text-slate-700">All other models are mounted.</p>
           </section>
 
-          <section className="rounded-lg border border-slate-200 bg-slate-50 p-6">
+          <section className="rounded-lg border border-slate-200 bg-slate-50 p-4 sm:p-6">
             <p className="text-sm font-semibold uppercase tracking-[0.14em] text-[#0D3567]">Selected model</p>
-            <h3 className="mt-2 font-heading text-2xl font-bold text-slate-950">{selectedModel.model}</h3>
+            <h3 className="mt-2 font-heading text-xl font-bold text-slate-950 sm:text-2xl">{selectedModel.model}</h3>
             <dl className="mt-5 grid gap-3 text-sm sm:grid-cols-2">
               <div>
                 <dt className="font-semibold text-slate-500">Product family</dt>

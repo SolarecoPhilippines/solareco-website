@@ -70,11 +70,11 @@ export function ProductImageGallery({ model, images }: ProductImageGalleryProps)
   }
 
   return (
-    <div className="mx-auto w-full max-w-[780px] rounded-lg border border-slate-200 bg-white p-4 shadow-sm">
+    <div className="mx-auto w-full max-w-[780px] rounded-lg border border-slate-200 bg-white p-3 shadow-sm sm:p-4">
       <button
         type="button"
         onClick={() => setOpen(true)}
-        className="relative flex h-[320px] w-full items-center justify-center overflow-hidden rounded-[18px] border border-[#DCE6F0] bg-[radial-gradient(circle_at_center,#ffffff_0%,#F4F7FA_55%,#E8EEF5_100%)] shadow-[0_18px_45px_rgba(13,53,103,0.10)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0D3567] sm:h-[380px] lg:h-[460px]"
+        className="relative flex h-[260px] w-full items-center justify-center overflow-hidden rounded-[18px] border border-[#DCE6F0] bg-[radial-gradient(circle_at_center,#ffffff_0%,#F4F7FA_55%,#E8EEF5_100%)] shadow-[0_18px_45px_rgba(13,53,103,0.10)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0D3567] sm:h-[380px] lg:h-[460px]"
         aria-label={`Open enlarged preview for ${model} ${selectedImage.label}`}
       >
         <Image
@@ -82,7 +82,7 @@ export function ProductImageGallery({ model, images }: ProductImageGalleryProps)
           alt={selectedImage.alt}
           fill
           sizes="(min-width: 1024px) 45vw, 100vw"
-          className="object-contain p-4 drop-shadow-[0_18px_26px_rgba(13,53,103,0.18)] md:p-6"
+          className="object-contain p-3 drop-shadow-[0_18px_26px_rgba(13,53,103,0.18)] sm:p-4 md:p-6"
           onError={() => hideImage(selectedImage.src)}
         />
       </button>
@@ -145,11 +145,11 @@ export function ProductImageGallery({ model, images }: ProductImageGalleryProps)
           role="dialog"
           aria-modal="true"
           aria-labelledby={titleId}
-          className="fixed inset-0 z-[80] flex items-center justify-center bg-slate-950/80 px-4 py-8"
+          className="fixed inset-0 z-[80] flex items-center justify-center bg-slate-950/80 px-3 py-5 sm:px-4 sm:py-8"
         >
-          <div className="w-full max-w-5xl rounded-lg bg-white p-4 shadow-2xl">
+          <div className="max-h-[92vh] w-full max-w-5xl overflow-y-auto rounded-lg bg-white p-3 shadow-2xl sm:p-4">
             <div className="flex items-start justify-between gap-4">
-              <h2 id={titleId} className="font-heading text-xl font-bold text-slate-950">
+              <h2 id={titleId} className="font-heading text-base font-bold text-slate-950 sm:text-xl">
                 {model} - {selectedImage.label}
               </h2>
               <button
@@ -161,7 +161,7 @@ export function ProductImageGallery({ model, images }: ProductImageGalleryProps)
                 Close
               </button>
             </div>
-            <div className="relative mt-4 aspect-[16/10] overflow-hidden rounded-[18px] border border-[#DCE6F0] bg-[radial-gradient(circle_at_center,#ffffff_0%,#F4F7FA_55%,#E8EEF5_100%)] shadow-[0_18px_45px_rgba(13,53,103,0.10)]">
+            <div className="relative mt-4 aspect-square overflow-hidden rounded-[18px] border border-[#DCE6F0] bg-[radial-gradient(circle_at_center,#ffffff_0%,#F4F7FA_55%,#E8EEF5_100%)] shadow-[0_18px_45px_rgba(13,53,103,0.10)] sm:aspect-[16/10]">
               <Image
                 src={selectedImage.src}
                 alt={selectedImage.alt}

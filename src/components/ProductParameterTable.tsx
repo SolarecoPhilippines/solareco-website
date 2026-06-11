@@ -79,7 +79,7 @@ export function ProductParameterTable(props: ProductParameterTableProps) {
     const tableWidth = table.columns.length === 1 ? "min-w-[720px]" : "min-w-[1320px]";
 
     return (
-      <div className="overflow-hidden rounded-lg border border-slate-200 bg-white shadow-sm">
+      <div className="rounded-lg border border-slate-200 bg-white shadow-sm">
         <div className="overflow-x-auto">
           <table className={`${tableWidth} border-separate border-spacing-0 text-left text-sm`}>
             <caption className="sr-only">{table.caption}</caption>
@@ -133,7 +133,7 @@ export function ProductParameterTable(props: ProductParameterTableProps) {
 
   if (props.parameters) {
     return (
-      <div className="overflow-hidden rounded-lg border border-slate-200 bg-white shadow-sm">
+      <div className="rounded-lg border border-slate-200 bg-white shadow-sm">
         <div className="overflow-x-auto">
           <table className="min-w-[720px] text-left text-sm">
             <caption className="sr-only">{props.caption}</caption>
@@ -166,7 +166,7 @@ export function ProductParameterTable(props: ProductParameterTableProps) {
   }
 
   return (
-    <div className="overflow-hidden rounded-lg border border-slate-200 bg-white shadow-sm">
+    <div className="rounded-lg border border-slate-200 bg-white shadow-sm">
       <div className="overflow-x-auto">
         <table className="min-w-[1280px] text-left text-sm">
           <caption className="sr-only">{props.caption}</caption>

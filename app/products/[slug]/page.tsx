@@ -77,13 +77,13 @@ export default async function ProductDetailPage({ params }: ProductDetailPagePro
   );
 
   return (
-    <section className="px-4 py-16 sm:px-6 lg:px-8">
-      <div className="mx-auto grid max-w-[1500px] gap-8 lg:grid-cols-[280px_minmax(0,1fr)]">
+    <section className="px-4 py-10 sm:px-6 sm:py-16 lg:px-8">
+      <div className="mx-auto grid max-w-[1500px] gap-6 lg:grid-cols-[280px_minmax(0,1fr)] lg:gap-8">
         <ProductCategoryNavigation activeProduct={product} products={visibleProducts} />
 
-        <main>
-          <nav className="mb-6 text-sm font-semibold text-slate-500" aria-label="Breadcrumb">
-            <ol className="flex flex-wrap items-center gap-2">
+        <main className="min-w-0">
+          <nav className="mb-5 text-xs font-semibold text-slate-500 sm:text-sm" aria-label="Breadcrumb">
+            <ol className="flex flex-wrap items-center gap-1.5 sm:gap-2">
               <li>
                 <Link href="/" className="hover:text-[#0D3567]">
                   Home
@@ -106,11 +106,11 @@ export default async function ProductDetailPage({ params }: ProductDetailPagePro
             </ol>
           </nav>
 
-          <div className="grid gap-10 lg:grid-cols-[1.08fr_0.92fr] lg:items-center">
+          <div className="grid gap-7 lg:grid-cols-[1.08fr_0.92fr] lg:items-center lg:gap-10">
             <ProductImageGallery model={product.name} images={productGalleryImages} />
             <div className="lg:pl-4">
-            <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[#0D3567]">{categoryLabel}</p>
-            <h1 className="mt-3 font-heading text-4xl font-black text-slate-950 sm:text-5xl">
+            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#0D3567] sm:text-sm">{categoryLabel}</p>
+            <h1 className="mt-3 font-heading text-3xl font-black leading-tight text-slate-950 sm:text-5xl">
               {isSakoAllInOne ? "SAKO Alpha-W-ESS 1000W / 2kWh All-in-One" : product.name}
             </h1>
             {product.features?.length ? (
@@ -118,7 +118,7 @@ export default async function ProductDetailPage({ params }: ProductDetailPagePro
                 <p className="text-sm font-bold uppercase tracking-[0.16em] text-[#0D3567]">Features</p>
                 <ul className="mt-4 grid gap-3">
                   {product.features.map((feature) => (
-                    <li key={feature} className="flex gap-3 text-base leading-7 text-slate-700">
+                    <li key={feature} className="flex gap-3 text-sm leading-6 text-slate-700 sm:text-base sm:leading-7">
                       <span
                         aria-hidden="true"
                         className="mt-1 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-[#0D3567] text-xs font-black text-white"
@@ -131,13 +131,13 @@ export default async function ProductDetailPage({ params }: ProductDetailPagePro
                 </ul>
               </div>
             ) : product.description ? (
-              <p className="mt-5 text-lg leading-8 text-slate-600">{product.description}</p>
+              <p className="mt-5 text-base leading-7 text-slate-600 sm:text-lg sm:leading-8">{product.description}</p>
             ) : null}
-            <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
-              <Button href="/contact" className="min-h-12 px-7 text-base">
+            <div className="mt-7 flex flex-col gap-3 sm:mt-8 sm:flex-row sm:items-center">
+              <Button href="/contact" className="min-h-12 w-full px-7 text-base sm:w-auto">
                 Request a Quote
               </Button>
-              <Button href={FACEBOOK_PAGE_URL} variant="secondary">
+              <Button href={FACEBOOK_PAGE_URL} variant="secondary" className="w-full sm:w-auto">
                 Message Us
               </Button>
             </div>
@@ -161,18 +161,18 @@ export default async function ProductDetailPage({ params }: ProductDetailPagePro
           </div>
 
         {isSakoBattery ? (
-          <section className="mt-16">
+          <section className="mt-12 sm:mt-16">
             <SectionTitle
               eyebrow={product.secondaryLabel}
               title="SAKO Li-Sun Technical Parameters"
               description="Compare uploaded SAKO Li-Sun battery models using technical values from the official SAKO catalogue."
             />
             <SakoBatterySelector models={sakoBatteryModels} imagesByModel={sakoImagesByModel} />
-            <div className="mt-10">
+            <div className="mt-8 sm:mt-10">
               <ProductParameterTable technicalTable={sakoLiSunTechnicalTable} />
             </div>
-            <section className="mt-8 rounded-lg border border-slate-200 bg-white p-6 shadow-sm">
-              <h2 className="font-heading text-2xl font-bold text-slate-950">Official Technical Reference</h2>
+            <section className="mt-8 rounded-lg border border-slate-200 bg-white p-4 shadow-sm sm:p-6">
+              <h2 className="font-heading text-xl font-bold text-slate-950 sm:text-2xl">Official Technical Reference</h2>
               <dl className="mt-5 grid gap-4 text-sm text-slate-700 md:grid-cols-3">
                 <div>
                   <dt className="font-semibold uppercase tracking-[0.12em] text-slate-500">Source</dt>
@@ -201,7 +201,7 @@ export default async function ProductDetailPage({ params }: ProductDetailPagePro
         ) : null}
 
         {isSakoAllInOne ? (
-          <section className="mt-16">
+          <section className="mt-12 sm:mt-16">
             <SectionTitle
               eyebrow="Alpha-W-ESS"
               title="TECHNICAL PARAMETER"
@@ -214,8 +214,8 @@ export default async function ProductDetailPage({ params }: ProductDetailPagePro
               Specifications are based on the official SAKO catalogue reference. Confirm compatibility, stock
               availability, and the latest approved datasheet before preparing a quotation or recommending a system.
             </p>
-            <section className="mt-8 rounded-lg border border-slate-200 bg-slate-50 p-6">
-              <h2 className="font-heading text-2xl font-bold text-slate-950">Official Technical Reference</h2>
+            <section className="mt-8 rounded-lg border border-slate-200 bg-slate-50 p-4 sm:p-6">
+              <h2 className="font-heading text-xl font-bold text-slate-950 sm:text-2xl">Official Technical Reference</h2>
               <dl className="mt-5 grid gap-4 text-sm text-slate-700 md:grid-cols-2">
                 <div>
                   <dt className="font-semibold uppercase tracking-[0.12em] text-slate-500">Source</dt>
@@ -238,8 +238,8 @@ export default async function ProductDetailPage({ params }: ProductDetailPagePro
           </section>
         ) : null}
 
-        <div className="mt-16">
-          <section className="rounded-lg border border-slate-200 bg-slate-50 p-6">
+        <div className="mt-12 sm:mt-16">
+          <section className="rounded-lg border border-slate-200 bg-slate-50 p-4 sm:p-6">
             <SectionTitle title="Key details" description="Product details and available technical references." />
             <ul className="mt-6 grid gap-3">
               {product.keyDetails.map((detail) => (
