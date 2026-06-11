@@ -166,8 +166,15 @@ export default function Home() {
           <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {branches.map((branch) => (
               <article key={branch.name} className="rounded-lg border border-slate-200 bg-white p-5 shadow-sm">
-                <h3 className="font-heading text-xl font-bold text-slate-950">{branch.shortName}</h3>
-                <p className="mt-1 text-sm font-semibold uppercase tracking-[0.14em] text-[#0D3567]">{branch.type}</p>
+                <div className="flex items-start justify-between gap-3">
+                  <div>
+                    <h3 className="font-heading text-xl font-bold text-slate-950">{branch.shortName}</h3>
+                    <p className="mt-1 text-sm font-semibold uppercase tracking-[0.14em] text-[#0D3567]">{branch.type}</p>
+                  </div>
+                  <span className="rounded-full bg-slate-100 px-3 py-1 text-xs font-bold text-slate-700">
+                    {branch.status}
+                  </span>
+                </div>
                 <a
                   href={branch.phoneHref}
                   aria-label={`Call ${branch.name} at ${branch.phone}`}
