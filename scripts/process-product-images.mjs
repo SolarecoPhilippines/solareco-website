@@ -5,6 +5,7 @@ import sharp from "sharp";
 const sourceRoot = path.join(process.cwd(), "public", "images", "products");
 const outputRoot = path.join(process.cwd(), "public", "images", "products-processed");
 const validImageExtensions = new Set([".avif", ".gif", ".jpeg", ".jpg", ".png", ".webp"]);
+const maxConcurrency = 4;
 
 function collectImages(directory) {
   if (!existsSync(directory)) {
@@ -44,14 +45,31 @@ async function processImage(filePath) {
 
 const images = collectImages(sourceRoot);
 
-await Promise.all(
-  images.map(async (filePath) => {
-    try {
-      await processImage(filePath);
-    } catch (error) {
-      console.warn(`Skipping product image processing for ${filePath}: ${error instanceof Error ? error.message : error}`);
+async function processQueue() {
+  let nextIndex = 0;
+
+  async function worker() {
+    while (nextIndex < images.length) {
+      const filePath = images[nextIndex];
+      nextIndex += 1;
+
+      if (!filePath) {
+        return;
+      }
+
+      try {
+        await processImage(filePath);
+      } catch (error) {
+        console.warn(`Skipping product image processing for ${filePath}: ${error instanceof Error ? error.message : error}`);
+      }
     }
-  }),
-);
+  }
+
+  await Promise.all(
+    Array.from({ length: Math.min(maxConcurrency, images.length) }, () => worker()),
+  );
+}
+
+await processQueue();
 
 console.log(`Processed ${images.length} product image${images.length === 1 ? "" : "s"}.`);

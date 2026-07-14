@@ -1,25 +1,29 @@
 import type { Metadata } from "next";
-import { ProjectGallery } from "@/src/components/ProjectGallery";
-import { SectionTitle } from "@/src/components/SectionTitle";
-import { projects } from "@/src/data/projects";
+import { Container } from "@/src/components/Container";
+import { CtaBanner } from "@/src/components/CtaBanner";
+import { PageHero } from "@/src/components/PageHero";
+import { SolutionGallery } from "@/src/components/SolutionGallery";
+import { supportedApplications } from "@/src/data/projects";
 
 export const metadata: Metadata = {
-  title: "Projects",
-  description: "Solareco Philippines project categories for residential solar, commercial solar, battery storage, and solar street lights.",
+  title: "Solutions and Applications",
+  description: "Solar, battery, electrical protection, and wiring applications supported by Solareco Philippines.",
+  alternates: { canonical: "/projects" },
 };
 
-export default function ProjectsPage() {
+export default function SolutionsPage() {
   return (
-    <section className="bg-slate-50 px-4 py-16 sm:px-6 lg:px-8">
-      <div className="mx-auto max-w-7xl">
-        <SectionTitle
-          eyebrow="Project showcase"
-          title="Solar and Energy Project Categories"
-          description="Browse project categories and supply scenarios supported by Solareco's solar, battery, electrical protection, and wiring products."
-          headingLevel="h1"
-        />
-        <ProjectGallery projects={projects} />
-      </div>
-    </section>
+    <>
+      <PageHero eyebrow="Supported applications" title="Solar and energy solutions built around your requirements" description="Explore supported supply and planning scenarios across solar, battery, protection, and wiring applications." />
+      <section className="section-shell bg-slate-50">
+        <Container>
+          <div className="border-l-4 border-[#2E7FC1] bg-blue-50 px-5 py-4 text-sm leading-7 text-[#0D3567] sm:px-6">
+            <strong className="font-semibold">Application note:</strong> These are supported supply and planning scenarios, not a record of confirmed completed installations. Contact Solareco to discuss product availability and requirements for a specific application.
+          </div>
+          <SolutionGallery solutions={supportedApplications} />
+        </Container>
+      </section>
+      <CtaBanner title="Planning a solar or energy application?" description="Tell Solareco about the site, load requirements, and preferred product categories so the team can help coordinate suitable product information and availability." primaryLabel="Discuss your application" />
+    </>
   );
 }

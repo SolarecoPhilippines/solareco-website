@@ -56,7 +56,7 @@ export function SakoBatterySelector({ models, imagesByModel }: SakoBatterySelect
         <ProductImageGallery key={selectedModel.model} model={selectedModel.model} images={galleryImages} />
 
         <div className="space-y-5">
-          <section className="rounded-lg border border-slate-200 bg-white p-4 shadow-sm sm:p-6">
+          <section className="border-t-4 border-[#0D3567] bg-white p-4 sm:p-6">
             <p className="text-sm font-semibold uppercase tracking-[0.14em] text-[#0D3567]">Model selector</p>
             <h3 className="mt-2 font-heading text-xl font-bold text-slate-950 sm:text-2xl">Choose a SAKO Li-Sun Battery</h3>
 
@@ -115,23 +115,23 @@ export function SakoBatterySelector({ models, imagesByModel }: SakoBatterySelect
             </div>
           </section>
 
-          <section className="rounded-lg border border-[#DCE6F0] bg-[#F4F7FA] p-4 shadow-sm sm:p-6">
+          <section className="technical-accent bg-[#F4F7FA] p-4 sm:p-6">
             <p className="text-sm font-bold uppercase tracking-[0.14em] text-[#0D3567]">Mounting note</p>
             <h3 className="mt-2 font-heading text-xl font-bold text-slate-950">Models with integrated wheels</h3>
             <div className="mt-4 flex flex-wrap gap-2">
               {wheeledModels.map((model) => (
                 <span
                   key={model}
-                  className="rounded-full border border-[#0D3567]/15 bg-white px-3 py-1.5 text-sm font-semibold text-[#0D3567] shadow-sm"
+                  className="border-b border-[#0D3567]/20 bg-white px-3 py-1.5 text-sm font-semibold text-[#0D3567]"
                 >
                   {model}
                 </span>
               ))}
             </div>
-            <p className="mt-4 text-sm leading-6 text-slate-700">All other models are mounted.</p>
+            <p className="mt-4 text-sm leading-6 text-slate-700">All other listed models support wall or stand mounting.</p>
           </section>
 
-          <section className="rounded-lg border border-slate-200 bg-slate-50 p-4 sm:p-6">
+          <section className="border-y border-slate-200 bg-slate-50 p-4 sm:p-6">
             <p className="text-sm font-semibold uppercase tracking-[0.14em] text-[#0D3567]">Selected model</p>
             <h3 className="mt-2 font-heading text-xl font-bold text-slate-950 sm:text-2xl">{selectedModel.model}</h3>
             <dl className="mt-5 grid gap-3 text-sm sm:grid-cols-2">
@@ -179,7 +179,7 @@ export function SakoBatterySelector({ models, imagesByModel }: SakoBatterySelect
                 key={model.model}
                 type="button"
                 onClick={() => setSelectedModelName(model.model)}
-                className={`rounded-lg border p-4 text-left transition focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0D3567] ${
+                className={`border-t-2 p-4 text-left transition focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0D3567] ${
                   selected ? "border-[#0D3567] bg-[#0D3567]/10" : "border-slate-200 bg-white hover:border-[#0D3567]/45"
                 }`}
                 aria-pressed={selected}

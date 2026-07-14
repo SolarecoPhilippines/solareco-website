@@ -25,10 +25,9 @@ type ProductParameterTableProps =
     };
 
 const statusStyles: Record<ParameterStatus, string> = {
-  Verified: "bg-emerald-50 text-emerald-700 ring-emerald-600/15",
-  Estimated: "bg-blue-50 text-blue-700 ring-blue-600/15",
-  "To verify": "bg-amber-50 text-amber-700 ring-amber-600/15",
-  "Coming soon": "bg-slate-100 text-slate-600 ring-slate-500/15",
+  Verified: "border-emerald-600 bg-emerald-50 text-emerald-700",
+  Estimated: "border-blue-600 bg-blue-50 text-blue-700",
+  "To verify": "border-amber-600 bg-amber-50 text-amber-700",
 };
 
 function isUrl(value: string) {
@@ -62,12 +61,12 @@ function getCellColSpan(cell: TechnicalCell) {
 
 function StatusBadge({ status }: { status: ParameterStatus | string }) {
   const safeStatus: ParameterStatus =
-    status === "Verified" || status === "Estimated" || status === "Coming soon" || status === "To verify"
+    status === "Verified" || status === "Estimated" || status === "To verify"
       ? status
       : "To verify";
 
   return (
-    <span className={`inline-flex w-max rounded-full px-3 py-1 text-xs font-semibold ring-1 ${statusStyles[safeStatus]}`}>
+    <span className={`inline-flex w-max border-l-2 px-2 py-1 text-xs font-semibold ${statusStyles[safeStatus]}`}>
       {status}
     </span>
   );
@@ -79,8 +78,8 @@ export function ProductParameterTable(props: ProductParameterTableProps) {
     const tableWidth = table.columns.length === 1 ? "min-w-[720px]" : "min-w-[1320px]";
 
     return (
-      <div className="rounded-lg border border-slate-200 bg-white shadow-sm">
-        <div className="overflow-x-auto">
+      <div className="min-w-0 max-w-full overflow-hidden border border-slate-200 bg-white">
+        <div className="max-w-full overflow-x-auto">
           <table className={`${tableWidth} border-separate border-spacing-0 text-left text-sm`}>
             <caption className="sr-only">{table.caption}</caption>
             <thead className="bg-[#0D3567] text-white">
@@ -133,8 +132,8 @@ export function ProductParameterTable(props: ProductParameterTableProps) {
 
   if (props.parameters) {
     return (
-      <div className="rounded-lg border border-slate-200 bg-white shadow-sm">
-        <div className="overflow-x-auto">
+      <div className="min-w-0 max-w-full overflow-hidden border border-slate-200 bg-white">
+        <div className="max-w-full overflow-x-auto">
           <table className="min-w-[720px] text-left text-sm">
             <caption className="sr-only">{props.caption}</caption>
             <thead className="bg-[#0D3567] text-white">
@@ -166,8 +165,8 @@ export function ProductParameterTable(props: ProductParameterTableProps) {
   }
 
   return (
-    <div className="rounded-lg border border-slate-200 bg-white shadow-sm">
-      <div className="overflow-x-auto">
+    <div className="min-w-0 max-w-full overflow-hidden border border-slate-200 bg-white">
+      <div className="max-w-full overflow-x-auto">
         <table className="min-w-[1280px] text-left text-sm">
           <caption className="sr-only">{props.caption}</caption>
           <thead className="bg-[#0D3567] text-white">

@@ -10,14 +10,14 @@ export function SectionTitle({ eyebrow, title, description, align = "left", head
   const Heading = headingLevel;
 
   return (
-    <div className={align === "center" ? "mx-auto max-w-3xl text-center" : "max-w-3xl"}>
+    <div className={align === "center" ? "mx-auto max-w-3xl text-center" : "max-w-3xl border-l-2 border-[#2E7FC1] pl-5 sm:pl-6"}>
       {eyebrow ? (
-        <p className="mb-3 text-sm font-semibold uppercase tracking-[0.18em] text-[#0D3567]">
+        <p className="eyebrow mb-3 text-[#0D3567]">
           {eyebrow}
         </p>
       ) : null}
-      <Heading className="font-heading text-3xl font-bold text-slate-950 sm:text-4xl">{title}</Heading>
-      {description ? <p className="mt-4 text-base leading-7 text-slate-600">{description}</p> : null}
+      <Heading className="section-title-text font-heading font-black text-slate-950">{title}</Heading>
+      {description ? <p className="mt-4 max-w-3xl text-[1.0625rem] leading-7 text-slate-600">{description}</p> : null}
     </div>
   );
 }

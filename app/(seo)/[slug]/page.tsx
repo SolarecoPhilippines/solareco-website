@@ -2,10 +2,11 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Button } from "@/src/components/Button";
+import { Container } from "@/src/components/Container";
 import { SectionTitle } from "@/src/components/SectionTitle";
 import { getSeoLandingPage, seoLandingPages } from "@/src/data/seoLandingPages";
-import { products } from "@/src/data/products";
-import { SITE_NAME } from "@/src/lib/constants";
+import { SITE_NAME, SITE_URL } from "@/src/lib/constants";
+import { getVisibleProducts } from "@/src/lib/productAssets";
 
 type SeoPageProps = {
   params: Promise<{ slug: string }>;
@@ -26,10 +27,12 @@ export async function generateMetadata({ params }: SeoPageProps): Promise<Metada
   return {
     title: page.title,
     description: page.description,
+    alternates: { canonical: `/${page.slug}` },
     openGraph: {
-      title: `${page.title} | ${SITE_NAME}`,
+      title: page.title,
       description: page.description,
       type: "website",
+      url: `/${page.slug}`,
     },
   };
 }
@@ -42,26 +45,37 @@ export default async function SeoLandingPage({ params }: SeoPageProps) {
     notFound();
   }
 
-  const relatedProducts = products.filter((product) => page.relatedProducts.includes(product.name));
-  const structuredData = {
-    "@context": "https://schema.org",
-    "@type": "WebPage",
-    name: page.title,
-    description: page.description,
-    publisher: {
-      "@type": "Organization",
-      name: SITE_NAME,
+  const relatedProducts = getVisibleProducts().filter((product) => page.relatedProducts.includes(product.name));
+  const structuredData = [
+    {
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      name: page.title,
+      description: page.description,
+      url: `${SITE_URL}/${page.slug}`,
+      publisher: {
+        "@type": "Organization",
+        name: SITE_NAME,
+      },
     },
-  };
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      itemListElement: [
+        { "@type": "ListItem", position: 1, name: "Home", item: SITE_URL },
+        { "@type": "ListItem", position: 2, name: page.title, item: `${SITE_URL}/${page.slug}` },
+      ],
+    },
+  ];
 
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }} />
-      <section className="bg-slate-50 px-4 py-16 sm:px-6 lg:px-8">
-        <div className="mx-auto max-w-7xl">
-          <div className="rounded-lg border border-slate-200 bg-white p-6 shadow-sm lg:p-8">
+      <section className="section-shell bg-slate-50">
+        <Container>
+          <div className="surface-card p-6 lg:p-8">
             <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[#0D3567]">Solareco Philippines</p>
-            <h1 className="mt-3 font-heading text-4xl font-black text-slate-950 sm:text-5xl">{page.h1}</h1>
+            <h1 className="detail-title mt-3 max-w-4xl font-heading font-black text-slate-950">{page.h1}</h1>
             <p className="mt-5 max-w-3xl text-lg leading-8 text-slate-600">{page.intro}</p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
               <Button href="/contact">Request a Quotation</Button>
@@ -99,7 +113,7 @@ export default async function SeoLandingPage({ params }: SeoPageProps) {
               </div>
             </section>
           </div>
-        </div>
+        </Container>
       </section>
     </>
   );

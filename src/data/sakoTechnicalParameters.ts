@@ -1,5 +1,3 @@
-import type { ProductParameter } from "@/src/data/products";
-
 export type TechnicalCell = string | { value: string; colSpan?: number };
 
 export type TechnicalRow = {
@@ -225,47 +223,3 @@ export const sakoBatteryModels: SakoBatteryModel[] = sakoLiSunTechnicalTable.col
     mountingType: metadata.mountingType,
   };
 });
-
-export const sakoAllInOneParameters: ProductParameter[] = [
-  {
-    parameter: "Product Type",
-    value: "All-in-One Energy Storage System",
-    notes: "The SAKO Li-Sun battery matrix does not apply to this product.",
-    status: "To verify",
-  },
-  {
-    parameter: "Model",
-    value: "SAKO Alpha W ESS 1000W All-in-One",
-    notes: "Dedicated official All-in-One datasheet still required for complete technical verification.",
-    status: "To verify",
-  },
-  {
-    parameter: "Rated Power",
-    value: "1000W",
-    notes: "Dedicated official All-in-One datasheet still required for complete technical verification.",
-    status: "To verify",
-  },
-  { parameter: "Nominal Battery Energy", value: "To verify", status: "To verify" },
-  { parameter: "Usable Battery Energy", value: "To verify", status: "To verify" },
-  { parameter: "Battery Type", value: "To verify", status: "To verify" },
-  { parameter: "Battery Capacity", value: "To verify", status: "To verify" },
-  { parameter: "AC Input Voltage", value: "To verify", status: "To verify" },
-  { parameter: "AC Input Frequency", value: "To verify", status: "To verify" },
-  { parameter: "AC Output Voltage", value: "To verify", status: "To verify" },
-  { parameter: "AC Output Frequency", value: "To verify", status: "To verify" },
-  { parameter: "PV Input Range", value: "To verify", status: "To verify" },
-  { parameter: "Maximum PV Input Power", value: "To verify", status: "To verify" },
-  { parameter: "Charging Modes", value: "To verify", status: "To verify" },
-  { parameter: "Display", value: "To verify", status: "To verify" },
-  { parameter: "Communication", value: "To verify", status: "To verify" },
-  { parameter: "Protection Features", value: "To verify", status: "To verify" },
-  { parameter: "Recommended Applications", value: "To verify", status: "To verify" },
-  { parameter: "Dimensions", value: "To verify", status: "To verify" },
-  { parameter: "Weight", value: "To verify", status: "To verify" },
-  { parameter: "Warranty", value: "To verify", status: "To verify" },
-  {
-    parameter: "Verification Status",
-    value: "The official All-in-One datasheet is still required for complete technical verification.",
-    status: "To verify",
-  },
-];
