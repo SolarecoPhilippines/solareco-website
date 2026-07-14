@@ -1,28 +1,29 @@
 import type { Metadata } from "next";
+import { Suspense } from "react";
+import { Container } from "@/src/components/Container";
+import { PageHero } from "@/src/components/PageHero";
 import { ProductCatalog } from "@/src/components/ProductCatalog";
-import { SectionTitle } from "@/src/components/SectionTitle";
 import { getVisibleProducts } from "@/src/lib/productAssets";
 
 export const metadata: Metadata = {
   title: "Products",
   description: "Browse Solareco priority solar products and electrical components.",
+  alternates: { canonical: "/products" },
 };
 
 export default function ProductsPage() {
   const visibleProducts = getVisibleProducts();
 
   return (
-    <section className="bg-slate-50 px-4 py-16 sm:px-6 lg:px-8">
-      <div className="mx-auto max-w-7xl">
-        <SectionTitle
-          eyebrow="Product catalog"
-          title="Priority solar products"
-          description="Search and filter public-ready products with uploaded product images."
-        />
-        <div className="mt-10">
-          <ProductCatalog products={visibleProducts} />
-        </div>
-      </div>
-    </section>
+    <>
+      <PageHero eyebrow="Product catalog" title="Solar and electrical products for project requirements" description="Browse public-ready product lines, compare available technical references, and contact Solareco for current availability and quotation support." />
+      <section className="section-shell bg-slate-50">
+        <Container>
+          <Suspense fallback={<div className="rounded-lg border border-slate-200 bg-white p-6 text-slate-600 shadow-sm">Loading product filters...</div>}>
+            <ProductCatalog products={visibleProducts} />
+          </Suspense>
+        </Container>
+      </section>
+    </>
   );
 }

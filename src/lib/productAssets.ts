@@ -11,20 +11,13 @@ const preferredImageTerms = ["front", "main", "hero", "product", "610w", "100ah"
 export type ProductImageAsset = {
   src: string;
   alt: string;
+  label: string;
 };
 
-export type VisibleProduct = Product & {
+export type VisibleProduct = Omit<Product, "primaryImage"> & {
   images: ProductImageAsset[];
   primaryImage: ProductImageAsset;
 };
-
-function titleCaseFromSlug(slug: string) {
-  return slug
-    .split(/[-_\s]+/)
-    .filter(Boolean)
-    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-    .join(" ");
-}
 
 function toPublicPath(filePath: string) {
   return `/${path.relative(path.join(process.cwd(), "public"), filePath).replace(/\\/g, "/")}`;
@@ -73,21 +66,65 @@ function imageScore(filePath: string) {
   return termScore * 1000 - normalized.length;
 }
 
+const contextLabels: Record<string, string> = {
+  front: "Front View",
+  side: "Side View",
+  back: "Back View",
+  ports: "Ports and Connections",
+  connections: "Ports and Connections",
+  display: "Display",
+  dimensions: "Dimensions",
+};
+
+function getImageLabel(filePath: string, product: Product) {
+  const publicPath = toPublicPath(filePath);
+  const configuredLabel = Object.entries(product.imageLabels ?? {}).find(([pathFragment]) =>
+    publicPath.toLowerCase().includes(pathFragment.toLowerCase()),
+  )?.[1];
+
+  if (configuredLabel) {
+    return configuredLabel;
+  }
+
+  const segments = path
+    .relative(productImagesRoot, filePath)
+    .split(path.sep)
+    .slice(0, -1)
+    .reverse();
+
+  for (const segment of segments) {
+    const label = contextLabels[segment.toLowerCase()];
+    if (label) {
+      return label;
+    }
+  }
+
+  return "Product View";
+}
+
 export function getProductImages(product: Product): ProductImageAsset[] {
   return product.imageFolders
     .flatMap((folder) => collectImages(path.join(productImagesRoot, folder)))
     .sort((first, second) => imageScore(second) - imageScore(first) || first.localeCompare(second))
-    .map((filePath) => ({
-      src: toPublicPath(getDisplayImagePath(filePath)),
-      alt: product.name,
-    }));
+    .map((filePath) => {
+      const label = getImageLabel(filePath, product);
+
+      return {
+        src: toPublicPath(getDisplayImagePath(filePath)),
+        alt: `${product.name} - ${label}`,
+        label,
+      };
+    });
 }
 
 export function withProductImages(product: Product): VisibleProduct | null {
   const images = getProductImages(product);
-  const primaryImage = images[0];
+  const configuredPrimaryImage = product.primaryImage
+    ? images.find((image) => image.src.endsWith(product.primaryImage ?? ""))
+    : undefined;
+  const primaryImage = configuredPrimaryImage ?? images[0];
 
-  if (!primaryImage) {
+  if (!product.published || !primaryImage) {
     return null;
   }
 
@@ -99,37 +136,7 @@ export function withProductImages(product: Product): VisibleProduct | null {
 }
 
 export function getVisibleProducts() {
-  const configuredFolders = new Set(products.flatMap((product) => product.imageFolders.map((folder) => folder.split(/[\\/]/)[0])));
-  const configuredProducts = products.map(withProductImages).filter((product): product is VisibleProduct => Boolean(product));
-  const configuredSlugs = new Set(products.map((product) => product.slug));
-  const automaticProducts = (() => {
-    try {
-      return readdirSync(productImagesRoot)
-        .filter((entry) => {
-          const directory = path.join(productImagesRoot, entry);
-          return statSync(directory).isDirectory() && !configuredFolders.has(entry) && !configuredSlugs.has(entry);
-        })
-        .map((folder): Product => {
-          const name = titleCaseFromSlug(folder);
-
-          return {
-            slug: folder,
-            name,
-            category: "Solar Products",
-            imageFolders: [folder],
-            summary: `${name} is available for product inquiries through Solareco Philippines.`,
-            description: `Explore ${name} for solar, electrical, and energy project requirements through Solareco Philippines.`,
-            keyDetails: ["Available for product inquiry", "Contact Solareco for quotation and technical details"],
-          };
-        })
-        .map(withProductImages)
-        .filter((product): product is VisibleProduct => Boolean(product));
-    } catch {
-      return [];
-    }
-  })();
-
-  return [...configuredProducts, ...automaticProducts];
+  return products.map(withProductImages).filter((product): product is VisibleProduct => Boolean(product));
 }
 
 export function getVisibleProductBySlug(slug: string) {

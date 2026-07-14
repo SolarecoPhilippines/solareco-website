@@ -21,7 +21,7 @@ export function DownloadHub({ groups }: { groups: DownloadGroup[] }) {
         .map((group) => ({
           ...group,
           items: group.items.filter((item) => {
-            const matchesQuery = `${group.title} ${group.description} ${item.name}`
+            const matchesQuery = `${group.title} ${group.description} ${item.name} ${item.brand} ${item.documentType}`
               .toLowerCase()
               .includes(query.trim().toLowerCase());
             const matchesStatus = status === "All" || item.status === status;
@@ -34,25 +34,25 @@ export function DownloadHub({ groups }: { groups: DownloadGroup[] }) {
   );
 
   return (
-    <div className="mt-10">
-      <div className="rounded-lg border border-slate-200 bg-white p-4 shadow-sm">
+    <div>
+      <div className="editorial-panel p-5 sm:p-6">
         <div className="grid gap-4 lg:grid-cols-[1fr_220px_180px]">
-          <label className="grid gap-2 text-sm font-semibold text-slate-800">
-            Search downloads
+          <label className="form-label">
+            <span>Search downloads</span>
             <input
               value={query}
               onChange={(event) => setQuery(event.target.value)}
-              className="min-h-11 rounded-md border border-slate-300 px-3 text-base font-normal outline-none transition focus:border-[#0D3567] focus:ring-2 focus:ring-[#0D3567]/20"
+              className="field-control"
               placeholder="Search datasheets, certificates, brochures..."
               type="search"
             />
           </label>
-          <label className="grid gap-2 text-sm font-semibold text-slate-800">
-            Category
+          <label className="form-label">
+            <span>Category</span>
             <select
               value={category}
               onChange={(event) => setCategory(event.target.value)}
-              className="min-h-11 rounded-md border border-slate-300 px-3 text-base font-normal outline-none transition focus:border-[#0D3567] focus:ring-2 focus:ring-[#0D3567]/20"
+              className="field-control"
             >
               {categories.map((option) => (
                 <option key={option} value={option}>
@@ -61,12 +61,12 @@ export function DownloadHub({ groups }: { groups: DownloadGroup[] }) {
               ))}
             </select>
           </label>
-          <label className="grid gap-2 text-sm font-semibold text-slate-800">
-            Status
+          <label className="form-label">
+            <span>Status</span>
             <select
               value={status}
               onChange={(event) => setStatus(event.target.value as DownloadStatus | "All")}
-              className="min-h-11 rounded-md border border-slate-300 px-3 text-base font-normal outline-none transition focus:border-[#0D3567] focus:ring-2 focus:ring-[#0D3567]/20"
+              className="field-control"
             >
               {statuses.map((option) => (
                 <option key={option} value={option}>
@@ -78,29 +78,40 @@ export function DownloadHub({ groups }: { groups: DownloadGroup[] }) {
         </div>
       </div>
 
-      <div className="mt-8 grid gap-6 lg:grid-cols-2">
+      <div className="editorial-list mt-8">
         {filteredGroups.length > 0 ? (
           filteredGroups.map((group) => (
-            <article key={group.title} className="rounded-lg border border-slate-200 bg-white p-6 shadow-sm">
-              <h3 className="font-heading text-xl font-bold text-slate-950">{group.title}</h3>
-              <p className="mt-2 text-sm leading-6 text-slate-600">{group.description}</p>
-              <div className="mt-5 space-y-3">
+            <article key={group.title} className="grid gap-6 py-7 lg:grid-cols-[260px_minmax(0,1fr)]">
+              <div>
+                <h3 className="font-heading text-xl font-bold text-slate-950">{group.title}</h3>
+                <p className="mt-2 text-base leading-7 text-slate-600">{group.description}</p>
+              </div>
+              <div className="divide-y divide-slate-200 border-t border-slate-200">
                 {group.items.map((item) => (
                   <div
                     key={item.name}
-                    className="flex flex-col gap-3 rounded-md border border-slate-100 bg-slate-50 p-4 sm:flex-row sm:items-center sm:justify-between"
+                    className="flex flex-col gap-3 py-4 sm:flex-row sm:items-center sm:justify-between"
                   >
-                    <span className="text-sm font-medium text-slate-800">{item.name}</span>
-                    <span className={`inline-flex w-fit rounded-full px-3 py-1 text-xs font-semibold ring-1 ${statusClasses[item.status]}`}>
-                      {item.status}
-                    </span>
+                    <div>
+                      <p className="text-sm font-semibold text-slate-800">{item.name}</p>
+                      <p className="mt-1 text-xs text-slate-500">{item.brand} · {item.documentType}</p>
+                      <p className="mt-1 text-xs text-slate-500">Revised {item.revisionDate} · {item.fileSize}</p>
+                    </div>
+                    <div className="flex flex-wrap items-center gap-2">
+                      <span className={`inline-flex w-fit rounded-full px-3 py-1 text-xs font-semibold ring-1 ${statusClasses[item.status]}`}>
+                        {item.status}
+                      </span>
+                      <a href={item.href} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-11 items-center justify-center rounded-md bg-[#0D3567] px-4 py-2 text-sm font-semibold text-white transition hover:bg-[#15477f] focus-visible:outline-2 focus-visible:outline-offset-2">
+                        View / Download
+                      </a>
+                    </div>
                   </div>
                 ))}
               </div>
             </article>
           ))
         ) : (
-          <div className="rounded-lg border border-dashed border-slate-300 bg-white p-8 text-center text-sm text-slate-600 lg:col-span-2">
+          <div className="border-y border-dashed border-slate-300 bg-white p-8 text-left text-sm text-slate-600">
             No downloads match the current filters.
           </div>
         )}

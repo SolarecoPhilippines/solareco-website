@@ -7,7 +7,7 @@ export type ProductCategory =
   | "Solar Lighting"
   | "Solar Products";
 
-export type ParameterStatus = "Verified" | "Estimated" | "To verify" | "Coming soon";
+export type ParameterStatus = "Verified" | "Estimated" | "To verify";
 
 export type ProductReference = {
   label: string;
@@ -26,7 +26,13 @@ export type Product = {
   slug: string;
   name: string;
   category: ProductCategory;
+  published: boolean;
   imageFolders: string[];
+  seoTitle?: string;
+  seoDescription?: string;
+  primaryImage?: string;
+  featured?: boolean;
+  imageLabels?: Record<string, string>;
   secondaryLabel?: string;
   summary: string;
   description: string;
@@ -46,6 +52,7 @@ export const products: Product[] = [
     slug: "sako",
     name: "SAKO Li-Sun Lithium Batteries",
     category: "Lithium Batteries",
+    published: true,
     imageFolders: ["sako-batteries", "sako-battery"],
     secondaryLabel: "Energy Storage Batteries",
     summary: "Official SAKO Li-Sun lithium battery comparison for energy-storage project selection.",
@@ -77,6 +84,7 @@ export const products: Product[] = [
     slug: "sako-all-in-one",
     name: "SAKO Alpha-W-ESS 1000W / 2kWh",
     category: "All-in-One Energy Storage System",
+    published: true,
     imageFolders: ["sako-all-in-one", "sako-alpha-aio"],
     summary: "Compact plug-and-play energy storage with built-in lithium battery, AC charging, and solar charging support.",
     description:
@@ -100,6 +108,7 @@ export const products: Product[] = [
     slug: "solahestia-610w",
     name: "SOLAHESTIA 610W",
     category: "Solar Panels",
+    published: true,
     imageFolders: ["solahestia/610w"],
     summary: "High-output solar panel option for projects requiring strong generation capacity.",
     description:
@@ -114,6 +123,7 @@ export const products: Product[] = [
     slug: "solahestia-585w",
     name: "SOLAHESTIA 585W",
     category: "Solar Panels",
+    published: true,
     imageFolders: ["solahestia/585w"],
     summary: "Efficient solar panel option for dependable project sizing and supply.",
     description:
@@ -121,13 +131,14 @@ export const products: Product[] = [
     keyDetails: [
       "585W panel class",
       "Designed for professional solar installations",
-      "Final datasheet and certificates to be uploaded",
+      "Contact Solareco for the latest approved datasheet and certificates",
     ],
   },
   {
     slug: "yro-breakers",
     name: "YRO Breakers",
     category: "Electrical Protection",
+    published: true,
     imageFolders: ["yro-breakers", "yro-mccb", "yro-mcb", "yro-spd", "yro-ats"],
     summary: "Electrical protection components for safer solar power installations.",
     description:
@@ -142,6 +153,7 @@ export const products: Product[] = [
     slug: "leader-wires",
     name: "LEADER Wires",
     category: "Solar Wiring",
+    published: true,
     imageFolders: ["leader-wires", "leader-wire"],
     summary: "Solar wiring products for reliable installation work and system connections.",
     description:
@@ -156,6 +168,7 @@ export const products: Product[] = [
     slug: "solar-street-light",
     name: "Solar Street Light",
     category: "Solar Lighting",
+    published: false,
     imageFolders: ["solar-street-light"],
     summary: "Solar street lighting products for outdoor lighting projects and public-area applications.",
     description:
@@ -174,6 +187,14 @@ export const productCategories: ProductCategory[] = [
   "Solar Products",
 ];
 
-export function getProductBySlug(slug: string) {
-  return products.find((product) => product.slug === slug);
+export function getProductCategorySlug(category: ProductCategory) {
+  return category
+    .toLowerCase()
+    .replace(/&/g, "and")
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-|-$/g, "");
+}
+
+export function getProductCategoryFromSlug(slug: string | null) {
+  return productCategories.find((category) => getProductCategorySlug(category) === slug) ?? null;
 }

@@ -65,19 +65,3 @@ export const sakoAllInOneTechnicalTable: TechnicalParameterTable = {
     { label: "Gross Weight", values: ["21kg"] },
   ],
 };
-
-export const sakoAllInOneGalleryImages = [
-  "Front View",
-  "Side View",
-  "Back View",
-  "Ports and Connections",
-  "Display Panel",
-  "Product Dimensions",
-].map((label) => ({
-  label,
-  alt: `SAKO Alpha-W-ESS 1000W / 2kWh All-in-One ${label}`,
-  src: `/images/products/sako-all-in-one/alpha-w-ess-1000w-2kwh/${label
-    .toLowerCase()
-    .replace(/\s+and\s+/g, "-and-")
-    .replace(/\s+/g, "-")}.webp`,
-}));

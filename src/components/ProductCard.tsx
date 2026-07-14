@@ -8,32 +8,33 @@ import { Button } from "./Button";
 type ProductCardProps = {
   product: VisibleProduct;
   showQuoteButton?: boolean;
+  featured?: boolean;
 };
 
-export function ProductCard({ product, showQuoteButton = true }: ProductCardProps) {
+export function ProductCard({ product, showQuoteButton = true, featured = false }: ProductCardProps) {
   const [imageFailed, setImageFailed] = useState(false);
 
-  if (imageFailed) {
-    return null;
-  }
-
   return (
-    <article className="flex h-full min-h-[620px] flex-col rounded-xl border border-slate-200 bg-white p-6 shadow-sm transition duration-200 hover:-translate-y-1.5 hover:border-[#0D3567]/25 hover:shadow-xl hover:shadow-slate-950/10 lg:p-7">
-      <div className="relative flex min-h-[260px] items-center justify-center overflow-hidden rounded-[18px] border border-[#DCE6F0] bg-[radial-gradient(circle_at_center,#ffffff_0%,#F4F7FA_55%,#E8EEF5_100%)] p-8 shadow-[0_18px_45px_rgba(13,53,103,0.10)] lg:min-h-[320px]">
-        <Image
-          src={product.primaryImage.src}
-          alt={product.primaryImage.alt}
-          fill
-          sizes="(min-width: 1024px) 30vw, (min-width: 768px) 45vw, 100vw"
-          className="object-contain p-6 drop-shadow-[0_18px_26px_rgba(13,53,103,0.18)]"
-          onError={() => {
-            console.warn(`Hiding product card because image failed to load: ${product.slug}`);
-            setImageFailed(true);
-          }}
-        />
+    <article className={`group h-full overflow-hidden border border-slate-200 bg-white transition duration-200 hover:border-[#0D3567]/40 ${featured ? "lg:grid lg:grid-cols-[1.08fr_0.92fr]" : "flex flex-col"}`}>
+      <div className={`relative flex items-center justify-center overflow-hidden bg-slate-50 p-7 ${featured ? "h-[280px] border-b border-slate-200 sm:h-[340px] lg:h-full lg:min-h-[430px] lg:border-b-0 lg:border-r" : "h-[230px] border-b border-slate-200 sm:h-[260px]"}`}>
+        {imageFailed ? (
+          <div className="flex max-w-xs flex-col items-center text-center" role="img" aria-label={`${product.name} image unavailable`}>
+            <p className="border-b-2 border-[#2E7FC1] pb-3 font-heading text-lg font-bold text-[#0D3567]">Solareco Philippines</p>
+            <p className="mt-2 text-sm text-slate-600">Product image temporarily unavailable</p>
+          </div>
+        ) : (
+          <Image
+            src={product.primaryImage.src}
+            alt={product.primaryImage.alt}
+            fill
+            sizes="(min-width: 1024px) 30vw, (min-width: 768px) 45vw, 100vw"
+            className="object-contain p-6 drop-shadow-[0_14px_22px_rgba(13,53,103,0.14)] transition duration-300 group-hover:scale-[1.025]"
+            onError={() => setImageFailed(true)}
+          />
+        )}
       </div>
-      <div className="mt-7 flex flex-1 flex-col">
-        <p className="w-fit rounded-full bg-[#0D3567]/10 px-3 py-1 text-xs font-bold uppercase tracking-[0.14em] text-[#0D3567]">
+      <div className={`flex flex-1 flex-col ${featured ? "p-6 sm:p-8" : "p-5 sm:p-6"}`}>
+        <p className="w-fit border-l-2 border-[#2E7FC1] pl-3 text-[0.68rem] font-bold uppercase tracking-[0.12em] text-[#0D3567]">
           {product.category}
         </p>
         {product.secondaryLabel ? (
@@ -41,14 +42,14 @@ export function ProductCard({ product, showQuoteButton = true }: ProductCardProp
             {product.secondaryLabel}
           </p>
         ) : null}
-        <h3 className="mt-4 font-heading text-2xl font-bold leading-tight text-slate-950">{product.name}</h3>
-        <p className="mt-4 flex-1 text-base leading-7 text-slate-600">{product.summary}</p>
+        <h3 className={`mt-3 font-heading font-bold leading-tight text-slate-950 ${featured ? "text-2xl sm:text-3xl" : "text-xl sm:text-2xl"}`}>{product.name}</h3>
+        <p className="mt-3 flex-1 text-base leading-7 text-slate-600">{product.summary}</p>
         {product.parameterTableAvailable ? (
-          <p className="mt-5 w-fit rounded-full bg-[#0D3567]/10 px-3 py-1 text-xs font-semibold text-[#0D3567]">
+          <p className="mt-5 w-fit border-b border-[#0D3567]/30 pb-1 text-xs font-semibold text-[#0D3567]">
             Technical parameter table available
           </p>
         ) : null}
-        <div className="mt-7 flex flex-col gap-3 sm:flex-row">
+        <div className="mt-6 flex flex-col gap-3 sm:flex-row">
           <Button href={`/products/${product.slug}`} variant="secondary" className="w-full">
             View Details
           </Button>

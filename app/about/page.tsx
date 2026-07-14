@@ -1,13 +1,18 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { BranchCard } from "@/src/components/BranchCard";
-import { PlaceholderImage } from "@/src/components/PlaceholderImage";
+import { Container } from "@/src/components/Container";
+import { CtaBanner } from "@/src/components/CtaBanner";
+import { ManagingPartnersSection } from "@/src/components/ManagingPartnersSection";
+import { OrganizationStructure } from "@/src/components/OrganizationStructure";
+import { PageHero } from "@/src/components/PageHero";
 import { SectionTitle } from "@/src/components/SectionTitle";
 import { branches } from "@/src/data/branches";
+import { getVisibleManagingPartners, managementConfig } from "@/src/data/management";
 
 export const metadata: Metadata = {
   title: "About Us",
   description: "Learn about Solareco Group and its nationwide solar business capabilities.",
+  alternates: { canonical: "/about" },
 };
 
 const businessUnits = [
@@ -19,93 +24,81 @@ const businessUnits = [
 ];
 
 export default function AboutPage() {
+  const isDevelopment = process.env.NODE_ENV === "development";
+  const showManagementSections = isDevelopment || managementConfig.published;
+  const visiblePartners = showManagementSections ? getVisibleManagingPartners(isDevelopment) : [];
+
   return (
     <>
-      <section className="bg-[#0D3567] px-4 py-20 text-white sm:px-6 lg:px-8">
-        <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[1fr_0.9fr] lg:items-center">
-          <div>
-            <p className="text-sm font-semibold uppercase tracking-[0.2em] text-blue-100">About Solareco</p>
-            <h1 className="mt-4 font-heading text-4xl font-black sm:text-5xl">
-              A diversified solutions group serving customers across the Philippines.
-            </h1>
-            <p className="mt-6 text-lg leading-8 text-blue-50">
-              Solareco Group was founded in 2018 and grew from a solar supplies trading business into a diversified
-              group serving renewable energy, electrical, industrial, FDAS, and technology-related needs across the
-              Philippines.
-            </p>
-          </div>
-          <PlaceholderImage label="Solareco company" className="border-white/20 bg-white/10" />
-        </div>
-      </section>
+      <PageHero eyebrow="About Solareco" title="A diversified solutions group serving customers across the Philippines" description="Founded in 2018, Solareco grew from a solar supplies trading business into a group serving renewable energy, electrical, industrial, FDAS, and technology-related needs." />
 
-      <section className="px-4 py-20 sm:px-6 lg:px-8">
-        <div className="mx-auto max-w-7xl">
-          <SectionTitle
-            eyebrow="Company overview"
-            title="Built around supply, support, and project execution"
-            description="The company capabilities include distribution, installation, e-commerce, importation, corporate support, and professional services for emerging technology adoption."
-          />
-          <div className="mt-10 grid gap-6 md:grid-cols-2">
-            <div className="rounded-lg border border-slate-200 bg-white p-6 shadow-sm">
-              <h2 className="font-heading text-2xl font-bold text-slate-950">Mission</h2>
-              <p className="mt-4 text-slate-600">
-                To drive technological advancement by delivering innovative products, engineering solutions, and
-                professional services that empower our customers to adopt emerging technologies with confidence. We
-                strive to ensure quality, safety, and continuous learning while creating lasting value through
-                innovation and excellence.
-              </p>
-            </div>
-            <div className="rounded-lg border border-slate-200 bg-white p-6 shadow-sm">
-              <h2 className="font-heading text-2xl font-bold text-slate-950">Vision</h2>
-              <p className="mt-4 text-slate-600">
-                To become the Philippines&apos; most trusted and innovative technology, renewable energy, and industrial
-                solutions group, powered by a nationwide distribution network and a culture of excellence that enables
-                our people, partners, and customers to grow and succeed.
-              </p>
-            </div>
-          </div>
-          <div className="mt-10 grid gap-5 md:grid-cols-2 lg:grid-cols-5">
-            {businessUnits.map((unit) => (
-              <div key={unit} className="rounded-lg bg-slate-50 p-5 text-sm font-semibold text-[#0D3567]">
-                {unit}
+      <section className="section-shell bg-white">
+        <Container>
+          <div className="grid gap-10 lg:grid-cols-[0.82fr_1.18fr] lg:items-start lg:gap-16">
+            <SectionTitle eyebrow="Company overview" title="Built around supply, support, and project execution" description="The company capabilities include distribution, installation, e-commerce, importation, corporate support, and professional services for emerging technology adoption." />
+            <div className="relative border-l border-slate-200 pl-8 sm:pl-10">
+              <div className="relative pb-10">
+                <span className="absolute -left-[2.65rem] top-0 h-5 w-5 rounded-full border-4 border-white bg-[#0D3567] shadow-sm sm:-left-[3.15rem]" aria-hidden="true" />
+                <p className="eyebrow text-[#0D3567]">2018</p>
+                <h2 className="mt-2 font-heading text-2xl font-bold text-slate-950">Solar supplies foundation</h2>
+                <p className="mt-3 text-base leading-7 text-slate-600">Solareco began as a solar supplies trading business focused on making practical energy products available to customers.</p>
               </div>
-            ))}
+              <div className="relative">
+                <span className="absolute -left-[2.65rem] top-0 h-5 w-5 rounded-full border-4 border-white bg-[#2E7FC1] shadow-sm sm:-left-[3.15rem]" aria-hidden="true" />
+                <p className="eyebrow text-[#0D3567]">Today</p>
+                <h2 className="mt-2 font-heading text-2xl font-bold text-slate-950">Broader nationwide capabilities</h2>
+                <p className="mt-3 text-base leading-7 text-slate-600">The group supports renewable energy, electrical, industrial, FDAS, and technology-related requirements through branches, warehouses, e-commerce, and professional services.</p>
+              </div>
+            </div>
           </div>
-        </div>
+        </Container>
       </section>
 
-      <section className="bg-slate-50 px-4 py-20 sm:px-6 lg:px-8">
-        <div className="mx-auto max-w-7xl">
-          <SectionTitle
-            title="Our Branches and Warehouses"
-            description="Nationwide presence includes Iloilo, Bacolod, Manila, Palawan, Cebu, and Davao."
-          />
+      <section className="section-shell bg-slate-50">
+        <Container>
+          <div className="grid gap-10 lg:grid-cols-2 lg:gap-14">
+            <article className="border-t-4 border-[#0D3567] pt-6">
+              <p className="text-xs font-bold uppercase tracking-[0.16em] text-[#2E7FC1]">01 / Corporate direction</p>
+              <h2 className="mt-4 font-heading text-3xl font-black text-slate-950">Mission</h2>
+              <p className="mt-4 max-w-xl leading-8 text-slate-600">To drive technological advancement by delivering innovative products, engineering solutions, and professional services that empower our customers to adopt emerging technologies with confidence. We strive to ensure quality, safety, and continuous learning while creating lasting value through innovation and excellence.</p>
+            </article>
+            <article className="border-t-4 border-[#2E7FC1] pt-6 lg:mt-12">
+              <p className="text-xs font-bold uppercase tracking-[0.16em] text-[#2E7FC1]">02 / Long-term ambition</p>
+              <h2 className="mt-4 font-heading text-3xl font-black text-slate-950">Vision</h2>
+              <p className="mt-4 max-w-xl leading-8 text-slate-600">To become the Philippines&apos; most trusted and innovative technology, renewable energy, and industrial solutions group, powered by a nationwide distribution network and a culture of excellence that enables our people, partners, and customers to grow and succeed.</p>
+            </article>
+          </div>
+          <div className="mt-12">
+            <SectionTitle eyebrow="Business areas" title="Connected capabilities for evolving requirements" />
+            <ol className="editorial-list mt-8 grid sm:grid-cols-2 lg:grid-cols-5">
+              {businessUnits.map((unit, index) => (
+                <li key={unit} className="bg-white p-5 sm:border-r sm:last:border-r-0">
+                  <span className="text-xs font-bold tracking-[0.14em] text-slate-400">0{index + 1}</span>
+                  <p className="mt-3 text-base font-semibold leading-7 text-[#0D3567]">{unit}</p>
+                </li>
+              ))}
+            </ol>
+          </div>
+        </Container>
+      </section>
+
+      <section className="section-shell bg-white">
+        <Container>
+          <SectionTitle eyebrow="Nationwide presence" title="Our branches and warehouses" description="Solareco locations include Iloilo, Bacolod, Manila, Palawan, Cebu, and Davao." />
           <div className="mt-10 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
-            {branches.map((branch) => (
-              <BranchCard key={branch.name} branch={branch} />
-            ))}
+            {branches.map((branch) => <BranchCard key={branch.name} branch={branch} compact showContactLink />)}
           </div>
-          <div className="mt-8">
-            <Link
-              href="/contact"
-              className="inline-flex min-h-11 items-center justify-center rounded-md bg-[#0D3567] px-5 py-3 text-sm font-semibold text-white transition hover:bg-[#15477f] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0D3567]"
-            >
-              Contact Solareco
-            </Link>
-          </div>
-        </div>
+        </Container>
       </section>
 
-      <section className="px-4 py-20 sm:px-6 lg:px-8">
-        <div className="mx-auto max-w-7xl">
-          <SectionTitle title="Projects preview" description="Project images, highlights, and customer-ready proof points will be added after approval." />
-          <div className="mt-10 grid gap-6 md:grid-cols-3">
-            <PlaceholderImage label="Residential project" />
-            <PlaceholderImage label="Commercial project" />
-            <PlaceholderImage label="Installation support" />
-          </div>
-        </div>
-      </section>
+      {showManagementSections ? (
+        <>
+          <ManagingPartnersSection partners={visiblePartners} showDraftNotice={isDevelopment} />
+          <OrganizationStructure partners={visiblePartners} showDraftNotice={isDevelopment} />
+        </>
+      ) : null}
+
+      <CtaBanner title="Work with Solareco Philippines" description="Connect with the team for product inquiries, quotations, branch coordination, and technical product support." primaryLabel="Contact Solareco" />
     </>
   );
 }

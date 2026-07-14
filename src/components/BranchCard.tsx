@@ -28,8 +28,8 @@ export function BranchCard({ branch, compact = false, showFacebook = false, show
   const messageLabel = isOpen ? "Message Us" : "Message Us for Updates";
 
   return (
-    <article className="rounded-lg border border-slate-200 bg-white p-5 shadow-sm">
-      <div className="flex items-start justify-between gap-4">
+    <article className="h-full border-t-4 border-[#0D3567] bg-white p-5 shadow-[0_3px_14px_rgba(15,23,42,0.04)] ring-1 ring-slate-200 sm:p-6">
+      <div className="flex flex-col items-start gap-3 xl:flex-row xl:justify-between xl:gap-4">
         <div>
           <h3 className="font-heading text-xl font-bold text-slate-950">{branch.name}</h3>
           <p className="mt-1 text-sm font-semibold uppercase tracking-[0.14em] text-[#0D3567]">{branch.type}</p>
@@ -46,17 +46,17 @@ export function BranchCard({ branch, compact = false, showFacebook = false, show
       {!compact ? (
         <div className="mt-5 grid gap-4">
           {branch.locations.map((location) => (
-            <div key={location.name} className="rounded-md border border-slate-100 bg-slate-50 p-4">
+            <div key={location.name} className="border-l-2 border-slate-300 bg-slate-50/60 py-3 pl-4 pr-3">
               {branch.locations.length > 1 ? (
                 <p className="font-heading text-base font-bold text-slate-950">{location.name}</p>
               ) : null}
-              <address className="mt-1 text-sm not-italic leading-6 text-slate-600">{location.address}</address>
+              <address className="mt-1 text-base not-italic leading-7 text-slate-600">{location.address}</address>
               {location.mapUrl ? (
                 <a
                   href={location.mapUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="mt-3 inline-flex min-h-10 items-center justify-center gap-2 rounded-md bg-[#0D3567] px-4 py-2 text-sm font-semibold text-white transition duration-[280ms] hover:-translate-y-0.5 hover:bg-[#15477f] hover:shadow-[0_12px_28px_rgba(13,53,103,0.20)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0D3567]"
+                  className="mt-3 inline-flex min-h-11 items-center justify-center gap-2 rounded-md bg-[#0D3567] px-4 py-2 text-sm font-semibold text-white transition hover:bg-[#15477f] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0D3567]"
                 >
                   <LocationPinIcon />
                   {location.mapButtonLabel ?? `View ${location.name} on Google Maps`}
@@ -67,9 +67,9 @@ export function BranchCard({ branch, compact = false, showFacebook = false, show
         </div>
       ) : null}
 
-      {!compact && branch.statusText ? <p className="mt-5 text-sm leading-6 text-slate-600">{branch.statusText}</p> : null}
+      {!compact && branch.statusText ? <p className="mt-5 text-base leading-7 text-slate-600">{branch.statusText}</p> : null}
 
-      <div className="mt-4 grid gap-2 text-sm">
+      <div className="mt-4 grid gap-2 text-base">
         <a
           href={branch.phoneHref}
           aria-label={`Call ${branch.name} at ${branch.phone}`}
@@ -91,12 +91,12 @@ export function BranchCard({ branch, compact = false, showFacebook = false, show
       {!compact || showFacebook || showContactLink ? (
         <div className="mt-5 flex flex-col gap-3 sm:flex-row">
           {showContactLink ? (
-            <Button href="/contact" variant="secondary" className="min-h-10 px-4 py-2">
+            <Button href="/contact" variant="secondary" className="min-h-11 px-4 py-2 text-sm">
               View Contact Details
             </Button>
           ) : null}
           {!showContactLink ? (
-            <Button href={FACEBOOK_PAGE_URL} variant="secondary" className="min-h-10 px-4 py-2">
+            <Button href={FACEBOOK_PAGE_URL} variant="secondary" className="min-h-11 px-4 py-2 text-sm">
               {messageLabel}
             </Button>
           ) : null}
