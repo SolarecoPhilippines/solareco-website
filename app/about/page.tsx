@@ -11,16 +11,16 @@ import { getVisibleManagingPartners, managementConfig } from "@/src/data/managem
 
 export const metadata: Metadata = {
   title: "About Us",
-  description: "Learn about Solareco Group and its nationwide solar business capabilities.",
+  description: "Learn how Solareco Corporation supports solar and electrical customers nationwide through distribution, technical support, after-sales service, and connected operations.",
   alternates: { canonical: "/about" },
 };
 
 const businessUnits = [
-  "Renewable energy",
-  "Electrical products",
-  "Industrial solutions",
-  "FDAS",
-  "Technology-related products and services",
+  "Nationwide distribution",
+  "Residential, commercial, and industrial supply",
+  "After-sales and technical support",
+  "Growing service-center network",
+  "Connected systems investment",
 ];
 
 export default function AboutPage() {
@@ -30,12 +30,12 @@ export default function AboutPage() {
 
   return (
     <>
-      <PageHero eyebrow="About Solareco" title="A diversified solutions group serving customers across the Philippines" description="Founded in 2018, Solareco grew from a solar supplies trading business into a group serving renewable energy, electrical, industrial, FDAS, and technology-related needs." />
+      <PageHero eyebrow="About Solareco" title="A Connected Nationwide Partner for Solar and Electrical Projects" description="Solareco Corporation is a fast-growing nationwide distributor of solar and electrical products, serving residential, commercial, and industrial customers across the Philippines." />
 
       <section className="section-shell bg-white">
         <Container>
           <div className="grid gap-10 lg:grid-cols-[0.82fr_1.18fr] lg:items-start lg:gap-16">
-            <SectionTitle eyebrow="Company overview" title="Built around supply, support, and project execution" description="The company capabilities include distribution, installation, e-commerce, importation, corporate support, and professional services for emerging technology adoption." />
+            <SectionTitle eyebrow="Company overview" title="Nationwide distribution, responsive support, and connected operations" description="Beyond supplying quality products, Solareco is committed to after-sales service and technical support through its growing network of branches and service centers." />
             <div className="relative border-l border-slate-200 pl-8 sm:pl-10">
               <div className="relative pb-10">
                 <span className="absolute -left-[2.65rem] top-0 h-5 w-5 rounded-full border-4 border-white bg-[#0D3567] shadow-sm sm:-left-[3.15rem]" aria-hidden="true" />
@@ -46,8 +46,8 @@ export default function AboutPage() {
               <div className="relative">
                 <span className="absolute -left-[2.65rem] top-0 h-5 w-5 rounded-full border-4 border-white bg-[#2E7FC1] shadow-sm sm:-left-[3.15rem]" aria-hidden="true" />
                 <p className="eyebrow text-[#0D3567]">Today</p>
-                <h2 className="mt-2 font-heading text-2xl font-bold text-slate-950">Broader nationwide capabilities</h2>
-                <p className="mt-3 text-base leading-7 text-slate-600">The group supports renewable energy, electrical, industrial, FDAS, and technology-related requirements through branches, warehouses, e-commerce, and professional services.</p>
+                <h2 className="mt-2 font-heading text-2xl font-bold text-slate-950">One connected nationwide organization</h2>
+                <p className="mt-3 text-base leading-7 text-slate-600">Ongoing investment in nationwide ERP, CRM, and AI-powered workflows helps branches work as one connected organization and deliver faster, more reliable customer service.</p>
               </div>
             </div>
           </div>
@@ -69,7 +69,7 @@ export default function AboutPage() {
             </article>
           </div>
           <div className="mt-12">
-            <SectionTitle eyebrow="Business areas" title="Connected capabilities for evolving requirements" />
+            <SectionTitle eyebrow="How we support customers" title="Connected capabilities for nationwide requirements" description="Solareco supports customers before and after purchase while investing in the systems that strengthen coordination across its growing network." />
             <ol className="editorial-list mt-8 grid sm:grid-cols-2 lg:grid-cols-5">
               {businessUnits.map((unit, index) => (
                 <li key={unit} className="bg-white p-5 sm:border-r sm:last:border-r-0">

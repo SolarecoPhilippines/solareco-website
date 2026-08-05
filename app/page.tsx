@@ -22,28 +22,47 @@ export const metadata: Metadata = {
 
 const benefits = [
   {
+    title: "Nationwide Product Distribution",
+    description: "Solar and electrical products for residential, commercial, and industrial requirements across the Philippines.",
+  },
+  {
+    title: "Technical Product Guidance",
+    description: "Practical product guidance and technical coordination help customers plan for their project requirements.",
+  },
+  {
+    title: "After-Sales Service Support",
+    description: "Product support continues beyond the initial purchase through responsive after-sales coordination.",
+  },
+  {
+    title: "Growing Service-Center Network",
+    description: "An expanding service-center network strengthens local technical and after-sales support.",
+  },
+  {
+    title: "Connected ERP and CRM Operations",
+    description: "Ongoing investment in nationwide ERP and CRM systems helps branches coordinate as one organization.",
+  },
+  {
+    title: "AI-Powered Workflow Investment",
+    description: "Solareco is investing in AI-powered workflows to support clearer, more connected internal processes.",
+  },
+  {
+    title: "Faster, More Reliable Coordination",
+    description: "Connected systems and shared workflows help teams respond to customer needs with greater speed and consistency.",
+  },
+];
+
+const companyPillars = [
+  {
     title: "Nationwide Distribution",
-    description: "Branches and warehouses support product availability for installers, dealers, and project sites.",
+    description: "Solar and electrical product supply for residential, commercial, and industrial customers across the Philippines.",
   },
   {
-    title: "Technical Support",
-    description: "Product guidance helps teams compare batteries, panels, breakers, wiring, and system requirements.",
+    title: "After-Sales & Technical Support",
+    description: "Product guidance, technical coordination, and a growing service-center network that supports customers beyond the initial purchase.",
   },
   {
-    title: "Genuine Products",
-    description: "Priority product lines are organized with source records, datasheet tracking, and certificate tracking.",
-  },
-  {
-    title: "Installation Support",
-    description: "Solareco helps customers move from inquiry to practical product selection for real project conditions.",
-  },
-  {
-    title: "Multiple Branches Nationwide",
-    description: "Iloilo, Bacolod, Manila, Cebu, Davao, and Palawan locations make coordination easier across regions.",
-  },
-  {
-    title: "Fast Product Availability",
-    description: "A focused catalog helps customers quickly identify available solar and electrical product options.",
+    title: "One Connected Organization",
+    description: "Investment in nationwide ERP, CRM, and AI-powered workflows helps Solareco branches work as one connected team and respond faster to customer needs.",
   },
 ];
 
@@ -96,16 +115,16 @@ export default function Home() {
       <section className="home-hero section-fade bg-[#0A2A52] text-white">
         <Container className="grid items-center gap-10 py-11 sm:py-14 lg:grid-cols-[minmax(0,1.08fr)_minmax(360px,0.92fr)] lg:gap-[clamp(3rem,5vw,6rem)] lg:py-20 2xl:py-24">
           <div className="max-w-3xl border-l-2 border-[#62A8E5] pl-5 sm:pl-7">
-            <p className="eyebrow text-blue-200">Solar products for Philippine projects</p>
+            <p className="eyebrow text-blue-200">NATIONWIDE SOLAR &amp; ELECTRICAL DISTRIBUTION</p>
             <h1 className="home-hero-title mt-5 font-heading font-black">
-              Reliable Solar Products and Energy Solutions Across the Philippines
+              Solar and Electrical Solutions, Connected Nationwide
             </h1>
             <p className="mt-6 max-w-2xl text-base leading-7 text-blue-50/85 sm:text-lg sm:leading-8">
-              Providing reliable solar products, professional installation services, and sustainable energy solutions for homes, businesses, and industries across the Philippines.
+              Solareco Corporation supplies dependable solar and electrical products for residential, commercial, and industrial projects across the Philippines—backed by technical support, after-sales service, and a growing nationwide service network.
             </p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
               <Button href="/products" variant="light">Explore Products</Button>
-              <Button href="/contact" variant="outlineLight">Request a Quote</Button>
+              <Button href="/contact" variant="outlineLight">Talk to Our Team</Button>
             </div>
             <div className="mt-8 border-t border-white/15 pt-6">
               <MarketplaceLinks theme="dark" />
@@ -122,19 +141,18 @@ export default function Home() {
             />
           </div>
         </Container>
-        <div className="relative border-t border-white/10 bg-[#071F3D]/65">
-          <Container className="grid gap-4 py-5 text-sm text-blue-50 sm:grid-cols-3 sm:gap-8">
-            {[
-              "Nationwide branch support",
-              "Technical product guidance",
-              "Solar and electrical product supply",
-            ].map((item) => (
-              <p key={item} className="flex items-center gap-3 font-semibold">
-                <span className="h-2 w-2 rounded-full bg-[#62A8E5]" aria-hidden="true" />{item}
-              </p>
-            ))}
-          </Container>
-        </div>
+      </section>
+
+      <section className="border-b border-slate-200 bg-white" aria-label="How Solareco supports customers nationwide">
+        <Container className="grid divide-y divide-slate-200 md:grid-cols-3 md:divide-x md:divide-y-0">
+          {companyPillars.map((pillar, index) => (
+            <article key={pillar.title} className="py-7 md:px-7 md:first:pl-0 md:last:pr-0 lg:py-9 lg:px-10">
+              <p className="text-xs font-bold tracking-[0.16em] text-[#2E7FC1]" aria-hidden="true">{String(index + 1).padStart(2, "0")}</p>
+              <h2 className="mt-3 font-heading text-xl font-black text-[#0D3567]">{pillar.title}</h2>
+              <p className="mt-3 text-sm leading-6 text-slate-600 sm:text-base sm:leading-7">{pillar.description}</p>
+            </article>
+          ))}
+        </Container>
       </section>
 
       <TrustedBrandsGrid />
@@ -143,12 +161,12 @@ export default function Home() {
         <Container className="grid gap-10 lg:grid-cols-[0.82fr_1.18fr] lg:items-center lg:gap-16">
           <div>
             <SectionTitle
-              eyebrow="Who we are"
-              title="A practical solar and technology supplier built for Philippine requirements"
-              description="Founded in 2018, Solareco grew from a solar supplies trading business into a group supporting renewable energy, electrical, industrial, FDAS, and technology-related needs."
+              eyebrow="WHO WE ARE"
+              title="A Connected Nationwide Partner for Solar and Electrical Projects"
+              description="Solareco Corporation is a fast-growing distributor of solar and electrical products serving customers throughout the Philippines. We support residential, commercial, and industrial requirements with practical product supply, technical coordination, and responsive after-sales service."
             />
             <p className="mt-6 max-w-2xl text-base leading-8 text-slate-600">
-              Product distribution, installation coordination, e-commerce availability, branch support, and technical product guidance help customers move from inquiry to a workable supply plan.
+              Our growing network of branches and service centers is strengthened by ongoing investment in ERP, CRM, and AI-powered workflows. This technology-first approach helps our teams work as one connected organization—improving coordination, service speed, and reliability for every customer.
             </p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
               <Button href="/about">About Solareco</Button>
@@ -216,7 +234,7 @@ export default function Home() {
       <section className="section-shell bg-slate-50">
         <Container>
           <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
-            <SectionTitle eyebrow="Priority catalog" title="Featured Solar Products" description="Explore Solareco's priority solar panels, batteries, energy-storage systems, off-grid and hybrid single-phase inverters, electrical protection, and wiring products." />
+            <SectionTitle eyebrow="Priority catalog" title="Products backed by nationwide support" description="Explore solar, energy-storage, inverter, electrical-protection, and wiring products supported by Solareco’s nationwide distribution, technical guidance, and after-sales coordination." />
             <Button href="/products" variant="secondary" className="w-fit">View all products</Button>
           </div>
           <div className="mt-10 grid gap-5 md:grid-cols-2 xl:grid-cols-12">
@@ -236,8 +254,8 @@ export default function Home() {
         <Container className="grid gap-10 lg:grid-cols-[minmax(260px,0.62fr)_minmax(0,1.38fr)] lg:gap-[clamp(3rem,5vw,6rem)]">
           <div className="max-w-xl lg:sticky lg:top-28 lg:self-start">
             <p className="eyebrow text-blue-200">Why Solareco</p>
-            <h2 className="section-title-text mt-3 font-heading font-black">Practical support from inquiry to installation</h2>
-            <p className="mt-5 text-base leading-8 text-blue-50/75">A product partner for solar installers, project owners, dealers, and businesses that need dependable supply and clear technical coordination.</p>
+            <h2 className="section-title-text mt-3 font-heading font-black">Nationwide support, strengthened by connected operations</h2>
+            <p className="mt-5 text-base leading-8 text-blue-50/75">Solareco combines product distribution, technical guidance, after-sales coordination, and ongoing systems investment to support customers across the Philippines.</p>
             <Button href="/contact" variant="outlineLight" className="mt-8">Discuss a requirement</Button>
           </div>
           <div className="grid gap-px border border-white/20 bg-white/20 md:grid-cols-2 2xl:grid-cols-3">
