@@ -175,6 +175,11 @@ export default async function ProductDetailPage({ params }: ProductDetailPagePro
             <div className="mt-6">
               <MarketplaceLinks />
             </div>
+            {product.datasheetNotice ? (
+              <p className="mt-5 border-l-2 border-amber-400 bg-amber-50 px-4 py-3 text-sm leading-6 text-amber-900">
+                {product.datasheetNotice}
+              </p>
+            ) : null}
             {sourceUrl ? (
               <p className="mt-5 text-sm leading-6 text-slate-600">
                 <span className="font-semibold text-slate-800">Official Product Reference</span>{" "}

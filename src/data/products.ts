@@ -41,6 +41,7 @@ export type Product = {
   features?: string[];
   keyDetails: string[];
   parameterTableAvailable?: boolean;
+  datasheetNotice?: string;
   productType?: string;
   productLine?: string;
   sourceReferences?: ProductReference[];
@@ -81,6 +82,24 @@ export const products: Product[] = [
         url: "https://sakopower.com/wp-content/uploads/2026/05/2026-03-SAKO-Solar-Catalogue-220V%EF%BC%89.pdf",
       },
     ],
+  },
+  {
+    slug: "helios-51-2v-314ah",
+    name: "Helios 51.2V 314Ah",
+    category: "Lithium Batteries",
+    published: true,
+    imageFolders: ["helios/51-2v-314ah"],
+    primaryImage: "Helios 51.2V 314Ah.svg",
+    secondaryLabel: "Energy Storage Battery",
+    summary: "Helios 51.2V 314Ah energy-storage battery for product-selection and quotation inquiries.",
+    description: "Helios 51.2V 314Ah energy-storage battery for product-selection and quotation inquiries.",
+    keyDetails: [
+      "Product type: Energy Storage Battery",
+      "Nominal voltage: 51.2V",
+      "Capacity: 314Ah",
+    ],
+    datasheetNotice: "Request the latest approved datasheet for full technical specifications.",
+    productType: "Energy Storage Battery",
   },
   {
     slug: "alpha-ess-3kw",
