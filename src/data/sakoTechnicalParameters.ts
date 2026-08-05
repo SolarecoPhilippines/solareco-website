@@ -19,12 +19,13 @@ export type SakoBatteryModel = {
   model: string;
   slug: string;
   voltage: "25.6V" | "51.2V";
-  capacity: "100Ah" | "200Ah" | "300Ah" | "600Ah";
+  capacity: "100Ah" | "200Ah" | "300Ah" | "320Ah" | "600Ah" | "640Ah";
   productFamily: string;
-  batteryType: string;
-  totalEnergy: string;
-  usableEnergy: string;
-  mountingType: string;
+  batteryType?: string;
+  totalEnergy?: string;
+  usableEnergy?: string;
+  mountingType?: string;
+  technicalDataVerified: boolean;
 };
 
 export const SAKO_CATALOGUE_SOURCE_LABEL = "2026-03 SAKO Solar Catalogue 220V";
@@ -208,7 +209,7 @@ const modelMetadata = [
   },
 ] as const;
 
-export const sakoBatteryModels: SakoBatteryModel[] = sakoLiSunTechnicalTable.columns.map((model, index) => {
+const verifiedSakoBatteryModels: SakoBatteryModel[] = sakoLiSunTechnicalTable.columns.map((model, index) => {
   const metadata = modelMetadata[index];
 
   return {
@@ -221,5 +222,30 @@ export const sakoBatteryModels: SakoBatteryModel[] = sakoLiSunTechnicalTable.col
     totalEnergy: rowValue("Total Energy", index),
     usableEnergy: rowValue("Usable Energy (90% DOD)", index),
     mountingType: metadata.mountingType,
+    technicalDataVerified: true,
   };
 });
+
+const additionalSakoBatteryModels: SakoBatteryModel[] = [
+  {
+    model: "SAKO Li-Sun 51.2V 320Ah",
+    slug: "sako-li-sun-51-2v-320ah",
+    voltage: "51.2V",
+    capacity: "320Ah",
+    productFamily: "SAKO Li-Sun Lithium Batteries",
+    technicalDataVerified: false,
+  },
+  {
+    model: "SAKO Li-Sun 51.2V 640Ah",
+    slug: "sako-li-sun-51-2v-640ah",
+    voltage: "51.2V",
+    capacity: "640Ah",
+    productFamily: "SAKO Li-Sun Lithium Batteries",
+    technicalDataVerified: false,
+  },
+];
+
+export const sakoBatteryModels: SakoBatteryModel[] = [
+  ...verifiedSakoBatteryModels,
+  ...additionalSakoBatteryModels,
+];

@@ -5,7 +5,7 @@ import { products } from "@/src/data/products";
 
 const productImagesRoot = path.join(process.cwd(), "public", "images", "products");
 const processedProductImagesRoot = path.join(process.cwd(), "public", "images", "products-processed");
-const validImageExtensions = new Set([".avif", ".gif", ".jpeg", ".jpg", ".png", ".webp"]);
+const validImageExtensions = new Set([".avif", ".gif", ".jpeg", ".jpg", ".png", ".svg", ".webp"]);
 const preferredImageTerms = ["front", "main", "hero", "product", "610w", "100ah", "200ah", "300ah", "600ah"];
 
 export type ProductImageAsset = {

@@ -1,6 +1,7 @@
 export type ProductCategory =
   | "Lithium Batteries"
   | "All-in-One Energy Storage System"
+  | "Off-Grid Solar Inverters"
   | "Solar Panels"
   | "Electrical Protection"
   | "Solar Wiring"
@@ -58,17 +59,17 @@ export const products: Product[] = [
     summary: "Official SAKO Li-Sun lithium battery comparison for energy-storage project selection.",
     description: "",
     features: [
-      "Top brand new LiFePO4 cells for superior safety and reliability.",
-      "Supports wall-mounted or floor-stand installation.",
-      "Comprehensive protection system for safe unattended operation.",
-      "5-Year Warranty, 6000-8000+ cycles, 10+ years design life.",
-      "Smart BMS (100A / 150A / 200A) optimized for solar applications.",
-      "Compatible with 10+ inverter brands through multiple communication protocols.",
+      "Verified SK models use LiFePO4 battery technology.",
+      "Verified SK mounting configurations vary by model and are listed in the selector.",
+      "Technical values for verified SK models are available in the official catalogue comparison table.",
+      "SAKO Li-Sun 51.2V 320Ah and SAKO Li-Sun 51.2V 640Ah are included as selectable gallery models.",
+      "Technical values that are not covered by the verified source table are intentionally omitted.",
+      "Request the latest approved datasheet before product selection or quotation.",
     ],
     keyDetails: [
       "Product type: Lithium battery",
       "Secondary label: Energy Storage Batteries",
-      "Seven priority SK battery models included",
+      "Nine selectable Li-Sun battery models included",
     ],
     parameterTableAvailable: true,
     productType: "Lithium Battery",
@@ -79,6 +80,110 @@ export const products: Product[] = [
         url: "https://sakopower.com/wp-content/uploads/2026/05/2026-03-SAKO-Solar-Catalogue-220V%EF%BC%89.pdf",
       },
     ],
+  },
+  {
+    slug: "alpha-ess-3kw",
+    name: "Alpha ESS 3kW",
+    category: "All-in-One Energy Storage System",
+    published: true,
+    imageFolders: ["alpha-ess/3kw"],
+    primaryImage: "alpha-ess-3kw.svg",
+    imageLabels: {
+      "alpha-ess-3kw.svg": "Primary Product View",
+      "view-02": "Gallery View 2",
+      "view-03": "Gallery View 3",
+      "view-04": "Gallery View 4",
+    },
+    summary: "Alpha ESS all-in-one energy storage product for product-selection and quotation inquiries.",
+    description:
+      "Alpha ESS 3kW is available for product inquiries through Solareco. Request the latest approved technical documentation before system selection.",
+    keyDetails: [
+      "Manufacturer: Alpha ESS",
+      "Model: Alpha ESS 3kW",
+      "Product type: All-in-One Energy Storage System",
+      "Contact Solareco for verified technical documentation",
+    ],
+    productType: "All-in-One Energy Storage System",
+  },
+  {
+    slug: "alpha-ess-11kw",
+    name: "Alpha ESS 11kW",
+    category: "All-in-One Energy Storage System",
+    published: true,
+    imageFolders: ["alpha-ess/11kw"],
+    primaryImage: "alpha-ess-11kw.svg",
+    imageLabels: {
+      "alpha-ess-11kw.svg": "Primary Product View",
+      "view-02": "Gallery View 2",
+      "view-03": "Gallery View 3",
+    },
+    summary: "Alpha ESS all-in-one energy storage product for product-selection and quotation inquiries.",
+    description:
+      "Alpha ESS 11kW is available for product inquiries through Solareco. Request the latest approved technical documentation before system selection.",
+    keyDetails: [
+      "Manufacturer: Alpha ESS",
+      "Model: Alpha ESS 11kW",
+      "Product type: All-in-One Energy Storage System",
+      "Contact Solareco for verified technical documentation",
+    ],
+    productType: "All-in-One Energy Storage System",
+  },
+  {
+    slug: "luxpower-geta-lb-eu-3-6kw",
+    name: "LuxPower GETA-LB-EU 3.6kW",
+    category: "Off-Grid Solar Inverters",
+    published: true,
+    imageFolders: ["luxpower/geta-lb-eu-3-6kw"],
+    primaryImage: "luxpower-geta-lb-eu-3-6kw.svg",
+    secondaryLabel: "Off-Grid Solar Inverter",
+    summary: "LuxPower off-grid solar inverter product for product-selection and quotation inquiries.",
+    description:
+      "LuxPower GETA-LB-EU 3.6kW is available for product inquiries through Solareco. Request the latest approved technical documentation before system selection.",
+    keyDetails: [
+      "Manufacturer: LuxPower",
+      "Model: GETA-LB-EU 3.6kW",
+      "Product type: Off-Grid Solar Inverter",
+      "Contact Solareco for verified technical documentation",
+    ],
+    productType: "Off-Grid Solar Inverter",
+  },
+  {
+    slug: "luxpower-gen2-lb-eu-6kw",
+    name: "LuxPower GEN2-LB-EU 6kW",
+    category: "Off-Grid Solar Inverters",
+    published: true,
+    imageFolders: ["luxpower/gen2-lb-eu-6kw"],
+    primaryImage: "luxpower-gen2-lb-eu-6kw.svg",
+    secondaryLabel: "Off-Grid Solar Inverter",
+    summary: "LuxPower off-grid solar inverter product for product-selection and quotation inquiries.",
+    description:
+      "LuxPower GEN2-LB-EU 6kW is available for product inquiries through Solareco. Request the latest approved technical documentation before system selection.",
+    keyDetails: [
+      "Manufacturer: LuxPower",
+      "Model: GEN2-LB-EU 6kW",
+      "Product type: Off-Grid Solar Inverter",
+      "Contact Solareco for verified technical documentation",
+    ],
+    productType: "Off-Grid Solar Inverter",
+  },
+  {
+    slug: "luxpower-gen2-lb-eu-12kw",
+    name: "LuxPower GEN2-LB-EU 12kW",
+    category: "Off-Grid Solar Inverters",
+    published: true,
+    imageFolders: ["luxpower/gen2-lb-eu-12kw"],
+    primaryImage: "luxpower-gen2-lb-eu-12kw.svg",
+    secondaryLabel: "Off-Grid Solar Inverter",
+    summary: "LuxPower off-grid solar inverter product for product-selection and quotation inquiries.",
+    description:
+      "LuxPower GEN2-LB-EU 12kW is available for product inquiries through Solareco. Request the latest approved technical documentation before system selection.",
+    keyDetails: [
+      "Manufacturer: LuxPower",
+      "Model: GEN2-LB-EU 12kW",
+      "Product type: Off-Grid Solar Inverter",
+      "Contact Solareco for verified technical documentation",
+    ],
+    productType: "Off-Grid Solar Inverter",
   },
   {
     slug: "sako-all-in-one",
@@ -135,6 +240,23 @@ export const products: Product[] = [
     ],
   },
   {
+    slug: "solahestia-650w",
+    name: "SOLAHESTIA 650W",
+    category: "Solar Panels",
+    published: true,
+    imageFolders: ["solahestia/610w"],
+    primaryImage: "HESTIA.png",
+    summary: "SOLAHESTIA 650W solar panel product for project-supply and quotation inquiries.",
+    description:
+      "SOLAHESTIA 650W is available for solar-panel inquiries through Solareco. Request the latest approved technical documentation before system selection.",
+    keyDetails: [
+      "650W panel class",
+      "Product type: Solar Panel",
+      "Contact Solareco for verified technical documentation",
+    ],
+    productType: "Solar Panel",
+  },
+  {
     slug: "yro-breakers",
     name: "YRO Breakers",
     category: "Electrical Protection",
@@ -180,6 +302,7 @@ export const products: Product[] = [
 export const productCategories: ProductCategory[] = [
   "Lithium Batteries",
   "All-in-One Energy Storage System",
+  "Off-Grid Solar Inverters",
   "Solar Panels",
   "Electrical Protection",
   "Solar Wiring",

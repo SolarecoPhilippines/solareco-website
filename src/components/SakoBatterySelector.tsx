@@ -128,7 +128,9 @@ export function SakoBatterySelector({ models, imagesByModel }: SakoBatterySelect
                 </span>
               ))}
             </div>
-            <p className="mt-4 text-sm leading-6 text-slate-700">All other listed models support wall or stand mounting.</p>
+            <p className="mt-4 text-sm leading-6 text-slate-700">
+              Mounting information is shown only for SK models covered by the verified SAKO catalogue table.
+            </p>
           </section>
 
           <section className="border-y border-slate-200 bg-slate-50 p-4 sm:p-6">
@@ -139,10 +141,12 @@ export function SakoBatterySelector({ models, imagesByModel }: SakoBatterySelect
                 <dt className="font-semibold text-slate-500">Product family</dt>
                 <dd className="mt-1 text-slate-900">{selectedModel.productFamily}</dd>
               </div>
-              <div>
-                <dt className="font-semibold text-slate-500">Battery type</dt>
-                <dd className="mt-1 text-slate-900">{selectedModel.batteryType}</dd>
-              </div>
+              {selectedModel.batteryType ? (
+                <div>
+                  <dt className="font-semibold text-slate-500">Battery type</dt>
+                  <dd className="mt-1 text-slate-900">{selectedModel.batteryType}</dd>
+                </div>
+              ) : null}
               <div>
                 <dt className="font-semibold text-slate-500">Nominal voltage</dt>
                 <dd className="mt-1 text-slate-900">{selectedModel.voltage}</dd>
@@ -151,19 +155,31 @@ export function SakoBatterySelector({ models, imagesByModel }: SakoBatterySelect
                 <dt className="font-semibold text-slate-500">Capacity</dt>
                 <dd className="mt-1 text-slate-900">{selectedModel.capacity}</dd>
               </div>
-              <div>
-                <dt className="font-semibold text-slate-500">Total energy</dt>
-                <dd className="mt-1 text-slate-900">{selectedModel.totalEnergy}</dd>
-              </div>
-              <div>
-                <dt className="font-semibold text-slate-500">Usable energy at 90% DOD</dt>
-                <dd className="mt-1 text-slate-900">{selectedModel.usableEnergy}</dd>
-              </div>
-              <div className="sm:col-span-2">
-                <dt className="font-semibold text-slate-500">Mounting type</dt>
-                <dd className="mt-1 text-slate-900">{selectedModel.mountingType}</dd>
-              </div>
+              {selectedModel.totalEnergy ? (
+                <div>
+                  <dt className="font-semibold text-slate-500">Total energy</dt>
+                  <dd className="mt-1 text-slate-900">{selectedModel.totalEnergy}</dd>
+                </div>
+              ) : null}
+              {selectedModel.usableEnergy ? (
+                <div>
+                  <dt className="font-semibold text-slate-500">Usable energy at 90% DOD</dt>
+                  <dd className="mt-1 text-slate-900">{selectedModel.usableEnergy}</dd>
+                </div>
+              ) : null}
+              {selectedModel.mountingType ? (
+                <div className="sm:col-span-2">
+                  <dt className="font-semibold text-slate-500">Mounting type</dt>
+                  <dd className="mt-1 text-slate-900">{selectedModel.mountingType}</dd>
+                </div>
+              ) : null}
             </dl>
+            {!selectedModel.technicalDataVerified ? (
+              <p className="mt-5 border-l-2 border-amber-400 bg-amber-50 px-4 py-3 text-sm leading-6 text-amber-900">
+                Technical values for this model are not included in the current verified source table. Contact
+                Solareco for an approved datasheet before product selection.
+              </p>
+            ) : null}
           </section>
         </div>
       </div>
@@ -187,8 +203,17 @@ export function SakoBatterySelector({ models, imagesByModel }: SakoBatterySelect
               >
                 <span className="block font-heading text-base font-bold text-slate-950">{model.model}</span>
                 <span className="mt-2 block text-sm text-slate-600">Capacity: {model.capacity}</span>
-                <span className="mt-1 block text-sm text-slate-600">Total energy: {model.totalEnergy}</span>
-                <span className="mt-1 block text-sm text-slate-600">{model.mountingType}</span>
+                {model.totalEnergy ? (
+                  <span className="mt-1 block text-sm text-slate-600">Total energy: {model.totalEnergy}</span>
+                ) : null}
+                {model.mountingType ? (
+                  <span className="mt-1 block text-sm text-slate-600">{model.mountingType}</span>
+                ) : null}
+                {!model.technicalDataVerified ? (
+                  <span className="mt-2 block text-sm leading-5 text-slate-500">
+                    Verified technical specifications are not currently published on this page.
+                  </span>
+                ) : null}
                 {selected ? <span className="mt-3 block text-sm font-bold text-[#0D3567]">Selected</span> : null}
               </button>
             );

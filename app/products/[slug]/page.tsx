@@ -195,7 +195,7 @@ export default async function ProductDetailPage({ params }: ProductDetailPagePro
             <SectionTitle
               eyebrow={product.secondaryLabel}
               title="SAKO Li-Sun Technical Parameters"
-              description="Compare uploaded SAKO Li-Sun battery models using technical values from the official SAKO catalogue."
+              description="Select from the uploaded SAKO Li-Sun models. Technical values are displayed only for SK models covered by the verified official SAKO catalogue table."
             />
             <SakoBatterySelector models={sakoBatteryModels} imagesByModel={sakoImagesByModel} />
             <div className="mt-8 sm:mt-10">
