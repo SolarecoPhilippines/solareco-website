@@ -2,6 +2,7 @@ export type ProductCategory =
   | "Lithium Batteries"
   | "All-in-One Energy Storage System"
   | "Off-Grid Solar Inverters"
+  | "Hybrid Single-Phase Inverters"
   | "Solar Panels"
   | "Electrical Protection"
   | "Solar Wiring"
@@ -150,40 +151,38 @@ export const products: Product[] = [
   {
     slug: "luxpower-gen2-lb-eu-6kw",
     name: "LuxPower GEN2-LB-EU 6kW",
-    category: "Off-Grid Solar Inverters",
+    category: "Hybrid Single-Phase Inverters",
     published: true,
     imageFolders: ["luxpower/gen2-lb-eu-6kw"],
     primaryImage: "luxpower-gen2-lb-eu-6kw.svg",
-    secondaryLabel: "Off-Grid Solar Inverter",
-    summary: "LuxPower off-grid solar inverter product for product-selection and quotation inquiries.",
-    description:
-      "LuxPower GEN2-LB-EU 6kW is available for product inquiries through Solareco. Request the latest approved technical documentation before system selection.",
+    secondaryLabel: "Hybrid Single-Phase Inverter",
+    summary: "LuxPower hybrid single-phase inverter for product-selection and quotation inquiries.",
+    description: "LuxPower hybrid single-phase inverter for product-selection and quotation inquiries.",
     keyDetails: [
       "Manufacturer: LuxPower",
       "Model: GEN2-LB-EU 6kW",
-      "Product type: Off-Grid Solar Inverter",
+      "Product type: Hybrid Single-Phase Inverter",
       "Contact Solareco for verified technical documentation",
     ],
-    productType: "Off-Grid Solar Inverter",
+    productType: "Hybrid Single-Phase Inverter",
   },
   {
     slug: "luxpower-gen2-lb-eu-12kw",
     name: "LuxPower GEN2-LB-EU 12kW",
-    category: "Off-Grid Solar Inverters",
+    category: "Hybrid Single-Phase Inverters",
     published: true,
     imageFolders: ["luxpower/gen2-lb-eu-12kw"],
     primaryImage: "luxpower-gen2-lb-eu-12kw.svg",
-    secondaryLabel: "Off-Grid Solar Inverter",
-    summary: "LuxPower off-grid solar inverter product for product-selection and quotation inquiries.",
-    description:
-      "LuxPower GEN2-LB-EU 12kW is available for product inquiries through Solareco. Request the latest approved technical documentation before system selection.",
+    secondaryLabel: "Hybrid Single-Phase Inverter",
+    summary: "LuxPower hybrid single-phase inverter for product-selection and quotation inquiries.",
+    description: "LuxPower hybrid single-phase inverter for product-selection and quotation inquiries.",
     keyDetails: [
       "Manufacturer: LuxPower",
       "Model: GEN2-LB-EU 12kW",
-      "Product type: Off-Grid Solar Inverter",
+      "Product type: Hybrid Single-Phase Inverter",
       "Contact Solareco for verified technical documentation",
     ],
-    productType: "Off-Grid Solar Inverter",
+    productType: "Hybrid Single-Phase Inverter",
   },
   {
     slug: "sako-all-in-one",
@@ -303,6 +302,7 @@ export const productCategories: ProductCategory[] = [
   "Lithium Batteries",
   "All-in-One Energy Storage System",
   "Off-Grid Solar Inverters",
+  "Hybrid Single-Phase Inverters",
   "Solar Panels",
   "Electrical Protection",
   "Solar Wiring",

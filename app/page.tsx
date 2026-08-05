@@ -64,6 +64,10 @@ const homepageCategories: Array<{
     description: "Off-grid inverter product options for product-selection and project-supply inquiries.",
   },
   {
+    category: "Hybrid Single-Phase Inverters",
+    description: "Hybrid single-phase inverter options for product-selection and quotation inquiries.",
+  },
+  {
     category: "Solar Panels",
     description: "Published panel options for residential, commercial, and distributed-energy planning.",
   },
@@ -212,7 +216,7 @@ export default function Home() {
       <section className="section-shell bg-slate-50">
         <Container>
           <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
-            <SectionTitle eyebrow="Priority catalog" title="Featured Solar Products" description="Explore Solareco's priority solar panels, batteries, energy-storage systems, off-grid inverters, electrical protection, and wiring products." />
+            <SectionTitle eyebrow="Priority catalog" title="Featured Solar Products" description="Explore Solareco's priority solar panels, batteries, energy-storage systems, off-grid and hybrid single-phase inverters, electrical protection, and wiring products." />
             <Button href="/products" variant="secondary" className="w-fit">View all products</Button>
           </div>
           <div className="mt-10 grid gap-5 md:grid-cols-2 xl:grid-cols-12">

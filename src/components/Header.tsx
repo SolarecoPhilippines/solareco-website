@@ -24,6 +24,10 @@ const productMenuItems = [
     label: "All-in-One Energy Storage System",
   },
   { href: "/products?category=off-grid-solar-inverters", label: "Off-Grid Solar Inverters" },
+  {
+    href: "/products?category=hybrid-single-phase-inverters",
+    label: "Hybrid Single-Phase Inverters",
+  },
   { href: "/products?category=electrical-protection", label: "Electrical Protection" },
   { href: "/products?category=solar-wiring", label: "Solar Wiring" },
 ] as const;
