@@ -20,6 +20,7 @@ import {
   SAKO_CATALOGUE_PRINTED_PAGES,
   SAKO_CATALOGUE_SOURCE_LABEL,
   SAKO_CATALOGUE_URL,
+  SAKO_SUPPLIED_IMAGE_SOURCE_NOTE,
   sakoBatteryModels,
   sakoLiSunTechnicalTable,
 } from "@/src/data/sakoTechnicalParameters";
@@ -195,12 +196,15 @@ export default async function ProductDetailPage({ params }: ProductDetailPagePro
             <SectionTitle
               eyebrow={product.secondaryLabel}
               title="SAKO Li-Sun Technical Parameters"
-              description="Select from the uploaded SAKO Li-Sun models. Technical values are displayed only for SK models covered by the verified official SAKO catalogue table."
+              description="Select a SAKO Li-Sun model to review its available verified technical values and product images."
             />
             <SakoBatterySelector models={sakoBatteryModels} imagesByModel={sakoImagesByModel} />
             <div className="mt-8 sm:mt-10">
               <ProductParameterTable technicalTable={sakoLiSunTechnicalTable} />
             </div>
+            <p className="mt-4 border-l-2 border-[#0D3567] bg-white px-4 py-3 text-sm leading-6 text-slate-700">
+              {SAKO_SUPPLIED_IMAGE_SOURCE_NOTE}
+            </p>
             <section className="editorial-panel mt-8 p-4 sm:p-6">
               <h2 className="font-heading text-xl font-bold text-slate-950 sm:text-2xl">Official Technical Reference</h2>
               <dl className="mt-5 grid gap-4 text-sm text-slate-700 md:grid-cols-3">

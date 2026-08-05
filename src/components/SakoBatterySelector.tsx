@@ -174,6 +174,35 @@ export function SakoBatterySelector({ models, imagesByModel }: SakoBatterySelect
                 </div>
               ) : null}
             </dl>
+            {selectedModel.technicalSpecifications ? (
+              <div className="mt-6 border-t border-slate-200 pt-5">
+                <p className="text-sm font-bold uppercase tracking-[0.14em] text-[#0D3567]">
+                  Technical specifications
+                </p>
+                <dl className="mt-4 grid gap-x-6 gap-y-4 text-sm sm:grid-cols-2">
+                  {selectedModel.technicalSpecifications
+                    .filter(
+                      (specification) =>
+                        specification.label !== "Battery Type" &&
+                        specification.label !== "Total Energy" &&
+                        specification.label !== "Usable Energy (90% DOD)",
+                    )
+                    .map((specification) => (
+                      <div
+                        key={specification.label}
+                        className={
+                          specification.label === "Protection" || specification.label === "Smart BMS"
+                            ? "sm:col-span-2"
+                            : undefined
+                        }
+                      >
+                        <dt className="font-semibold text-slate-500">{specification.label}</dt>
+                        <dd className="mt-1 leading-6 text-slate-900">{specification.value}</dd>
+                      </div>
+                    ))}
+                </dl>
+              </div>
+            ) : null}
             {!selectedModel.technicalDataVerified ? (
               <p className="mt-5 border-l-2 border-amber-400 bg-amber-50 px-4 py-3 text-sm leading-6 text-amber-900">
                 Technical values for this model are not included in the current verified source table. Contact
