@@ -22,11 +22,18 @@ const brandLogos = [
   "ASENWARE Logo.png",
 ];
 
+const darkCardLogos = new Set(["HYBSUN Logo.png"]);
+
 function BrandLogo({ fileName }: { fileName: string }) {
   const brandName = fileName.replace(" Logo.png", "");
+  const useDarkCard = darkCardLogos.has(fileName);
 
   return (
-    <div className="trusted-brand-logo flex h-24 w-full items-center justify-center overflow-hidden border border-slate-200 bg-slate-50 p-3 sm:h-28 sm:p-4">
+    <div
+      className={`trusted-brand-logo flex h-24 w-full items-center justify-center overflow-hidden rounded-xl border border-slate-200 p-3 sm:h-28 sm:p-4 ${
+        useDarkCard ? "bg-[#0B2F57]" : "bg-slate-100"
+      }`}
+    >
       <div className="flex h-16 w-full max-w-[200px] items-center justify-center overflow-hidden sm:h-20 sm:max-w-[220px]">
         <Image
           src={`/images/brands/${fileName}`}
