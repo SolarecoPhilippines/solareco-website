@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import { BranchCard } from "@/src/components/BranchCard";
 import { Button } from "@/src/components/Button";
 import { Container } from "@/src/components/Container";
 import { CtaBanner } from "@/src/components/CtaBanner";
@@ -85,7 +86,7 @@ export default function Home() {
   return (
     <>
       <section className="home-hero section-fade bg-[#0A2A52] text-white">
-        <Container className="grid items-center gap-9 py-11 sm:py-14 lg:grid-cols-[1.25fr_0.75fr] lg:gap-12 lg:py-20">
+        <Container className="grid items-center gap-10 py-11 sm:py-14 lg:grid-cols-[minmax(0,1.08fr)_minmax(360px,0.92fr)] lg:gap-[clamp(3rem,5vw,6rem)] lg:py-20 2xl:py-24">
           <div className="max-w-3xl border-l-2 border-[#62A8E5] pl-5 sm:pl-7">
             <p className="eyebrow text-blue-200">Solar products for Philippine projects</p>
             <h1 className="home-hero-title mt-5 font-heading font-black">
@@ -108,7 +109,7 @@ export default function Home() {
               alt="Solareco solar, electrical, battery, and industrial product range"
               fill
               priority
-              sizes="(min-width: 1024px) 34vw, 100vw"
+              sizes="(min-width: 1600px) 42vw, (min-width: 1024px) 40vw, 100vw"
               className="object-contain object-bottom p-4 sm:p-6"
             />
           </div>
@@ -224,16 +225,16 @@ export default function Home() {
       </section>
 
       <section className="section-shell bg-[#071F3D] text-white">
-        <Container className="grid gap-10 lg:grid-cols-[0.72fr_1.28fr] lg:gap-16">
+        <Container className="grid gap-10 lg:grid-cols-[minmax(260px,0.62fr)_minmax(0,1.38fr)] lg:gap-[clamp(3rem,5vw,6rem)]">
           <div className="max-w-xl lg:sticky lg:top-28 lg:self-start">
             <p className="eyebrow text-blue-200">Why Solareco</p>
             <h2 className="section-title-text mt-3 font-heading font-black">Practical support from inquiry to installation</h2>
             <p className="mt-5 text-base leading-8 text-blue-50/75">A product partner for solar installers, project owners, dealers, and businesses that need dependable supply and clear technical coordination.</p>
             <Button href="/contact" variant="outlineLight" className="mt-8">Discuss a requirement</Button>
           </div>
-          <div className="grid border-t border-white/20 sm:grid-cols-2">
+          <div className="grid gap-px border border-white/20 bg-white/20 md:grid-cols-2 2xl:grid-cols-3">
             {benefits.map((benefit, index) => (
-              <article key={benefit.title} className="grid grid-cols-[42px_1fr] gap-4 border-b border-white/20 py-7 sm:px-6 sm:first:pl-0 sm:[&:nth-child(odd)]:border-r sm:[&:nth-child(even)]:pr-0">
+              <article key={benefit.title} className="grid grid-cols-[42px_1fr] gap-4 bg-[#071F3D] p-6 lg:p-7">
                 <span className="font-heading text-sm font-black text-blue-300" aria-hidden="true">{String(index + 1).padStart(2, "0")}</span>
                 <div>
                   <h3 className="font-heading text-lg font-bold text-white">{benefit.title}</h3>
@@ -304,41 +305,16 @@ export default function Home() {
       ) : null}
 
       <section className="section-shell bg-slate-50">
-        <Container className="grid gap-10 lg:grid-cols-[0.72fr_1.28fr] lg:gap-16">
-          <div className="lg:sticky lg:top-28 lg:self-start">
+        <Container>
+          <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
             <SectionTitle eyebrow="Locations" title="Nationwide branch and warehouse support" description="Connect with Solareco Philippines through verified locations in Iloilo, Bacolod, Manila, Palawan, Cebu, and Davao." />
-            <Button href="/contact" variant="secondary" className="mt-8">View full contact directory</Button>
+            <Button href="/contact" variant="secondary" className="w-fit">View full contact directory</Button>
           </div>
-          <ol className="border-t border-slate-300 bg-white">
-            {branches.map((branch, index) => {
-              const mapUrl = branch.locations.find((location) => location.mapUrl)?.mapUrl;
-
-              return (
-                <li key={branch.name} className="grid gap-4 border-b border-slate-300 p-5 sm:grid-cols-[48px_minmax(0,1fr)_auto] sm:items-center sm:p-6">
-                  <span className="font-heading text-sm font-black text-[#2E7FC1]" aria-hidden="true">{String(index + 1).padStart(2, "0")}</span>
-                  <div>
-                    <div className="flex flex-wrap items-center gap-x-3 gap-y-2">
-                      <h3 className="font-heading text-xl font-bold text-slate-950">{branch.name}</h3>
-                      <span className={`border-l-2 pl-2 text-xs font-bold uppercase tracking-[0.1em] ${branch.status === "Open" ? "border-emerald-500 text-emerald-700" : "border-amber-500 text-amber-800"}`}>
-                        {branch.status}
-                      </span>
-                    </div>
-                    <p className="mt-2 text-sm text-slate-500">{branch.region} / {branch.type}</p>
-                  </div>
-                  <div className="flex flex-wrap items-center gap-4 sm:justify-end">
-                    <a href={branch.phoneHref} className="min-h-11 content-center text-sm font-bold text-[#0D3567] underline-offset-4 hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0D3567]">
-                      {branch.phone}
-                    </a>
-                    {mapUrl ? (
-                      <a href={mapUrl} target="_blank" rel="noopener noreferrer" className="min-h-11 content-center text-sm font-semibold text-slate-600 underline-offset-4 hover:text-[#0D3567] hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0D3567]">
-                        View map
-                      </a>
-                    ) : null}
-                  </div>
-                </li>
-              );
-            })}
-          </ol>
+          <div className="mt-10 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
+            {branches.map((branch) => (
+              <BranchCard key={branch.name} branch={branch} compact showContactLink />
+            ))}
+          </div>
         </Container>
       </section>
 

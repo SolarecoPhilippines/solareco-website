@@ -9,9 +9,10 @@ type ProductCardProps = {
   product: VisibleProduct;
   showQuoteButton?: boolean;
   featured?: boolean;
+  eager?: boolean;
 };
 
-export function ProductCard({ product, showQuoteButton = true, featured = false }: ProductCardProps) {
+export function ProductCard({ product, showQuoteButton = true, featured = false, eager = false }: ProductCardProps) {
   const [imageFailed, setImageFailed] = useState(false);
 
   return (
@@ -27,6 +28,7 @@ export function ProductCard({ product, showQuoteButton = true, featured = false 
             src={product.primaryImage.src}
             alt={product.primaryImage.alt}
             fill
+            loading={eager ? "eager" : "lazy"}
             sizes="(min-width: 1024px) 30vw, (min-width: 768px) 45vw, 100vw"
             className="object-contain p-6 drop-shadow-[0_14px_22px_rgba(13,53,103,0.14)] transition duration-300 group-hover:scale-[1.025]"
             onError={() => setImageFailed(true)}

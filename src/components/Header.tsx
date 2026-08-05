@@ -43,7 +43,7 @@ export function Header() {
           />
         </Link>
 
-        <nav className="hidden items-center gap-2 lg:flex" aria-label="Main navigation">
+        <nav className="hidden items-center gap-1 lg:flex xl:gap-3" aria-label="Main navigation">
           {navLinks.map((link) => {
             const active = isActive(link.href);
 
@@ -52,7 +52,7 @@ export function Header() {
                 key={link.href}
                 href={link.href}
                 aria-current={active ? "page" : undefined}
-                className={`border-b-2 px-3 py-2 text-[15px] font-semibold transition focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white ${
+                className={`border-b-2 px-2.5 py-2 text-[15px] font-semibold transition focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white xl:px-3 ${
                   active ? "border-blue-300 text-white" : "border-transparent text-blue-100 hover:border-white/30 hover:text-white"
                 }`}
               >
@@ -87,28 +87,28 @@ export function Header() {
       {open ? (
         <div className="border-t border-white/10 bg-[#0A2A52] py-3 shadow-xl lg:hidden">
           <Container>
-          <nav className="flex flex-col gap-1" aria-label="Mobile navigation">
-            {navLinks.map((link) => {
-              const active = isActive(link.href);
+            <nav className="flex flex-col gap-1" aria-label="Mobile navigation">
+              {navLinks.map((link) => {
+                const active = isActive(link.href);
 
-              return (
-                <Link
-                  key={link.href}
-                  href={link.href}
-                  aria-current={active ? "page" : undefined}
-                  className={`rounded-md px-3 py-3 text-base font-semibold hover:bg-white/10 hover:text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white ${
-                    active ? "bg-white/10 text-white" : "text-blue-50"
-                  }`}
-                  onClick={() => setOpenAtPath(null)}
-                >
-                  {link.label}
-                </Link>
-              );
-            })}
-            <Button href="/contact" variant="light" className="w-full" onClick={() => setOpenAtPath(null)}>
-              Request a Quote
-            </Button>
-          </nav>
+                return (
+                  <Link
+                    key={link.href}
+                    href={link.href}
+                    aria-current={active ? "page" : undefined}
+                    className={`rounded-md px-3 py-3 text-base font-semibold hover:bg-white/10 hover:text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white ${
+                      active ? "bg-white/10 text-white" : "text-blue-50"
+                    }`}
+                    onClick={() => setOpenAtPath(null)}
+                  >
+                    {link.label}
+                  </Link>
+                );
+              })}
+              <Button href="/contact" variant="light" className="w-full" onClick={() => setOpenAtPath(null)}>
+                Request a Quote
+              </Button>
+            </nav>
           </Container>
         </div>
       ) : null}

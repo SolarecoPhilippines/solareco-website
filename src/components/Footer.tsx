@@ -10,8 +10,8 @@ export function Footer() {
   const primaryBranch = branches[0];
 
   return (
-    <footer className="bg-[#071f3d] text-white">
-      <Container className="grid gap-10 py-14 sm:grid-cols-2 lg:grid-cols-[1.35fr_0.7fr_0.8fr_1fr] lg:gap-12 lg:py-16">
+    <footer className="border-t-4 border-[#2E7FC1] bg-[#071f3d] text-white">
+      <Container className="grid gap-10 py-14 sm:grid-cols-2 lg:grid-cols-[1.35fr_0.7fr_0.8fr_1fr] lg:gap-12 lg:py-16 xl:grid-cols-[1.55fr_0.7fr_0.8fr_1fr] xl:gap-16 2xl:py-20">
         <div>
           <Image
             src="/images/logo/solareco-logo-white.png"

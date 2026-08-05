@@ -64,7 +64,7 @@ export function SolutionGallery({ solutions }: { solutions: SolutionApplication[
                 </div>
               )}
             </div>
-            <div className={`flex flex-col justify-center p-6 sm:p-9 lg:p-12 ${index % 2 === 1 ? "lg:order-1" : ""}`}>
+            <div className={`flex flex-col justify-center p-6 sm:p-9 lg:p-12 2xl:p-16 ${index % 2 === 1 ? "lg:order-1" : ""}`}>
               <div className="flex items-start gap-5">
                 <span className="font-heading text-sm font-black text-[#2E7FC1]" aria-hidden="true">{String(index + 1).padStart(2, "0")}</span>
                 <div>
@@ -72,7 +72,7 @@ export function SolutionGallery({ solutions }: { solutions: SolutionApplication[
                   <h2 className="mt-3 font-heading text-2xl font-black text-slate-950 sm:text-3xl">{solution.title}</h2>
                 </div>
               </div>
-              <p className="mt-5 text-base leading-8 text-slate-600">{solution.summary}</p>
+              <p className="mt-5 max-w-2xl text-base leading-8 text-slate-600">{solution.summary}</p>
               <p className="mt-5 border-l-2 border-slate-300 pl-4 text-sm font-semibold leading-6 text-slate-500">{solution.availability}</p>
               <ul className="mt-5 grid gap-2 text-sm leading-6 text-slate-600">
                 {solution.details.slice(0, 2).map((detail) => (

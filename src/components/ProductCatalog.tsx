@@ -100,9 +100,9 @@ export function ProductCatalog({ products }: { products: VisibleProduct[] }) {
         Showing {filteredProducts.length} {filteredProducts.length === 1 ? "product" : "products"}
         {category === "All" ? "" : ` in ${category}`}.
       </p>
-      <div className="mt-8 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
-        {filteredProducts.map((product) => (
-          <ProductCard key={product.slug} product={product} />
+      <div className="mt-8 grid gap-6 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4">
+        {filteredProducts.map((product, index) => (
+          <ProductCard key={product.slug} product={product} eager={index === 0} />
         ))}
       </div>
       {filteredProducts.length === 0 ? (
